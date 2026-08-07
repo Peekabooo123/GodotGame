@@ -2,6 +2,8 @@ class_name Pedestrians
 extends CharacterBody2D
 
 @export var speed = 200
+@export var crossing_rule_script: Script
+
 @onready var sprite: Sprite2D = $Pedestrain
 @onready var crossing_rule: Node = $CrossingRule
 
@@ -13,6 +15,7 @@ var current_target_index: int = 1
 func _ready() -> void:
 	add_to_group("pedestrians")
 	add_to_group("selectable")
+	crossing_rule.set_script(crossing_rule_script)
 
 func set_path(new_path: Array[Vector2]) -> void:
 	path = new_path
