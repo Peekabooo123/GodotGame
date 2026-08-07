@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b44gqelnq5ei1" path="res://assets/icon.svg" id="1_tdcr0"]
 [ext_resource type="Script" uid="uid://dl5rgp7ulfjaf" path="res://scenes/Pedestrain/pedestrian.gd" id="1_unnv6"]
+[ext_resource type="Script" uid="uid://br6twut8x0gpy" path="res://scenes/Pedestrain/LawAbidingRule.gd" id="3_138ah"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
 size = Vector2(120, 40)
@@ -18,3 +19,6 @@ texture = ExtResource("1_tdcr0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=995109140]
 shape = SubResource("RectangleShape2D_00qfr")
+
+[node name="CrossingRule" type="Node" parent="." unique_id=1184624531]
+script = ExtResource("3_138ah")

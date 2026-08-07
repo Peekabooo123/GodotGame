@@ -3,7 +3,7 @@ extends Node2D
 
 #enum State { RED, YELLOW, GREEN }
 
-@export var red_duration: float = 3.0
+@export var red_duration: float = 15.0
 @export var yellow_duration: float = 3.0
 @export var green_duration: float = 10.0
 
@@ -31,7 +31,8 @@ func _update_countdown_label():
 func _enter_state(new_state: Eventbus.TrafficLightState) -> void:
 	current_state = new_state
 	_update_visuals()
-	Eventbus.traffic_light_state_changed.emit(current_state)
+	Eventbus.current_traffic_light_state = new_state
+	#Eventbus.traffic_light_state_changed.emit(current_state)
 
 	match current_state:
 		Eventbus.TrafficLightState.RED:

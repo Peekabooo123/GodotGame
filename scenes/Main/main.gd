@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var background: Node2D = $Background
-@onready var pedestrian: Pedestrians = $Node/Pedestrain
+#@onready var pedestrian: Pedestrians = $Pedestrains/Pedestrain
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var path = background.get_pedestrian_path()

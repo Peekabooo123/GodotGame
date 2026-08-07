@@ -3,9 +3,9 @@ extends CharacterBody2D
 
 @export var speed = 200
 @onready var sprite: Sprite2D = $Pedestrain
+@onready var crossing_rule: Node = $CrossingRule
 
 var current_state: Eventbus.PedestrainState = Eventbus.PedestrainState.WAITING
-var traffic_light_state: Eventbus.TrafficLightState = Eventbus.TrafficLightState.RED
 
 var path: Array[Vector2] = []
 var current_target_index: int = 1
@@ -13,23 +13,16 @@ var current_target_index: int = 1
 func _ready() -> void:
 	add_to_group("pedestrians")
 	add_to_group("selectable")
-	Eventbus.traffic_light_state_changed.connect(_on_traffic_light_state_changed)
-
-func _on_traffic_light_state_changed(state: Eventbus.TrafficLightState):
-	print("Pedestrian 收到红绿灯状态变化: ", state)
-	traffic_light_state = state
-	if current_state == Eventbus.PedestrainState.WAITING:
-		_check_if_can_proceed()
 
 func set_path(new_path: Array[Vector2]) -> void:
 	path = new_path
 	if not path.is_empty():
-		global_position = path[0]
-		current_target_index = 1
+		#global_position = path[0]
+		current_target_index = 0
 		_check_if_can_proceed()
 
 func _check_if_can_proceed() -> void:
-	if traffic_light_state == Eventbus.TrafficLightState.RED:
+	if crossing_rule.should_wait():
 		current_state = Eventbus.PedestrainState.WAITING
 	else:
 		current_state = Eventbus.PedestrainState.WALKING
@@ -37,16 +30,19 @@ func _check_if_can_proceed() -> void:
 func _physics_process(_delta: float) -> void:
 	match current_state:
 		Eventbus.PedestrainState.WALKING:
+			#_check_if_can_proceed()
 			_move_towards_current_target()
-		Eventbus.PedestrainState.ARRIVED or Eventbus.PedestrainState.WAITING:
+		Eventbus.PedestrainState.WAITING:
+			velocity = Vector2.ZERO
+			move_and_slide()
+			_check_if_can_proceed()
+		Eventbus.PedestrainState.ARRIVED:
 			velocity = Vector2.ZERO
 			move_and_slide()
 
 func _move_towards_current_target() -> void:
 	if current_target_index >= path.size():
 		current_state = Eventbus.PedestrainState.ARRIVED
-		velocity = Vector2.ZERO
-		move_and_slide()
 		return
 
 	var target: Vector2 = path[current_target_index]
