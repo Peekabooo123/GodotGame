@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://c8kmkw3vb1h3w"]
+
+[ext_resource type="Script" uid="uid://dbquq2cinuqxf" path="res://scenes/Car/car.gd" id="1_c8bcc"]
+[ext_resource type="Texture2D" uid="uid://cispj2lr267s" path="res://assets/Spites/cars/cars.png" id="1_xbtw7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8bcc"]
+atlas = ExtResource("1_xbtw7")
+region = Rect2(202, 54.5, 31, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vio55"]
+size = Vector2(160, 216)
+
+[node name="Car" type="CharacterBody2D" unique_id=1053033790]
+position = Vector2(456, 256)
+collision_layer = 4
+script = ExtResource("1_c8bcc")
+
+[node name="Car" type="Sprite2D" parent="." unique_id=1130085480]
+position = Vector2(-0.50424194, 1.5258789e-05)
+scale = Vector2(3.644887, 3.454546)
+texture = SubResource("AtlasTexture_c8bcc")
+
+[node name="HitDetectionArea" type="Area2D" parent="." unique_id=347780304]
+position = Vector2(-0.50424194, 1.5258789e-05)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetectionArea" unique_id=1901106680]
+shape = SubResource("RectangleShape2D_vio55")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1919466826]
+position = Vector2(0, -1.2394714)
+scale = Vector2(1, 1.0098684)
+polygon = PackedVector2Array(-24, -72, -40, -56, -40, 64, -24, 80, 24, 80, 40, 64, 40, -56, 24, -72)

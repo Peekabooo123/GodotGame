@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://bvb3byn3c62l7"]
+
+[ext_resource type="Script" uid="uid://co4ix46g7tbe3" path="res://scenes/TrafficLight/traffic_light.gd" id="1_uttgq"]
+[ext_resource type="FontFile" uid="uid://bohsc44n0ryok" path="res://assets/font/dseg7-classic/static/dseg7-classic-latin-400-italic.woff2" id="2_va7ut"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
+size = Vector2(101, 54)
+
+[node name="TrafficLight" type="StaticBody2D" unique_id=1747020669]
+position = Vector2(536, 424)
+collision_mask = 0
+script = ExtResource("1_uttgq")
+
+[node name="Housing" type="ColorRect" parent="." unique_id=731121746]
+offset_left = -50.0
+offset_top = -134.0
+offset_right = 51.0
+offset_bottom = 26.0
+color = Color(0.21950102, 0.21950102, 0.21950102, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="RedLight" type="ColorRect" parent="." unique_id=2115405627]
+custom_minimum_size = Vector2(40, 10)
+offset_left = -40.0
+offset_top = -124.0
+offset_right = 40.0
+offset_bottom = -99.0
+color = Color(1, 0.06999999, 0.06999999, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="YellowLight" type="ColorRect" parent="." unique_id=905690210]
+custom_minimum_size = Vector2(40, 10)
+offset_left = -40.0
+offset_top = -97.0
+offset_right = 40.0
+offset_bottom = -72.0
+color = Color(0.9029943, 0.8635046, 0.16492337, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="GreenLight" type="ColorRect" parent="." unique_id=129884377]
+custom_minimum_size = Vector2(40, 10)
+offset_left = -40.0
+offset_top = -70.0
+offset_right = 40.0
+offset_bottom = -45.0
+color = Color(0.30980393, 1, 0.06666667, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="." unique_id=1790205971]
+offset_left = -23.0
+offset_top = -42.0
+offset_right = 25.0
+offset_bottom = -19.0
+theme_override_fonts/font = ExtResource("2_va7ut")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="StateTimer" type="Timer" parent="." unique_id=1500769841]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1712878663]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_00qfr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1014375326]

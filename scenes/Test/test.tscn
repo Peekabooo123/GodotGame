@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://3cna7588r0e1"]
+
+[ext_resource type="PackedScene" uid="uid://c8kmkw3vb1h3w" path="res://scenes/Car/car.tscn" id="1_wi42s"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_00qfr"]
+radius = 128.0
+height = 288.0
+
+[node name="Node2D" type="Node2D" unique_id=1413035968]
+
+[node name="Car" parent="." unique_id=1053033790 instance=ExtResource("1_wi42s")]
+speed = 200.0
+
+[node name="TestObstacle" type="StaticBody2D" parent="." unique_id=1713208307]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestObstacle" unique_id=475230090]
+position = Vector2(448, 448)
+shape = SubResource("CapsuleShape2D_00qfr")
