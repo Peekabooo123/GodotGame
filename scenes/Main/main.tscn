@@ -27,11 +27,12 @@ position = Vector2(672, 432)
 [node name="SelectionManager" type="Node2D" parent="." unique_id=1851797672]
 script = ExtResource("5_rdp1x")
 
-[node name="Node" type="Node2D" parent="." unique_id=1193235358]
+[node name="Pedestrains" type="Node2D" parent="." unique_id=1193235358]
 
-[node name="Pedestrain" parent="Node" unique_id=835365558 instance=ExtResource("1_px18m")]
+[node name="Pedestrain" parent="Pedestrains" unique_id=835365558 instance=ExtResource("1_px18m")]
 position = Vector2(96, 248)
 scale = Vector2(0.5, 0.5)
 speed = 100
 
-[node name="Pedestrain2" parent="Node" unique_id=112163113 instance=ExtResource("1_px18m")]
+[node name="Pedestrain2" parent="Pedestrains" unique_id=112163113 instance=ExtResource("1_px18m")]
+position = Vector2(168, 432)

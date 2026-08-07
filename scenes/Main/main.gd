@@ -5,7 +5,6 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var path = background.get_pedestrian_path()
-	pedestrian.set_path(path)
 	for pedestrian in get_tree().get_nodes_in_group("pedestrians"):
 		pedestrian.set_path(path)
 
