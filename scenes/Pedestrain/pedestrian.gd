@@ -25,15 +25,16 @@ func set_path(new_path: Array[Vector2]) -> void:
 		_check_if_can_proceed()
 
 func _check_if_can_proceed() -> void:
-	if crossing_rule.should_wait():
-		current_state = Eventbus.PedestrainState.WAITING
-	else:
-		current_state = Eventbus.PedestrainState.WALKING
+
+		if current_target_index > 0 and crossing_rule.should_wait():
+			current_state = Eventbus.PedestrainState.WAITING
+		else:
+			current_state = Eventbus.PedestrainState.WALKING
 
 func _physics_process(_delta: float) -> void:
 	match current_state:
 		Eventbus.PedestrainState.WALKING:
-			#_check_if_can_proceed()
+			_check_if_can_proceed()
 			_move_towards_current_target()
 		Eventbus.PedestrainState.WAITING:
 			velocity = Vector2.ZERO
