@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bvb3byn3c62l7" path="res://scenes/TrafficLight/traffic_light.tscn" id="3_rdp1x"]
 [ext_resource type="PackedScene" uid="uid://c8kmkw3vb1h3w" path="res://scenes/Car/car.tscn" id="4_8gcrf"]
 [ext_resource type="Script" uid="uid://cihtpb3ipydk2" path="res://scenes/Main/pedestrian_spawner.gd" id="5_rdp1x"]
+[ext_resource type="Script" uid="uid://bi7ilr2m67yk1" path="res://scenes/Main/selection_manager.gd" id="7_5wuev"]
 
 [node name="Main" type="Node2D" unique_id=1825897954]
 y_sort_enabled = true
@@ -33,3 +34,6 @@ pedestrian_scene = ExtResource("1_px18m")
 
 [node name="PedestriansContainer" type="Node2D" parent="." unique_id=1193235358]
 y_sort_enabled = true
+
+[node name="SelectionManager" type="Node2D" parent="." unique_id=10999744]
+script = ExtResource("7_5wuev")
