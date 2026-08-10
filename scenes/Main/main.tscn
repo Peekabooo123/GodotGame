@@ -1,65 +1,10 @@
 [gd_scene format=3 uid="uid://cuxvlvfqlm4qx"]
 
 [ext_resource type="Script" uid="uid://b32b6d6c70jct" path="res://scenes/Main/main.gd" id="1_nyu32"]
-[ext_resource type="PackedScene" uid="uid://de0x6a4pilut7" path="res://scenes/Pedestrain/pedestrian.tscn" id="1_px18m"]
 [ext_resource type="PackedScene" uid="uid://cxxl7cge1vpd7" path="res://scenes/Background/background.tscn" id="2_8gcrf"]
 [ext_resource type="PackedScene" uid="uid://bvb3byn3c62l7" path="res://scenes/TrafficLight/traffic_light.tscn" id="3_rdp1x"]
 [ext_resource type="PackedScene" uid="uid://c8kmkw3vb1h3w" path="res://scenes/Car/car.tscn" id="4_8gcrf"]
-
-[sub_resource type="GDScript" id="GDScript_8gcrf"]
-script/source = "extends Node
-
-@export var pedestrian_scene: PackedScene
-@export var min_spawn_interval: float = 2.0
-@export var max_spawn_interval: float = 4.0
-
-@onready var spawn_timer: Timer = $SpawnTimer
-
-var background: Node2D
-var pedestrians_container: Node2D
-
-func setup(p_background: Node2D, p_container: Node2D) -> void:
-	background = p_background
-	pedestrians_container = p_container
-
-func _ready() -> void:
-	spawn_timer.one_shot = true
-	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
-	_start_next_timer()
-
-func _start_next_timer() -> void:
-	var wait_time := randf_range(min_spawn_interval, max_spawn_interval)
-	spawn_timer.start(wait_time)
-
-func _on_spawn_timer_timeout() -> void:
-	_spawn_pedestrian()
-	_start_next_timer()
-
-func _spawn_pedestrian() -> void:
-	var points = background.get_pedestrian_points()
-	var pedestrian = pedestrian_scene.instantiate()
-	print(\"生成行人，帧数: \", Engine.get_physics_frames())
-
-	pedestrian.global_position = points[\"spawn\"]
-	pedestrians_container.add_child(pedestrian)
-	#pedestrian.global_position = points[\"spawn\"]
-
-	var behavior_steps := _pick_random_behavior(points)
-	pedestrian.set_behavior(behavior_steps)
-
-func _pick_random_behavior(points: Dictionary) -> Array[BehaviorStep]:
-	var choice := randi() % 3
-	match choice:
-		0:
-			print('遵守')
-			return PedestrianBehaviors.law_abiding(points)
-		1:
-			print('闯红灯')
-			return PedestrianBehaviors.jaywalking(points)
-		_:
-			print('从不过马路')
-			return PedestrianBehaviors.straight_walking(points)
-"
+[ext_resource type="Script" uid="uid://cihtpb3ipydk2" path="res://scenes/Main/pedestrian_spawner.gd" id="5_rdp1x"]
 
 [node name="Main" type="Node2D" unique_id=1825897954]
 y_sort_enabled = true
@@ -79,8 +24,7 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(672, 432)
 
 [node name="PedestrianSpawner" type="Node2D" parent="." unique_id=1851797672]
-script = SubResource("GDScript_8gcrf")
-pedestrian_scene = ExtResource("1_px18m")
+script = ExtResource("5_rdp1x")
 
 [node name="SpawnTimer" type="Timer" parent="PedestrianSpawner" unique_id=94670170]
 
