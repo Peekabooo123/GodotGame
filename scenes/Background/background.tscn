@@ -264,6 +264,12 @@ shape = SubResource("RectangleShape2D_3uftm")
 collision_mask = 5
 script = ExtResource("2_mv5p6")
 
+[node name="ColorRect" type="ColorRect" parent="CarStopLine" unique_id=1398504358]
+offset_left = 373.0
+offset_top = 336.0
+offset_right = 760.0
+offset_bottom = 344.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarStopLine" unique_id=952879711]
 position = Vector2(664, 344)
 shape = SubResource("SegmentShape2D_00qfr")
