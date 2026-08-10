@@ -5,6 +5,7 @@ func _ready() -> void:
 	body_exited.connect(_on_body_exited)
 
 func _on_body_entered(body: Node2D) -> void:
+	print('到停止线了')
 	if body.is_in_group("cars") and body.has_method("set_at_stopline"):
 		body.set_at_stopline(true)
 
