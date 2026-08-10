@@ -33,7 +33,10 @@ func _on_crosswalk_occupancy_changed(is_occupied: bool) -> void:
 	is_crosswalk_occupied = is_occupied
 
 func _should_stop() -> bool:
-	return is_at_stopline and is_crosswalk_occupied
+	if is_at_stopline and (is_crosswalk_occupied or Eventbus.current_traffic_light_state == Eventbus.TrafficLightState.GREEN):
+		return true
+
+	return false
 
 func _update(input_dir: Vector2):
 	if input_dir.length() > 0:
