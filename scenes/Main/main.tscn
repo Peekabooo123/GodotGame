@@ -22,7 +22,7 @@ position = Vector2(792, 127)
 scale = Vector2(0.5, 0.5)
 
 [node name="Car" parent="." unique_id=1053033790 instance=ExtResource("4_8gcrf")]
-position = Vector2(672, 432)
+position = Vector2(681, 872)
 
 [node name="PedestrianSpawner" type="Node2D" parent="." unique_id=1851797672]
 script = ExtResource("5_rdp1x")

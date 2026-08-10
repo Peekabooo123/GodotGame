@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: float = 200.0
+@export var speed: float = randf_range(50.0, 150.0)
 
 @onready var sprite: Sprite2D = $Pedestrain
 
@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if current_step_index >= behavior_steps.size():
+		queue_free()
 		return
 
 	var current_step: BehaviorStep = behavior_steps[current_step_index]

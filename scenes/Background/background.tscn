@@ -2,6 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dbqf3tslf31ub" path="res://scenes/Background/background.gd" id="1_3uftm"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3uftm"]
+size = Vector2(408, 168)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_00qfr"]
+a = Vector2(-24, -5)
+b = Vector2(152, -5)
+
 [node name="Background" type="Node2D" unique_id=441226856]
 script = ExtResource("1_3uftm")
 
@@ -221,20 +228,35 @@ custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="WaitPoint" type="Marker2D" parent="." unique_id=2006204228]
+[node name="Points" type="Node2D" parent="." unique_id=892883525]
+
+[node name="WaitPoint" type="Marker2D" parent="Points" unique_id=2006204228]
 position = Vector2(264, 224)
 
-[node name="StartPoint" type="Marker2D" parent="." unique_id=2136309763]
+[node name="StartPoint" type="Marker2D" parent="Points" unique_id=2136309763]
 position = Vector2(363, 216)
 
-[node name="EndPoint" type="Marker2D" parent="." unique_id=1278666686]
+[node name="EndPoint" type="Marker2D" parent="Points" unique_id=1278666686]
 position = Vector2(792, 217)
 
-[node name="SpawnPoint" type="Marker2D" parent="." unique_id=257567434]
+[node name="SpawnPoint" type="Marker2D" parent="Points" unique_id=257567434]
 position = Vector2(312, -32)
 
-[node name="LeftExitPoint" type="Marker2D" parent="." unique_id=91688793]
+[node name="LeftExitPoint" type="Marker2D" parent="Points" unique_id=91688793]
 position = Vector2(312, 936)
 
-[node name="RightExitPoint" type="Marker2D" parent="." unique_id=434736175]
+[node name="RightExitPoint" type="Marker2D" parent="Points" unique_id=434736175]
 position = Vector2(808, 936)
+
+[node name="ZebraCrossingArea" type="Area2D" parent="." unique_id=1151615449]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=663061481]
+position = Vector2(564, 212)
+shape = SubResource("RectangleShape2D_3uftm")
+
+[node name="CarStopLine" type="Area2D" parent="." unique_id=1299897368]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarStopLine" unique_id=952879711]
+position = Vector2(608, 325)
+shape = SubResource("SegmentShape2D_00qfr")
