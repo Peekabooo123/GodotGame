@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://cxxl7cge1vpd7"]
 
 [ext_resource type="Script" uid="uid://dbqf3tslf31ub" path="res://scenes/Background/background.gd" id="1_3uftm"]
+[ext_resource type="Script" uid="uid://bifdkyvd2lhhk" path="res://scenes/Background/points.gd" id="2_d3pbo"]
+[ext_resource type="Script" uid="uid://k2tnordfojnh" path="res://scenes/Background/zebra_crossing_area.gd" id="2_dk05f"]
+[ext_resource type="Script" uid="uid://biwfel8r336gi" path="res://scenes/Background/StopLineArea.gd" id="2_mv5p6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3uftm"]
 size = Vector2(408, 168)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_00qfr"]
-a = Vector2(-24, -5)
-b = Vector2(152, -5)
+a = Vector2(-72, 0)
+b = Vector2(80, 0)
 
 [node name="Background" type="Node2D" unique_id=441226856]
 script = ExtResource("1_3uftm")
@@ -229,6 +232,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="Points" type="Node2D" parent="." unique_id=892883525]
+script = ExtResource("2_d3pbo")
 
 [node name="WaitPoint" type="Marker2D" parent="Points" unique_id=2006204228]
 position = Vector2(264, 224)
@@ -250,13 +254,15 @@ position = Vector2(808, 936)
 
 [node name="ZebraCrossingArea" type="Area2D" parent="." unique_id=1151615449]
 collision_mask = 7
+script = ExtResource("2_dk05f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=663061481]
 position = Vector2(564, 212)
 shape = SubResource("RectangleShape2D_3uftm")
 
 [node name="CarStopLine" type="Area2D" parent="." unique_id=1299897368]
+script = ExtResource("2_mv5p6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarStopLine" unique_id=952879711]
-position = Vector2(608, 325)
+position = Vector2(664, 344)
 shape = SubResource("SegmentShape2D_00qfr")
