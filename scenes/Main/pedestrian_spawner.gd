@@ -42,11 +42,11 @@ func _pick_random_behavior(points: Dictionary) -> Array[BehaviorStep]:
 	var choice := randi() % 3
 	match choice:
 		0:
-			print('遵守')
+			print('遵守规则')
 			return PedestrianBehaviors.law_abiding(points)
 		1:
-			print('闯红灯')
+			print('会闯红灯')
 			return PedestrianBehaviors.jaywalking(points)
 		_:
-			print('从不过马路')
+			print('直走，不过马路')
 			return PedestrianBehaviors.straight_walking(points)
