@@ -19,7 +19,10 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_hit_detection_area_body_entered(body: Node2D) -> void:
+	print("触发帧数: ", Engine.get_physics_frames())
 	print("检测到物体进入: ", body.name)
+	print("行人的位置",body.global_position)
+	print("CAR的位置",self.global_position)
 
 func _update(input_dir: Vector2):
 	if input_dir.length() > 0:

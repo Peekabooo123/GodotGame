@@ -18,5 +18,3 @@ texture = ExtResource("1_tdcr0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=995109140]
 shape = SubResource("RectangleShape2D_00qfr")
-
-[node name="CrossingRule" type="Node" parent="." unique_id=1184624531]
