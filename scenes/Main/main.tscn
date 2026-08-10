@@ -25,9 +25,11 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(681, 872)
 
 [node name="PedestrianSpawner" type="Node2D" parent="." unique_id=1851797672]
+y_sort_enabled = true
 script = ExtResource("5_rdp1x")
 pedestrian_scene = ExtResource("1_px18m")
 
 [node name="SpawnTimer" type="Timer" parent="PedestrianSpawner" unique_id=94670170]
 
 [node name="PedestriansContainer" type="Node2D" parent="." unique_id=1193235358]
+y_sort_enabled = true
