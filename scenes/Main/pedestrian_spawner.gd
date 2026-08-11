@@ -38,7 +38,6 @@ func _spawn_pedestrian() -> void:
 
 func _pick_random_behavior_type() -> Pedestrian.BehaviorType:
 	var choice := randi() % 3
-	choice = 0
 	match choice:
 		0: 
 			print('遵守')

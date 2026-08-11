@@ -19,7 +19,7 @@ size = Vector2(260, 104.125)
 size = Vector2(104, 169)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7fpr"]
-size = Vector2(114, 170)
+size = Vector2(129, 82.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d3pbo"]
 size = Vector2(304, 98)
@@ -302,7 +302,7 @@ position = Vector2(292, 211.5)
 shape = SubResource("RectangleShape2D_vio55")
 
 [node name="Right" type="CollisionShape2D" parent="WaitArea" unique_id=1351014116]
-position = Vector2(840, 208)
+position = Vector2(848, 256)
 shape = SubResource("RectangleShape2D_i7fpr")
 
 [node name="ExitArea" type="Area2D" parent="." unique_id=1145765116]
