@@ -13,7 +13,19 @@ a = Vector2(-72, 0)
 b = Vector2(80, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
-size = Vector2(296, 96.25)
+size = Vector2(260, 104.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vio55"]
+size = Vector2(104, 169)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7fpr"]
+size = Vector2(114, 170)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3pbo"]
+size = Vector2(304, 98)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg5hf"]
+size = Vector2(217, 98)
 
 [node name="Background" type="Node2D" unique_id=441226856]
 script = ExtResource("1_3uftm")
@@ -282,3 +294,23 @@ shape = SubResource("SegmentShape2D_00qfr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea" unique_id=2082895145]
 position = Vector2(196, -55.875)
 shape = SubResource("RectangleShape2D_00qfr")
+
+[node name="WaitArea" type="Area2D" parent="." unique_id=390383723]
+
+[node name="Left" type="CollisionShape2D" parent="WaitArea" unique_id=1117510834]
+position = Vector2(292, 211.5)
+shape = SubResource("RectangleShape2D_vio55")
+
+[node name="Right" type="CollisionShape2D" parent="WaitArea" unique_id=1351014116]
+position = Vector2(840, 208)
+shape = SubResource("RectangleShape2D_i7fpr")
+
+[node name="ExitArea" type="Area2D" parent="." unique_id=1145765116]
+
+[node name="Lfet" type="CollisionShape2D" parent="ExitArea" unique_id=604815731]
+position = Vector2(208, 912)
+shape = SubResource("RectangleShape2D_d3pbo")
+
+[node name="Right" type="CollisionShape2D" parent="ExitArea" unique_id=63667335]
+position = Vector2(891.5, 896)
+shape = SubResource("RectangleShape2D_gg5hf")

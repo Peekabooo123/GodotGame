@@ -15,6 +15,13 @@ extends Node2D
 
 @onready var spawn_area: Area2D = $SpawnArea
 @onready var spawn_area_shape: CollisionShape2D = $SpawnArea/CollisionShape2D
+
+@onready var wait_area_shape_left: CollisionShape2D = $WaitArea/Left
+@onready var wait_area_shape_right: CollisionShape2D = $WaitArea/Right
+
+@onready var exit_area_shape_left: CollisionShape2D = $ExitArea/Lfet
+@onready var exit_area_shape_right: CollisionShape2D = $ExitArea/Right
+
 func _draw():
 	draw_rect(
 		Rect2(Vector2.ZERO, get_viewport_rect().size),
@@ -22,10 +29,10 @@ func _draw():
 		true
 	)
 
-func get_random_spawn_position() -> Vector2:
-	var shape: RectangleShape2D = spawn_area_shape.shape
+func get_random_spawn_position(area_shape:CollisionShape2D) -> Vector2:
+	var shape: RectangleShape2D = area_shape.shape
 	var area_size: Vector2 = shape.size
-	var area_center: Vector2 = spawn_area_shape.global_position
+	var area_center: Vector2 = area_shape.global_position
 
 	var half_size := area_size / 2.0
 	var random_x := randf_range(-half_size.x, half_size.x)
@@ -36,10 +43,10 @@ func get_random_spawn_position() -> Vector2:
 
 func get_pedestrian_points() -> Dictionary:
 	return {
-		"spawn": get_random_spawn_position(),
-		"wait": wait_point.global_position,
+		"spawn": get_random_spawn_position(spawn_area_shape),
+		"wait": get_random_spawn_position(wait_area_shape_left),
 		"start": start_point.global_position,
-		"end": end_point.global_position,
-		"left_exit": left_exit_point.global_position,
-		"right_exit": right_exit_point.global_position,
+		"end": get_random_spawn_position(wait_area_shape_right),
+		"left_exit": get_random_spawn_position(exit_area_shape_left),
+		"right_exit": get_random_spawn_position(exit_area_shape_right),
 	}

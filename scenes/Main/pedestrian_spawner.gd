@@ -38,7 +38,14 @@ func _spawn_pedestrian() -> void:
 
 func _pick_random_behavior_type() -> Pedestrian.BehaviorType:
 	var choice := randi() % 3
+	choice = 0
 	match choice:
-		0: return Pedestrian.BehaviorType.LAW_ABIDING
-		1: return Pedestrian.BehaviorType.JAYWALKING
-		_: return Pedestrian.BehaviorType.STRAIGHT_WALKING
+		0: 
+			print('遵守')
+			return Pedestrian.BehaviorType.LAW_ABIDING
+		1: 
+			print('闯红灯')
+			return Pedestrian.BehaviorType.JAYWALKING
+		_: 
+			print('直走')
+			return Pedestrian.BehaviorType.STRAIGHT_WALKING
