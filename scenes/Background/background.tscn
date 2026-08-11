@@ -12,6 +12,9 @@ size = Vector2(408, 168)
 a = Vector2(-72, 0)
 b = Vector2(80, 0)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
+size = Vector2(296, 96.25)
+
 [node name="Background" type="Node2D" unique_id=441226856]
 script = ExtResource("1_3uftm")
 
@@ -273,3 +276,9 @@ offset_bottom = 344.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarStopLine" unique_id=952879711]
 position = Vector2(664, 344)
 shape = SubResource("SegmentShape2D_00qfr")
+
+[node name="SpawnArea" type="Area2D" parent="." unique_id=1651448593]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea" unique_id=2082895145]
+position = Vector2(196, -55.875)
+shape = SubResource("RectangleShape2D_00qfr")

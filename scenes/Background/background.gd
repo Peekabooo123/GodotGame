@@ -13,6 +13,8 @@ extends Node2D
 
 @onready var car_stop_line: Area2D = $CarStopLine
 
+@onready var spawn_area: Area2D = $SpawnArea
+@onready var spawn_area_shape: CollisionShape2D = $SpawnArea/CollisionShape2D
 func _draw():
 	draw_rect(
 		Rect2(Vector2.ZERO, get_viewport_rect().size),
@@ -20,9 +22,21 @@ func _draw():
 		true
 	)
 
+func get_random_spawn_position() -> Vector2:
+	var shape: RectangleShape2D = spawn_area_shape.shape
+	var area_size: Vector2 = shape.size
+	var area_center: Vector2 = spawn_area_shape.global_position
+
+	var half_size := area_size / 2.0
+	var random_x := randf_range(-half_size.x, half_size.x)
+	var random_y := randf_range(-half_size.y, half_size.y)
+
+	return area_center + Vector2(random_x, random_y)
+
+
 func get_pedestrian_points() -> Dictionary:
 	return {
-		"spawn": spawn_point.global_position,
+		"spawn": get_random_spawn_position(),
 		"wait": wait_point.global_position,
 		"start": start_point.global_position,
 		"end": end_point.global_position,
