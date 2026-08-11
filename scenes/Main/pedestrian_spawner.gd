@@ -2,7 +2,7 @@ extends Node
 
 @export var pedestrian_scene: PackedScene
 @export var min_spawn_interval: float = 2.0
-@export var max_spawn_interval: float = 4.0
+@export var max_spawn_interval: float = 2.0
 
 @onready var spawn_timer: Timer = $SpawnTimer
 
@@ -28,26 +28,17 @@ func _on_spawn_timer_timeout() -> void:
 
 func _spawn_pedestrian() -> void:
 	var points = background.get_pedestrian_points()
-	var pedestrian = pedestrian_scene.instantiate()
+	var pedestrian := pedestrian_scene.instantiate()
 
-	pedestrian.global_position = points["spawn"]
+	pedestrian.position = points["spawn"]
 	pedestrians_container.add_child(pedestrian)
-	#pedestrian.global_position = points["spawn"]
-	#print('name:', pedestrian.name)
 
-	var behavior_steps := _pick_random_behavior(points)
-	pedestrian.set_behavior(behavior_steps)
+	var behavior_type = _pick_random_behavior_type()
+	pedestrian.initialize(behavior_type, points)
 
-func _pick_random_behavior(points: Dictionary) -> Array[BehaviorStep]:
+func _pick_random_behavior_type() -> Pedestrian.BehaviorType:
 	var choice := randi() % 3
-	#choice = 1
 	match choice:
-		0:
-			print('遵守规则')
-			return PedestrianBehaviors.law_abiding(points)
-		1:
-			print('会闯红灯')
-			return PedestrianBehaviors.jaywalking(points)
-		_:
-			print('直走，不过马路')
-			return PedestrianBehaviors.straight_walking(points)
+		0: return Pedestrian.BehaviorType.LAW_ABIDING
+		1: return Pedestrian.BehaviorType.JAYWALKING
+		_: return Pedestrian.BehaviorType.STRAIGHT_WALKING
