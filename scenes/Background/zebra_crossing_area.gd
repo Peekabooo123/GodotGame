@@ -10,6 +10,9 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("pedestrians"):
 		pedestrians_on_crossing += 1
+		if Eventbus.current_traffic_light_state == Eventbus.TrafficLightState.RED:
+			if body.has_method("mark_as_illegal"):
+				body.mark_as_illegal()
 		if pedestrians_on_crossing == 1:
 			Eventbus.crosswalk_occupancy_changed.emit(true)
 			print('you ren')

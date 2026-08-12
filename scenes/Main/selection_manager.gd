@@ -25,6 +25,10 @@ func _check_what_is_at(pos: Vector2) -> void:
 	if clicked_object is Area2D and clicked_object.get_parent().is_in_group("pedestrians"):
 		var pedestrian = clicked_object.get_parent()
 		print("点中了行人: ", pedestrian.name)
+		if pedestrian.is_illegal:
+			print("抓到一个闯红灯的！加分")
+		else:
+			print("这个人是合法过马路的，点错了")
 
 		click_sound.play()
 		pedestrian.queue_free()

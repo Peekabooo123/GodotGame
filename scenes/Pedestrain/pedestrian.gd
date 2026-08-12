@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 enum BehaviorType { LAW_ABIDING, JAYWALKING, STRAIGHT_WALKING }
 
+var is_illegal: bool = false
 @export var speed: float = randf_range(50.0, 150.0)
 @onready var animated_sprite: AnimatedSprite2D = $Pedestrain
 var behavior_steps: Array[BehaviorStep] = []
@@ -37,7 +38,16 @@ func _physics_process(delta: float) -> void:
 
 	if finished:
 		current_step_index += 1
-	
+
+
+func mark_as_illegal() -> void:
+	if is_illegal:
+		return   # 已经标记过了，不用重复处理
+	is_illegal = true
+	print(name, " 被标记为闯红灯")
+	# 这里以后可以加视觉提示，比如换个颜色/图标
+
+
 func _update_animation(is_moving: bool) -> void:
 	if is_moving:
 		if animated_sprite.animation != "walk" or not animated_sprite.is_playing():

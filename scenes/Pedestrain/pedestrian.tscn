@@ -22,8 +22,8 @@ animations = [{
 size = Vector2(43.75, 24.25)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_138ah"]
-radius = 32.0
-height = 96.0
+radius = 40.0
+height = 112.0
 
 [node name="Pedestrain" type="CharacterBody2D" unique_id=112163113]
 position = Vector2(216, 232)
