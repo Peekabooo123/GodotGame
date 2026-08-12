@@ -15,6 +15,9 @@ b = Vector2(80, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
 size = Vector2(260, 104.125)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smsqd"]
+size = Vector2(253, 97)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vio55"]
 size = Vector2(104, 169)
 
@@ -291,9 +294,13 @@ shape = SubResource("SegmentShape2D_00qfr")
 
 [node name="SpawnArea" type="Area2D" parent="." unique_id=1651448593]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea" unique_id=2082895145]
+[node name="Left" type="CollisionShape2D" parent="SpawnArea" unique_id=2082895145]
 position = Vector2(196, -55.875)
 shape = SubResource("RectangleShape2D_00qfr")
+
+[node name="right" type="CollisionShape2D" parent="SpawnArea" unique_id=2131397122]
+position = Vector2(921.5, -56.5)
+shape = SubResource("RectangleShape2D_smsqd")
 
 [node name="WaitArea" type="Area2D" parent="." unique_id=390383723]
 

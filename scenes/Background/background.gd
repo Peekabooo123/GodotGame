@@ -14,7 +14,8 @@ extends Node2D
 @onready var car_stop_line: Area2D = $CarStopLine
 
 @onready var spawn_area: Area2D = $SpawnArea
-@onready var spawn_area_shape: CollisionShape2D = $SpawnArea/CollisionShape2D
+@onready var spawn_area_shape_left: CollisionShape2D = $SpawnArea/Left
+@onready var spawn_area_shape_right: CollisionShape2D = $SpawnArea/right
 
 @onready var wait_area_shape_left: CollisionShape2D = $WaitArea/Left
 @onready var wait_area_shape_right: CollisionShape2D = $WaitArea/Right
@@ -43,7 +44,7 @@ func get_random_spawn_position(area_shape:CollisionShape2D) -> Vector2:
 
 func get_pedestrian_points() -> Dictionary:
 	return {
-		"spawn": get_random_spawn_position(spawn_area_shape),
+		"spawn": get_random_spawn_position(spawn_area_shape_left),
 		"wait": get_random_spawn_position(wait_area_shape_left),
 		"start": start_point.global_position,
 		"end": get_random_spawn_position(wait_area_shape_right),
