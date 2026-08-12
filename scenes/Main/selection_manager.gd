@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var click_sound: AudioStreamPlayer2D = $ClickSound
+@onready var score_label = $UI
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var world_pos := get_global_mouse_position()
@@ -27,8 +28,11 @@ func _check_what_is_at(pos: Vector2) -> void:
 		print("点中了行人: ", pedestrian.name)
 		if pedestrian.is_illegal:
 			print("抓到一个闯红灯的！加分")
+			#score_label.add_score(1)
+			Eventbus.score_changed.emit(1)
 		else:
 			print("这个人是合法过马路的，点错了")
+			Eventbus.score_changed.emit(-1)
 
 		click_sound.play()
 		pedestrian.queue_free()
