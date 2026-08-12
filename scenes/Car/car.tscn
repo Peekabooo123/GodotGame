@@ -38,6 +38,7 @@ polygon = PackedVector2Array(-24, -72, -40, -56, -40, 64, -24, 80, 24, 80, 40, 6
 
 [node name="CarFront" type="Area2D" parent="." unique_id=2141569600]
 position = Vector2(-272, -40)
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarFront" unique_id=1708280167]
 position = Vector2(272, -16)
