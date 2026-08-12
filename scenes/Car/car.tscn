@@ -10,6 +10,9 @@ region = Rect2(202, 54.5, 31, 44)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vio55"]
 size = Vector2(160, 216)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg5hf"]
+size = Vector2(97, 37)
+
 [node name="Car" type="CharacterBody2D" unique_id=1053033790]
 position = Vector2(456, 256)
 collision_layer = 4
@@ -32,3 +35,10 @@ shape = SubResource("RectangleShape2D_vio55")
 position = Vector2(0, -1.2394714)
 scale = Vector2(1, 1.0098684)
 polygon = PackedVector2Array(-24, -72, -40, -56, -40, 64, -24, 80, 24, 80, 40, 64, 40, -56, 24, -72)
+
+[node name="CarFront" type="Area2D" parent="." unique_id=2141569600]
+position = Vector2(-272, -40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarFront" unique_id=1708280167]
+position = Vector2(272, -16)
+shape = SubResource("RectangleShape2D_gg5hf")
