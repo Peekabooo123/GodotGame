@@ -14,7 +14,7 @@ func _check_what_is_at(pos: Vector2) -> void:
 	query.position = pos
 	query.collide_with_bodies = true
 	query.collide_with_areas = true   
-	query.collision_mask = 1<<3
+	query.collision_mask = 1<<3 # 只检测第4层，只有放在第四层的内容才会被点击到
 
 	var results := space_state.intersect_point(query, 1)
 
@@ -23,7 +23,6 @@ func _check_what_is_at(pos: Vector2) -> void:
 		return
 
 	var clicked_object = results[0]["collider"]
-	print(clicked_object)
 	if clicked_object is Area2D and clicked_object.get_parent().is_in_group("pedestrians"):
 		var pedestrian = clicked_object.get_parent()
 		print("点中了行人: ", pedestrian.name)
