@@ -9,19 +9,16 @@ extends Node2D
 @onready var left_exit_point: Marker2D = $Points/LeftExitPoint
 @onready var right_exit_point: Marker2D = $Points/RightExitPoint
 
-@onready var zebra_crossing_area: Area2D = $ZebraCrossingArea
 
-@onready var car_stop_line: Area2D = $CarStopLine
-
-@onready var spawn_area: Area2D = $SpawnArea
 @onready var spawn_area_shape_left: CollisionShape2D = $SpawnArea/Left
-@onready var spawn_area_shape_right: CollisionShape2D = $SpawnArea/right
+@onready var spawn_area_shape_right: CollisionShape2D = $SpawnArea/Right
 
-@onready var wait_area_shape_left: CollisionShape2D = $WaitArea/Left
-@onready var wait_area_shape_right: CollisionShape2D = $WaitArea/Right
-
-@onready var exit_area_shape_left: CollisionShape2D = $ExitArea/Lfet
+@onready var exit_area_shape_left: CollisionShape2D = $ExitArea/Left
 @onready var exit_area_shape_right: CollisionShape2D = $ExitArea/Right
+
+@onready var wait_area_shape_left: CollisionShape2D = $ZebraCrossingArea/Left
+@onready var wait_area_shape_right: CollisionShape2D = $ZebraCrossingArea/Right
+@onready var zebra_crossing_area: CollisionShape2D = $ZebraCrossingArea/ZebraCrossing
 
 func _draw():
 	draw_rect(
@@ -45,9 +42,8 @@ func get_random_spawn_position(area_shape:CollisionShape2D) -> Vector2:
 func get_pedestrian_points() -> Dictionary:
 	return {
 		"spawn": get_random_spawn_position(spawn_area_shape_left),
-		"wait": get_random_spawn_position(wait_area_shape_left),
-		"start": start_point.global_position,
-		"end": get_random_spawn_position(wait_area_shape_right),
+		"left": get_random_spawn_position(wait_area_shape_left),
+		"right": get_random_spawn_position(wait_area_shape_right),
 		"left_exit": get_random_spawn_position(exit_area_shape_left),
 		"right_exit": get_random_spawn_position(exit_area_shape_right),
 	}
