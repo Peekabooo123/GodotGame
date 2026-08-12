@@ -47,6 +47,11 @@ func mark_as_illegal() -> void:
 	print(name, " 被标记为闯红灯")
 	# 这里以后可以加视觉提示，比如换个颜色/图标
 
+func set_highlighted(value: bool) -> void:
+	if value:
+		animated_sprite.modulate = Color(1.3, 1.3, 1.3)   # 变亮
+	else:
+		animated_sprite.modulate = Color.WHITE             # 恢复正常
 
 func _update_animation(is_moving: bool) -> void:
 	if is_moving:
