@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var click_sound: AudioStreamPlayer2D = $ClickSound
-@onready var score_label = $UI
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var world_pos := get_global_mouse_position()
@@ -14,7 +14,7 @@ func _check_what_is_at(pos: Vector2) -> void:
 	query.position = pos
 	query.collide_with_bodies = true
 	query.collide_with_areas = true   
-	query.collision_mask = 0x7FFFFFFF
+	query.collision_mask = 1<<3
 
 	var results := space_state.intersect_point(query, 1)
 
@@ -23,6 +23,7 @@ func _check_what_is_at(pos: Vector2) -> void:
 		return
 
 	var clicked_object = results[0]["collider"]
+	print(clicked_object)
 	if clicked_object is Area2D and clicked_object.get_parent().is_in_group("pedestrians"):
 		var pedestrian = clicked_object.get_parent()
 		print("点中了行人: ", pedestrian.name)

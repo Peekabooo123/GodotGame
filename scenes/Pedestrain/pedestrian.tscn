@@ -23,7 +23,7 @@ size = Vector2(43.75, 24.25)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_138ah"]
 radius = 40.0
-height = 112.0
+height = 128.0
 
 [node name="Pedestrain" type="CharacterBody2D" unique_id=112163113]
 position = Vector2(216, 232)
@@ -45,7 +45,8 @@ scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_00qfr")
 
 [node name="ClickDetectionArea" type="Area2D" parent="." unique_id=558708543]
+collision_layer = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickDetectionArea" unique_id=37933472]
-position = Vector2(0, -24)
+position = Vector2(0, -16)
 shape = SubResource("CapsuleShape2D_138ah")

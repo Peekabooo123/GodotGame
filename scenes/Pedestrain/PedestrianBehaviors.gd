@@ -3,19 +3,17 @@ extends RefCounted
 
 static func law_abiding(points: Dictionary) -> Array[BehaviorStep]:
 	var steps: Array[BehaviorStep] = [
-		WalkToPointStep.new(points["wait"]),
+		WalkToPointStep.new(points["left"]),
 		WaitForTrafficLightStep.new(),
-		WalkToPointStep.new(points["start"]),
-		WalkToPointStep.new(points["end"]),
+		WalkToPointStep.new(points["right"]),
 		WalkToPointStep.new(points["right_exit"]),
 	]
 	return steps
 
 static func jaywalking(points: Dictionary) -> Array[BehaviorStep]:
 	var steps: Array[BehaviorStep] = [
-		WalkToPointStep.new(points["wait"]),
-		WalkToPointStep.new(points["start"]),
-		WalkToPointStep.new(points["end"]),
+		WalkToPointStep.new(points["left"]),
+		WalkToPointStep.new(points["right"]),
 		WalkToPointStep.new(points["right_exit"]),
 	]
 	return steps

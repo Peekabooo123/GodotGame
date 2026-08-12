@@ -1,323 +1,59 @@
-[gd_scene format=3 uid="uid://cxxl7cge1vpd7"]
+[gd_scene format=3 uid="uid://hhn6xslyl556"]
 
-[ext_resource type="Script" uid="uid://dbqf3tslf31ub" path="res://scenes/Background/background.gd" id="1_3uftm"]
-[ext_resource type="Script" uid="uid://bifdkyvd2lhhk" path="res://scenes/Background/points.gd" id="2_d3pbo"]
-[ext_resource type="Script" uid="uid://k2tnordfojnh" path="res://scenes/Background/zebra_crossing_area.gd" id="2_dk05f"]
-[ext_resource type="Script" uid="uid://biwfel8r336gi" path="res://scenes/Background/StopLineArea.gd" id="2_mv5p6"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3uftm"]
-size = Vector2(408, 168)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_00qfr"]
-a = Vector2(-72, 0)
-b = Vector2(80, 0)
+[ext_resource type="Script" uid="uid://dkdpyhjuap80p" path="res://scenes/Test/testbackg.gd" id="1_3uftm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
-size = Vector2(260, 104.125)
+size = Vector2(221.125, 120.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_smsqd"]
-size = Vector2(253, 97)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4kg1"]
+size = Vector2(108, 98)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vio55"]
-size = Vector2(104, 169)
+size = Vector2(616, 144)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7fpr"]
-size = Vector2(129, 82.5)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_3uftm"]
+a = Vector2(504, 8)
+b = Vector2(-72, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3pbo"]
-size = Vector2(304, 98)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg5hf"]
-size = Vector2(217, 98)
-
-[node name="Background" type="Node2D" unique_id=441226856]
+[node name="Background" type="Node2D" unique_id=615072215]
 script = ExtResource("1_3uftm")
 
-[node name="Street" type="ColorRect" parent="." unique_id=22906479]
-offset_left = 362.0
-offset_top = 1.0
-offset_right = 768.0
-offset_bottom = 864.0
-mouse_filter = 2
-color = Color(0.38928655, 0.38928664, 0.38928658, 1)
+[node name="SpawnArea" type="Area2D" parent="." unique_id=683350263]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=732227389]
-offset_left = 553.0
-offset_top = 1.0
-offset_right = 568.0
-offset_bottom = 825.0
-mouse_filter = 2
-theme_override_constants/separation = 8
-
-[node name="MidLine" type="ColorRect" parent="VBoxContainer" unique_id=1080983929]
-custom_minimum_size = Vector2(15, 100)
-layout_mode = 2
-mouse_filter = 2
-color = Color(1, 1, 0.5176471, 1)
-
-[node name="MidLine2" type="ColorRect" parent="VBoxContainer" unique_id=1551213603]
-custom_minimum_size = Vector2(15, 100)
-layout_mode = 2
-mouse_filter = 2
-color = Color(1, 1, 0.5176471, 1)
-
-[node name="MidLine3" type="ColorRect" parent="VBoxContainer" unique_id=1932892466]
-custom_minimum_size = Vector2(15, 100)
-layout_mode = 2
-mouse_filter = 2
-color = Color(1, 1, 0.5176471, 1)
-
-[node name="MidLine4" type="ColorRect" parent="VBoxContainer" unique_id=1172247962]
-custom_minimum_size = Vector2(15, 100)
-layout_mode = 2
-mouse_filter = 2
-color = Color(1, 1, 0.5176471, 1)
-
-[node name="MidLine5" type="ColorRect" parent="VBoxContainer" unique_id=1810053215]
-custom_minimum_size = Vector2(15, 100)
-layout_mode = 2
-mouse_filter = 2
-color = Color(1, 1, 0.5176471, 1)
-
-[node name="MidLine6" type="ColorRect" parent="VBoxContainer" unique_id=1691632508]
-custom_minimum_size = Vector2(15, 100)
-layout_mode = 2
-mouse_filter = 2
-color = Color(1, 1, 0.5176471, 1)
-
-[node name="MidLine7" type="ColorRect" parent="VBoxContainer" unique_id=1771155855]
-custom_minimum_size = Vector2(15, 100)
-layout_mode = 2
-mouse_filter = 2
-color = Color(1, 1, 0.5176471, 1)
-
-[node name="MidLine8" type="ColorRect" parent="VBoxContainer" unique_id=519954415]
-custom_minimum_size = Vector2(15, 100)
-layout_mode = 2
-mouse_filter = 2
-color = Color(1, 1, 0.5176471, 1)
-
-[node name="Zebra Crossing" type="HBoxContainer" parent="." unique_id=1851754550]
-offset_left = 363.0
-offset_top = 131.0
-offset_right = 768.0
-offset_bottom = 293.0
-mouse_filter = 2
-
-[node name="ColorRect" type="ColorRect" parent="Zebra Crossing" unique_id=1005128640]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect2" type="ColorRect" parent="Zebra Crossing" unique_id=1284509407]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect3" type="ColorRect" parent="Zebra Crossing" unique_id=1501174268]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect4" type="ColorRect" parent="Zebra Crossing" unique_id=216027112]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect5" type="ColorRect" parent="Zebra Crossing" unique_id=431715298]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect6" type="ColorRect" parent="Zebra Crossing" unique_id=2067046524]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect7" type="ColorRect" parent="Zebra Crossing" unique_id=301760658]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect8" type="ColorRect" parent="Zebra Crossing" unique_id=496419851]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect9" type="ColorRect" parent="Zebra Crossing" unique_id=1570794574]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect10" type="ColorRect" parent="Zebra Crossing" unique_id=1296427155]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect11" type="ColorRect" parent="Zebra Crossing" unique_id=572693357]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect12" type="ColorRect" parent="Zebra Crossing" unique_id=1922019516]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect13" type="ColorRect" parent="Zebra Crossing" unique_id=166608984]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect14" type="ColorRect" parent="Zebra Crossing" unique_id=379030692]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect15" type="ColorRect" parent="Zebra Crossing" unique_id=1138585008]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect16" type="ColorRect" parent="Zebra Crossing" unique_id=1755599124]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect17" type="ColorRect" parent="Zebra Crossing" unique_id=173195747]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect18" type="ColorRect" parent="Zebra Crossing" unique_id=269178576]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect19" type="ColorRect" parent="Zebra Crossing" unique_id=211163145]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect20" type="ColorRect" parent="Zebra Crossing" unique_id=1162853286]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect21" type="ColorRect" parent="Zebra Crossing" unique_id=471021059]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect22" type="ColorRect" parent="Zebra Crossing" unique_id=1019159393]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect23" type="ColorRect" parent="Zebra Crossing" unique_id=1330203472]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect24" type="ColorRect" parent="Zebra Crossing" unique_id=1095678966]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect25" type="ColorRect" parent="Zebra Crossing" unique_id=1761661255]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect26" type="ColorRect" parent="Zebra Crossing" unique_id=1918135044]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect27" type="ColorRect" parent="Zebra Crossing" unique_id=194137079]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect28" type="ColorRect" parent="Zebra Crossing" unique_id=1686903566]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect29" type="ColorRect" parent="Zebra Crossing" unique_id=676307351]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Points" type="Node2D" parent="." unique_id=892883525]
-script = ExtResource("2_d3pbo")
-
-[node name="WaitPoint" type="Marker2D" parent="Points" unique_id=2006204228]
-position = Vector2(264, 224)
-
-[node name="StartPoint" type="Marker2D" parent="Points" unique_id=2136309763]
-position = Vector2(363, 216)
-
-[node name="EndPoint" type="Marker2D" parent="Points" unique_id=1278666686]
-position = Vector2(792, 217)
-
-[node name="SpawnPoint" type="Marker2D" parent="Points" unique_id=257567434]
-position = Vector2(312, -32)
-
-[node name="LeftExitPoint" type="Marker2D" parent="Points" unique_id=91688793]
-position = Vector2(312, 936)
-
-[node name="RightExitPoint" type="Marker2D" parent="Points" unique_id=434736175]
-position = Vector2(808, 936)
-
-[node name="ZebraCrossingArea" type="Area2D" parent="." unique_id=1151615449]
-collision_mask = 7
-script = ExtResource("2_dk05f")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=663061481]
-position = Vector2(564, 212)
-shape = SubResource("RectangleShape2D_3uftm")
-
-[node name="CarStopLine" type="Area2D" parent="." unique_id=1299897368]
-collision_mask = 5
-script = ExtResource("2_mv5p6")
-
-[node name="ColorRect" type="ColorRect" parent="CarStopLine" unique_id=1398504358]
-offset_left = 373.0
-offset_top = 336.0
-offset_right = 760.0
-offset_bottom = 344.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CarStopLine" unique_id=952879711]
-position = Vector2(664, 344)
-shape = SubResource("SegmentShape2D_00qfr")
-
-[node name="SpawnArea" type="Area2D" parent="." unique_id=1651448593]
-
-[node name="Left" type="CollisionShape2D" parent="SpawnArea" unique_id=2082895145]
-position = Vector2(196, -55.875)
+[node name="Left" type="CollisionShape2D" parent="SpawnArea" unique_id=792841154]
+position = Vector2(168, -72)
 shape = SubResource("RectangleShape2D_00qfr")
 
-[node name="right" type="CollisionShape2D" parent="SpawnArea" unique_id=2131397122]
-position = Vector2(921.5, -56.5)
-shape = SubResource("RectangleShape2D_smsqd")
+[node name="Right" type="CollisionShape2D" parent="SpawnArea" unique_id=1518611175]
+position = Vector2(1048, -72)
+shape = SubResource("RectangleShape2D_00qfr")
 
-[node name="WaitArea" type="Area2D" parent="." unique_id=390383723]
+[node name="ExitArea" type="Area2D" parent="." unique_id=1173980419]
 
-[node name="Left" type="CollisionShape2D" parent="WaitArea" unique_id=1117510834]
-position = Vector2(292, 211.5)
+[node name="Left" type="CollisionShape2D" parent="ExitArea" unique_id=1246653891]
+position = Vector2(176, 864)
+shape = SubResource("RectangleShape2D_00qfr")
+
+[node name="Right" type="CollisionShape2D" parent="ExitArea" unique_id=767764053]
+position = Vector2(1056, 872)
+shape = SubResource("RectangleShape2D_00qfr")
+
+[node name="ZebraCrossingArea" type="Area2D" parent="." unique_id=668124230]
+
+[node name="Left" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=1817796834]
+position = Vector2(216, 352)
+shape = SubResource("RectangleShape2D_b4kg1")
+
+[node name="Right" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=8571576]
+position = Vector2(992, 384)
+shape = SubResource("RectangleShape2D_b4kg1")
+
+[node name="ZebraCrossing" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=171800550]
+position = Vector2(612, 368)
 shape = SubResource("RectangleShape2D_vio55")
 
-[node name="Right" type="CollisionShape2D" parent="WaitArea" unique_id=1351014116]
-position = Vector2(848, 256)
-shape = SubResource("RectangleShape2D_i7fpr")
+[node name="CarStopLine" type="Area2D" parent="." unique_id=820521773]
 
-[node name="ExitArea" type="Area2D" parent="." unique_id=1145765116]
-
-[node name="Lfet" type="CollisionShape2D" parent="ExitArea" unique_id=604815731]
-position = Vector2(208, 912)
-shape = SubResource("RectangleShape2D_d3pbo")
-
-[node name="Right" type="CollisionShape2D" parent="ExitArea" unique_id=63667335]
-position = Vector2(891.5, 896)
-shape = SubResource("RectangleShape2D_gg5hf")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarStopLine" unique_id=1014339504]
+position = Vector2(392, 504)
+shape = SubResource("SegmentShape2D_3uftm")
