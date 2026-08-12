@@ -8,8 +8,8 @@ extends Node2D
 @onready var exit_area_shape_left: CollisionShape2D = $ExitArea/Left
 @onready var exit_area_shape_right: CollisionShape2D = $ExitArea/Right
 
-@onready var wait_area_shape_left: CollisionShape2D = $ZebraCrossingArea/Left
-@onready var wait_area_shape_right: CollisionShape2D = $ZebraCrossingArea/Right
+@onready var wait_area_shape_left: CollisionShape2D = $WaitArea/Left
+@onready var wait_area_shape_right: CollisionShape2D = $WaitArea/Right
 @onready var zebra_crossing_area: CollisionShape2D = $ZebraCrossingArea/ZebraCrossing
 
 @onready var car_stop_line: Area2D = $CarStopLine
@@ -54,7 +54,9 @@ func get_pedestrian_points() -> Dictionary:
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, screen_size),Color.BLACK)
 	draw_rect(Rect2(road_position, Vector2(road_width, screen_size.y)), Color(0, 0.302, 0.302, 1.0)) #Color.GRAY
+	_draw_lane_divider()
 	_zebra_crossing_drawing(road_width)
+
 
 func _zebra_crossing_drawing(road_width: int) -> void:
 
@@ -65,4 +67,14 @@ func _zebra_crossing_drawing(road_width: int) -> void:
 		var x = zebra_crossing_postion.x +  i * strip_total_width
 		draw_rect(Rect2(Vector2(x, zebra_crossing_postion.y), Vector2(strip_width, strip_height)), Color.WHITE)
 
-	
+func _draw_lane_divider():
+	var strip_width = 15
+	var strip_height = 80
+	var gap = 20
+	#var count:int = screen_size / (strip_height + gap)
+	var count = 8
+	var x = road_position.x + (road_width/2 - strip_width/2)
+	for i in range(count):
+		var y = i * (strip_height + gap)
+		draw_rect(Rect2(Vector2(x, y), Vector2(strip_width, strip_height)), Color.YELLOW)
+		

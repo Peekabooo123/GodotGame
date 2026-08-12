@@ -1,12 +1,11 @@
 [gd_scene format=3 uid="uid://hhn6xslyl556"]
 
 [ext_resource type="Script" uid="uid://dkdpyhjuap80p" path="res://scenes/Test/testbackg.gd" id="1_3uftm"]
+[ext_resource type="Script" uid="uid://k2tnordfojnh" path="res://scenes/Background/zebra_crossing_area.gd" id="2_dk05f"]
+[ext_resource type="Script" uid="uid://biwfel8r336gi" path="res://scenes/Background/StopLineArea.gd" id="2_mv5p6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
 size = Vector2(221.125, 120.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4kg1"]
-size = Vector2(108, 98)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vio55"]
 size = Vector2(616, 144)
@@ -14,6 +13,9 @@ size = Vector2(616, 144)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_3uftm"]
 a = Vector2(504, 8)
 b = Vector2(-72, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4kg1"]
+size = Vector2(108, 98)
 
 [node name="Background" type="Node2D" unique_id=615072215]
 script = ExtResource("1_3uftm")
@@ -39,21 +41,26 @@ position = Vector2(1056, 872)
 shape = SubResource("RectangleShape2D_00qfr")
 
 [node name="ZebraCrossingArea" type="Area2D" parent="." unique_id=668124230]
-
-[node name="Left" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=1817796834]
-position = Vector2(216, 352)
-shape = SubResource("RectangleShape2D_b4kg1")
-
-[node name="Right" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=8571576]
-position = Vector2(992, 384)
-shape = SubResource("RectangleShape2D_b4kg1")
+collision_mask = 3
+script = ExtResource("2_dk05f")
 
 [node name="ZebraCrossing" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=171800550]
 position = Vector2(612, 368)
 shape = SubResource("RectangleShape2D_vio55")
 
 [node name="CarStopLine" type="Area2D" parent="." unique_id=820521773]
+script = ExtResource("2_mv5p6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarStopLine" unique_id=1014339504]
 position = Vector2(392, 504)
 shape = SubResource("SegmentShape2D_3uftm")
+
+[node name="WaitArea" type="Area2D" parent="." unique_id=890920366]
+
+[node name="Left" type="CollisionShape2D" parent="WaitArea" unique_id=1817796834]
+position = Vector2(216, 352)
+shape = SubResource("RectangleShape2D_b4kg1")
+
+[node name="Right" type="CollisionShape2D" parent="WaitArea" unique_id=8571576]
+position = Vector2(992, 384)
+shape = SubResource("RectangleShape2D_b4kg1")
