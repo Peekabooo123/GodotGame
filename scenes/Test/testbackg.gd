@@ -10,10 +10,14 @@ extends Node2D
 
 @onready var wait_area_shape_left: CollisionShape2D = $WaitArea/Left
 @onready var wait_area_shape_right: CollisionShape2D = $WaitArea/Right
+
 @onready var zebra_crossing_area: CollisionShape2D = $ZebraCrossingArea/ZebraCrossing
+@onready var road_top_area: CollisionShape2D = $RoadArea/CollisionShape2D
 
 @onready var car_stop_line: Area2D = $CarStopLine
 
+@onready var left_marker: Marker2D = $Markers/Left
+@onready var right_marker: Marker2D = $Markers/Right
 
 var strip_width = 20
 var strip_height = 130
@@ -29,7 +33,56 @@ func _ready() -> void:
 	screen_size = Vector2(1200,800)
 
 
-func get_random_spawn_position(area_shape:CollisionShape2D) -> Vector2:
+
+
+
+func get_pedestrian_points():
+	var decision_point: Vector2
+	var decision_point_left = Vector2(get_pedestrian_walk_data()['left_sidewalk_x'] + randf_range(-10, 10), randf_range(10,790))
+	var decision_point_right = Vector2(get_pedestrian_walk_data()['right_sidewalk_x'] + randf_range(-10, 10), randf_range(10,790))
+
+	
+	return {
+		"spawn_left_top": get_random_position(spawn_area_shape_left),
+		"spawn_right_top": get_random_position(spawn_area_shape_right),
+		"left":decision_point_left,
+		"left_to_right": Vector2(decision_point_right.x, decision_point_left.y+randf_range(-10, 10)),
+		"right":decision_point_right,
+		"right_to_left": Vector2(decision_point_left.x, decision_point_right.y+randf_range(-10, 10)),
+		"left_exit_bottom": get_random_position(exit_area_shape_left),
+		"right_exit_bottom": get_random_position(exit_area_shape_right),
+	}
+
+
+func get_pedestrian_walk_data() -> Dictionary:
+	
+	return {
+		"zebra_y_range": _get_area_y_range(zebra_crossing_area),
+		"road_y_range": _get_road_y_range(),
+		"left_sidewalk_x": left_marker.global_position.x,
+		"right_sidewalk_x": right_marker.global_position.x,
+	}
+
+func _get_area_y_range(area_shape: CollisionShape2D) -> Vector2:
+	var shape: RectangleShape2D = area_shape.shape
+	var center_y = area_shape.global_position.y
+	var half_height = shape.size.y / 2.0
+	return Vector2(center_y - half_height, center_y + half_height)
+
+func _get_road_y_range() -> Vector2:
+	var road_range = _get_area_y_range(road_top_area)
+	print(road_range)
+	return Vector2(0,800)
+
+
+
+
+
+
+
+
+
+func get_random_position(area_shape:CollisionShape2D) -> Vector2:
 	var shape: RectangleShape2D = area_shape.shape
 	var area_size: Vector2 = shape.size
 	var area_center: Vector2 = area_shape.global_position
@@ -41,16 +94,16 @@ func get_random_spawn_position(area_shape:CollisionShape2D) -> Vector2:
 	return area_center + Vector2(random_x, random_y)
 
 
-func get_pedestrian_points() -> Dictionary:
-	return {
-		"spawn_lefttop": get_random_spawn_position(spawn_area_shape_left),
-		"left": get_random_spawn_position(wait_area_shape_left),
-		"left_exit": get_random_spawn_position(exit_area_shape_left),
-
-		"spawn_righttop": get_random_spawn_position(spawn_area_shape_right),
-		"right": get_random_spawn_position(wait_area_shape_right),
-		"right_exit": get_random_spawn_position(exit_area_shape_right),
-	}
+#func get_pedestrian_points() -> Dictionary:
+	#return {
+		#"spawn_lefttop": get_random_position(spawn_area_shape_left),
+		#"left": get_random_position(wait_area_shape_left),
+		#"left_exit": get_random_position(exit_area_shape_left),
+#
+		#"spawn_righttop": get_random_position(spawn_area_shape_right),
+		#"right": get_random_position(wait_area_shape_right),
+		#"right_exit": get_random_position(exit_area_shape_right),
+	#}
 
 
 func _draw() -> void:

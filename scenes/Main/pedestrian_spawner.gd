@@ -30,7 +30,7 @@ func _spawn_pedestrian() -> void:
 	var points = background.get_pedestrian_points()
 	var pedestrian := pedestrian_scene.instantiate()
 
-	var spawn_candidates: Array[Vector2] = [points["spawn_lefttop"], points["spawn_righttop"]]
+	var spawn_candidates: Array[Vector2] = [points["spawn_left_top"], points["spawn_right_top"]]
 	var spawn_position: Vector2 = spawn_candidates[randi() % spawn_candidates.size()]
 
 	pedestrian.position = spawn_position

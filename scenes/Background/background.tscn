@@ -57,6 +57,7 @@ position = Vector2(610, 365)
 shape = SubResource("RectangleShape2D_vio55")
 
 [node name="RoadArea" type="Area2D" parent="." unique_id=1927178745]
+collision_mask = 3
 script = ExtResource("3_d3pbo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoadArea" unique_id=1080710317]
@@ -68,7 +69,7 @@ position = Vector2(610, 616.5)
 shape = SubResource("RectangleShape2D_frg3x")
 
 [node name="CarStopLine" type="Area2D" parent="." unique_id=820521773]
-collision_mask = 5
+collision_mask = 4
 script = ExtResource("2_mv5p6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarStopLine" unique_id=1014339504]
@@ -92,3 +93,11 @@ scale = Vector2(0.4, 0.4)
 [node name="TrafficLight2" parent="." unique_id=1227070792 instance=ExtResource("5_i7fpr")]
 position = Vector2(276.00003, 431)
 scale = Vector2(0.4, 0.4)
+
+[node name="Markers" type="Node" parent="." unique_id=1427513125]
+
+[node name="Left" type="Marker2D" parent="Markers" unique_id=1672517114]
+position = Vector2(238, 11)
+
+[node name="Right" type="Marker2D" parent="Markers" unique_id=106974000]
+position = Vector2(976, 9)
