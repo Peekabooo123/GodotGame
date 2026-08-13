@@ -3,12 +3,20 @@
 [ext_resource type="Script" uid="uid://dkdpyhjuap80p" path="res://scenes/Test/testbackg.gd" id="1_3uftm"]
 [ext_resource type="Script" uid="uid://k2tnordfojnh" path="res://scenes/Background/zebra_crossing_area.gd" id="2_dk05f"]
 [ext_resource type="Script" uid="uid://biwfel8r336gi" path="res://scenes/Background/StopLineArea.gd" id="2_mv5p6"]
+[ext_resource type="Script" uid="uid://ckq1er8wwj3t8" path="res://scenes/Background/road_area.gd" id="3_d3pbo"]
+[ext_resource type="PackedScene" uid="uid://bvb3byn3c62l7" path="res://scenes/TrafficLight/traffic_light.tscn" id="5_i7fpr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
 size = Vector2(221.125, 120.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vio55"]
-size = Vector2(616, 144)
+size = Vector2(620, 132)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg5hf"]
+size = Vector2(618, 299)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frg3x"]
+size = Vector2(618, 369)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_3uftm"]
 a = Vector2(504, 8)
@@ -45,8 +53,19 @@ collision_mask = 3
 script = ExtResource("2_dk05f")
 
 [node name="ZebraCrossing" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=171800550]
-position = Vector2(612, 368)
+position = Vector2(610, 365)
 shape = SubResource("RectangleShape2D_vio55")
+
+[node name="RoadArea" type="Area2D" parent="." unique_id=1927178745]
+script = ExtResource("3_d3pbo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoadArea" unique_id=1080710317]
+position = Vector2(610, 148.5)
+shape = SubResource("RectangleShape2D_gg5hf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RoadArea" unique_id=1748070921]
+position = Vector2(610, 616.5)
+shape = SubResource("RectangleShape2D_frg3x")
 
 [node name="CarStopLine" type="Area2D" parent="." unique_id=820521773]
 collision_mask = 5
@@ -59,9 +78,17 @@ shape = SubResource("SegmentShape2D_3uftm")
 [node name="WaitArea" type="Area2D" parent="." unique_id=890920366]
 
 [node name="Left" type="CollisionShape2D" parent="WaitArea" unique_id=1817796834]
-position = Vector2(216, 352)
+position = Vector2(238, 379)
 shape = SubResource("RectangleShape2D_b4kg1")
 
 [node name="Right" type="CollisionShape2D" parent="WaitArea" unique_id=8571576]
-position = Vector2(992, 384)
+position = Vector2(986, 380)
 shape = SubResource("RectangleShape2D_b4kg1")
+
+[node name="TrafficLight" parent="." unique_id=1712757861 instance=ExtResource("5_i7fpr")]
+position = Vector2(943, 289)
+scale = Vector2(0.4, 0.4)
+
+[node name="TrafficLight2" parent="." unique_id=1227070792 instance=ExtResource("5_i7fpr")]
+position = Vector2(276.00003, 431)
+scale = Vector2(0.4, 0.4)
