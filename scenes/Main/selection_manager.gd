@@ -63,7 +63,9 @@ func _find_object_at(pos: Vector2) -> Node2D:
 		return null
 
 	var clicked_object = results[0]["collider"]
-	if clicked_object is Area2D and clicked_object.get_parent().is_in_group("pedestrians"):
-		return clicked_object.get_parent()
+	if clicked_object is Area2D:
+		var parent = clicked_object.get_parent()
+		if parent.is_in_group("pedestrians") or parent.is_in_group("cars"):
+			return parent
 
 	return null
