@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dbquq2cinuqxf" path="res://scenes/Car/car.gd" id="1_c8bcc"]
 [ext_resource type="Texture2D" uid="uid://cispj2lr267s" path="res://assets/Spites/cars/cars.png" id="1_xbtw7"]
+[ext_resource type="Script" uid="uid://b0igykncvi8m0" path="res://scenes/Car/hit_detection_area.gd" id="3_y0jbw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c8bcc"]
 atlas = ExtResource("1_xbtw7")
@@ -27,6 +28,7 @@ texture = SubResource("AtlasTexture_c8bcc")
 position = Vector2(-0.50424194, 1.5258789e-05)
 collision_layer = 8
 collision_mask = 2
+script = ExtResource("3_y0jbw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetectionArea" unique_id=1901106680]
 shape = SubResource("RectangleShape2D_vio55")

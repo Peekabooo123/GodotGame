@@ -43,6 +43,8 @@ func initialize(behavior_type: BehaviorType, points: Dictionary) -> void:
 	has_behavior_assigned = true
 
 func _physics_process(delta: float) -> void:
+	if not has_behavior_assigned:
+		return
 	if current_step_index >= behavior_steps.size():
 		_update_animation(false)
 		queue_free()
@@ -75,3 +77,6 @@ func _update_animation(is_moving: bool) -> void:
 	else:
 		#animated_sprite.play("walk")
 		animated_sprite.stop()
+
+func stop_due_to_collision()->void:
+	has_behavior_assigned = false
