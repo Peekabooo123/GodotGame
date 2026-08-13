@@ -37,21 +37,32 @@ func _ready() -> void:
 
 
 func get_pedestrian_points():
-	var decision_point: Vector2
-	var decision_point_left = Vector2(get_pedestrian_walk_data()['left_sidewalk_x'] + randf_range(-10, 10), randf_range(10,790))
-	var decision_point_right = Vector2(get_pedestrian_walk_data()['right_sidewalk_x'] + randf_range(-10, 10), randf_range(10,790))
+	var walk_data = get_pedestrian_walk_data()
+	var decision_point_left = Vector2(walk_data['left_sidewalk_x'] + randf_range(-20, 20), randf_range(10,790))
+	var decision_point_right = Vector2(walk_data['right_sidewalk_x'] + randf_range(-20, 20), randf_range(10,790))
 
-	
 	return {
 		"spawn_left_top": get_random_position(spawn_area_shape_left),
 		"spawn_right_top": get_random_position(spawn_area_shape_right),
-		"left":decision_point_left,
-		"left_to_right": Vector2(decision_point_right.x, decision_point_left.y+randf_range(-10, 10)),
-		"right":decision_point_right,
-		"right_to_left": Vector2(decision_point_left.x, decision_point_right.y+randf_range(-10, 10)),
+		"decision_point_left":decision_point_left,
+		"wait_left": get_random_position(wait_area_shape_left),
+		"decision_left_to_right": Vector2(decision_point_right.x, decision_point_left.y+randf_range(0, 80)),
+		"decision_point_right":decision_point_right,
+		"wait_right": get_random_position(wait_area_shape_right),
+		"decision_right_to_left": Vector2(decision_point_left.x, decision_point_right.y+randf_range(0, 80)),
 		"left_exit_bottom": get_random_position(exit_area_shape_left),
 		"right_exit_bottom": get_random_position(exit_area_shape_right),
 	}
+
+
+
+
+
+
+
+
+
+
 
 
 func get_pedestrian_walk_data() -> Dictionary:
@@ -74,14 +85,6 @@ func _get_road_y_range() -> Vector2:
 	print(road_range)
 	return Vector2(0,800)
 
-
-
-
-
-
-
-
-
 func get_random_position(area_shape:CollisionShape2D) -> Vector2:
 	var shape: RectangleShape2D = area_shape.shape
 	var area_size: Vector2 = shape.size
@@ -92,18 +95,6 @@ func get_random_position(area_shape:CollisionShape2D) -> Vector2:
 	var random_y := randf_range(-half_size.y, half_size.y)
 
 	return area_center + Vector2(random_x, random_y)
-
-
-#func get_pedestrian_points() -> Dictionary:
-	#return {
-		#"spawn_lefttop": get_random_position(spawn_area_shape_left),
-		#"left": get_random_position(wait_area_shape_left),
-		#"left_exit": get_random_position(exit_area_shape_left),
-#
-		#"spawn_righttop": get_random_position(spawn_area_shape_right),
-		#"right": get_random_position(wait_area_shape_right),
-		#"right_exit": get_random_position(exit_area_shape_right),
-	#}
 
 
 func _draw() -> void:
