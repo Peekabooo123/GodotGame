@@ -30,22 +30,38 @@ func _spawn_pedestrian() -> void:
 	var points = background.get_pedestrian_points()
 	var pedestrian := pedestrian_scene.instantiate()
 
-	pedestrian.position = points["spawn"]
+	var spawn_candidates: Array[Vector2] = [points["spawn_lefttop"], points["spawn_righttop"]]
+	var spawn_position: Vector2 = spawn_candidates[randi() % spawn_candidates.size()]
+
+	pedestrian.position = spawn_position
 	pedestrians_container.add_child(pedestrian)
 
-	var behavior_type = _pick_random_behavior_type()
+	var behavior_type := _pick_random_behavior_type(spawn_position)
 	pedestrian.initialize(behavior_type, points)
 
-func _pick_random_behavior_type() -> Pedestrian.BehaviorType:
-	var choice := randi() % 3
-	choice = 1
-	match choice:
-		0: 
-			print('遵守')
-			return Pedestrian.BehaviorType.LAW_ABIDING
-		1: 
-			print('闯红灯')
-			return Pedestrian.BehaviorType.JAYWALKING
-		_: 
-			print('直走')
-			return Pedestrian.BehaviorType.STRAIGHT_WALKING
+
+func _pick_random_behavior_type(spawn_position: Vector2) -> Pedestrian.BehaviorType:
+	if spawn_position.x < 600:
+		var choice := randi() % 3
+		match choice:
+			0:
+				print('遵守')
+				return Pedestrian.BehaviorType.LAW_ABIDING_LEFT
+			1:
+				print('闯红灯')
+				return Pedestrian.BehaviorType.JAYWALKING_LEFT
+			_:
+				print('直走')
+				return Pedestrian.BehaviorType.STRAIGHT_WALKING_LEFT
+	else:
+		var choice := randi() % 3
+		match choice:
+			0:
+				print('遵守')
+				return Pedestrian.BehaviorType.LAW_ABIDING_RIGHT
+			1:
+				print('闯红灯')
+				return Pedestrian.BehaviorType.JAYWALKING_RIGHT
+			_:
+				print('直走')
+				return Pedestrian.BehaviorType.STRAIGHT_WALKING_RIGHT

@@ -1,7 +1,9 @@
 class_name Pedestrian
 extends CharacterBody2D
 
-enum BehaviorType { LAW_ABIDING, JAYWALKING, STRAIGHT_WALKING }
+enum BehaviorType { LAW_ABIDING_LEFT, LAW_ABIDING_RIGHT, 
+					JAYWALKING_LEFT,JAYWALKING_RIGHT, 
+					STRAIGHT_WALKING_LEFT,STRAIGHT_WALKING_RIGHT }
 
 var is_illegal: bool = false
 @export var speed: float = randf_range(50.0, 150.0)
@@ -17,12 +19,19 @@ func _ready() -> void:
 
 func initialize(behavior_type: BehaviorType, points: Dictionary) -> void:
 	match behavior_type:
-		BehaviorType.LAW_ABIDING:
-			behavior_steps = PedestrianBehaviors.law_abiding(points)
-		BehaviorType.JAYWALKING:
-			behavior_steps = PedestrianBehaviors.jaywalking(points)
-		BehaviorType.STRAIGHT_WALKING:
-			behavior_steps = PedestrianBehaviors.straight_walking(points)
+		BehaviorType.LAW_ABIDING_LEFT:
+			behavior_steps = PedestrianBehaviors.law_abiding_left(points)
+		BehaviorType.JAYWALKING_LEFT:
+			behavior_steps = PedestrianBehaviors.jaywalking_left(points)
+		BehaviorType.STRAIGHT_WALKING_LEFT:
+			behavior_steps = PedestrianBehaviors.straight_walking_left(points)
+
+		BehaviorType.LAW_ABIDING_RIGHT:
+			behavior_steps = PedestrianBehaviors.law_abiding_right(points)
+		BehaviorType.JAYWALKING_RIGHT:
+			behavior_steps = PedestrianBehaviors.jaywalking_right(points)
+		BehaviorType.STRAIGHT_WALKING_RIGHT:
+			behavior_steps = PedestrianBehaviors.straight_walking_right(points)
 
 	current_step_index = 0
 	has_behavior_assigned = true

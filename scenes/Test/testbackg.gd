@@ -43,10 +43,12 @@ func get_random_spawn_position(area_shape:CollisionShape2D) -> Vector2:
 
 func get_pedestrian_points() -> Dictionary:
 	return {
-		"spawn": get_random_spawn_position(spawn_area_shape_left),
+		"spawn_lefttop": get_random_spawn_position(spawn_area_shape_left),
 		"left": get_random_spawn_position(wait_area_shape_left),
-		"right": get_random_spawn_position(wait_area_shape_right),
 		"left_exit": get_random_spawn_position(exit_area_shape_left),
+
+		"spawn_righttop": get_random_spawn_position(spawn_area_shape_right),
+		"right": get_random_spawn_position(wait_area_shape_right),
 		"right_exit": get_random_spawn_position(exit_area_shape_right),
 	}
 

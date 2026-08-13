@@ -3,9 +3,9 @@ extends Node2D
 
 #enum State { RED, YELLOW, GREEN }
 
-@export var red_duration: float = 15.0
-@export var yellow_duration: float = 3.0
-@export var green_duration: float = 10.0
+@export var red_duration: float = 60.0
+@export var yellow_duration: float = 5.0
+@export var green_duration: float = 15.0
 
 var current_state: Eventbus.TrafficLightState = Eventbus.TrafficLightState.RED
 
