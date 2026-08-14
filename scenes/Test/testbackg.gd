@@ -82,7 +82,7 @@ func _get_area_y_range(area_shape: CollisionShape2D) -> Vector2:
 
 func _get_road_y_range() -> Vector2:
 	var road_range = _get_area_y_range(road_top_area)
-	print(road_range)
+	#print(road_range)
 	return Vector2(0,800)
 
 func get_random_position(area_shape:CollisionShape2D) -> Vector2:
