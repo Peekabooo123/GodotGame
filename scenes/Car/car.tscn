@@ -3,19 +3,24 @@
 [ext_resource type="Script" uid="uid://dbquq2cinuqxf" path="res://scenes/Car/car.gd" id="1_c8bcc"]
 [ext_resource type="Texture2D" uid="uid://cispj2lr267s" path="res://assets/Spites/cars/cars.png" id="1_xbtw7"]
 [ext_resource type="Script" uid="uid://b0igykncvi8m0" path="res://scenes/Car/hit_detection_area.gd" id="3_y0jbw"]
+[ext_resource type="Script" uid="uid://kggk8q3w3bqm" path="res://scenes/Car/proximity_sensor.gd" id="4_j5ret"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c8bcc"]
 atlas = ExtResource("1_xbtw7")
 region = Rect2(202, 54.5, 31, 44)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vio55"]
-size = Vector2(160, 216)
+size = Vector2(103.000015, 185)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gg5hf"]
 size = Vector2(97, 37)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_00qfr"]
+radius = 44.0
+height = 434.0
+
 [node name="Car" type="CharacterBody2D" unique_id=1053033790]
-position = Vector2(456, 256)
+position = Vector2(503, 491)
 collision_layer = 4
 script = ExtResource("1_c8bcc")
 
@@ -31,6 +36,7 @@ collision_mask = 2
 script = ExtResource("3_y0jbw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetectionArea" unique_id=1901106680]
+position = Vector2(1.004242, 0.5)
 shape = SubResource("RectangleShape2D_vio55")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1919466826]
@@ -39,9 +45,19 @@ scale = Vector2(1, 1.0098684)
 polygon = PackedVector2Array(-24, -72, -40, -56, -40, 64, -24, 80, 24, 80, 40, 64, 40, -56, 24, -72)
 
 [node name="CarFront" type="Area2D" parent="." unique_id=2141569600]
-position = Vector2(-272, -40)
-collision_layer = 12
+position = Vector2(-1, -53)
+collision_layer = 16
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarFront" unique_id=1708280167]
-position = Vector2(272, -16)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_gg5hf")
+
+[node name="ProximitySensor" type="Area2D" parent="." unique_id=1249169740]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("4_j5ret")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProximitySensor" unique_id=1458703283]
+position = Vector2(-1, -234)
+shape = SubResource("CapsuleShape2D_00qfr")
