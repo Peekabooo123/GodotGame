@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
 @export var speed: float = 80.0                 # 初速度，实例化时会被赋值，体现差异
-@export var max_deceleration: float = 2080.0      # 刹车能力，先写死在基类
+@export var max_deceleration: float = 50.0      # 刹车能力，先写死在基类
 @export var perception_range: float = 200.0      # 检测范围，先写死在基类
 
 @onready var car_sprite: Sprite2D = $Car
-@onready var proximity_sensor: Area2D = $ProximitySensor
+@onready var front_ray: RayCast2D = $FrontRayCast
 
 var direction: Vector2 = Vector2(0, -1)
 var is_at_stopline: bool = false
@@ -16,7 +16,8 @@ func _ready() -> void:
 	velocity = direction * speed
 
 func _physics_process(delta: float) -> void:
-	var distance_to_front: float = proximity_sensor.get_distance_to_front_car()
+	var distance_to_front: float = get_distance_to_front_car()
+
 	var current_speed: float = velocity.length()
 	print(name,'此时与前车距离',distance_to_front)
 
@@ -33,6 +34,14 @@ func _physics_process(delta: float) -> void:
 
 func _should_stop() -> bool:
 	return is_at_stopline and Eventbus.current_traffic_light_state == Eventbus.TrafficLightState.GREEN
+
+
+func get_distance_to_front_car() -> float:
+	if not front_ray.is_colliding():
+		return -1.0
+	var collision_point: Vector2 = front_ray.get_collision_point()
+	return global_position.distance_to(collision_point)
+
 
 func set_at_stopline(at_line: bool) -> void:
 	is_at_stopline = at_line
