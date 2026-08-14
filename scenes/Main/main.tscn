@@ -51,14 +51,14 @@ offset_bottom = 24.0
 
 [node name="ScoreLabel" type="Label" parent="UI" unique_id=1318648786]
 offset_top = 1.0
-offset_right = 85.0
+offset_right = 88.0
 offset_bottom = 24.0
 theme_override_colors/font_color = Color(0.49803922, 0.7529412, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("10_qiqqp")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 30
 text = "Score: 0"
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1735756427]
