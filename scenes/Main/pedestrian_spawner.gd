@@ -80,14 +80,14 @@ func _pick_random_behavior_type(spawn_position: Vector2) -> Pedestrian.BehaviorT
 	var is_left := spawn_position.x < 600
 
 	if roll < 0.45:
-		print('遵守')
+		#print('遵守')
 		return Pedestrian.BehaviorType.LAW_ABIDING_LEFT if is_left else Pedestrian.BehaviorType.LAW_ABIDING_RIGHT
 	elif roll < 0.85:
-		print('直走')
+		#print('直走')
 		return Pedestrian.BehaviorType.STRAIGHT_WALKING_LEFT if is_left else Pedestrian.BehaviorType.STRAIGHT_WALKING_RIGHT
 	elif roll < 0.95:
-		print('闯红灯')
+		#print('闯红灯')
 		return Pedestrian.BehaviorType.JAYWALKING_LEFT if is_left else Pedestrian.BehaviorType.JAYWALKING_RIGHT
 	else:
-		print('横穿马路')
+		#print('横穿马路')
 		return Pedestrian.BehaviorType.STRAIGHT_WALKING_ACROSS_LEFT if is_left else Pedestrian.BehaviorType.STRAIGHT_WALKING_ACROSS_RIGHT
