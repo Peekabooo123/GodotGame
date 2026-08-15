@@ -68,6 +68,7 @@ move_right={
 2d_physics/layer_2="pedestrain"
 2d_physics/layer_3="car"
 2d_physics/layer_4="clickable"
+2d_physics/layer_5="car_front_detector"
 
 [physics]
 
