@@ -8,7 +8,7 @@ extends Node2D
 @onready var BackgroundMusic: AudioStreamPlayer = $BackgroundMusic
 
 func _ready() -> void:
-	BackgroundMusic.play()
+	#BackgroundMusic.play()
 	pedestrian_spawner.setup(background, pedestrians_container)
 	#var points = background.get_pedestrian_points()
 

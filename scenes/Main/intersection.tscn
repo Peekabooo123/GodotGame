@@ -1,9 +1,21 @@
 [gd_scene format=3 uid="uid://bykvwocobl6uj"]
 
+[ext_resource type="Script" uid="uid://bxqtikbf7081t" path="res://scenes/Main/intersection.gd" id="1_dx4cv"]
 [ext_resource type="PackedScene" uid="uid://bvb3byn3c62l7" path="res://scenes/TrafficLight/traffic_light.tscn" id="1_iyqbx"]
+[ext_resource type="Script" uid="uid://dpm1buxwydqel" path="res://scenes/Main/traffic_light_controller.gd" id="2_el7se"]
 
 [node name="Intersection" type="Node2D" unique_id=1546977067]
+script = ExtResource("1_dx4cv")
 
-[node name="TrafficLight" parent="." unique_id=1712757861 instance=ExtResource("1_iyqbx")]
-position = Vector2(943, 289)
+[node name="TrafficLight_left" parent="." unique_id=1712757861 instance=ExtResource("1_iyqbx")]
+position = Vector2(373, 425.99997)
 scale = Vector2(0.4, 0.4)
+
+[node name="TrafficLight_right" parent="." unique_id=1340886710 instance=ExtResource("1_iyqbx")]
+position = Vector2(561, 425)
+scale = Vector2(0.4, 0.4)
+
+[node name="TrafficLightController" type="Node2D" parent="." unique_id=1339215505]
+script = ExtResource("2_el7se")
+
+[node name="StateTimer" type="Timer" parent="TrafficLightController" unique_id=1870520059]
