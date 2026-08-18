@@ -3,19 +3,31 @@
 [ext_resource type="Script" uid="uid://bxqtikbf7081t" path="res://scenes/Main/intersection.gd" id="1_dx4cv"]
 [ext_resource type="PackedScene" uid="uid://bvb3byn3c62l7" path="res://scenes/TrafficLight/traffic_light.tscn" id="1_iyqbx"]
 [ext_resource type="Script" uid="uid://dpm1buxwydqel" path="res://scenes/Main/traffic_light_controller.gd" id="2_el7se"]
+[ext_resource type="Script" uid="uid://k2tnordfojnh" path="res://scenes/Background/zebra_crossing_area.gd" id="4_vtyyh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
+size = Vector2(351, 132.5)
 
 [node name="Intersection" type="Node2D" unique_id=1546977067]
 script = ExtResource("1_dx4cv")
 
 [node name="TrafficLight_left" parent="." unique_id=1712757861 instance=ExtResource("1_iyqbx")]
-position = Vector2(373, 425.99997)
+position = Vector2(409, 298)
 scale = Vector2(0.4, 0.4)
 
 [node name="TrafficLight_right" parent="." unique_id=1340886710 instance=ExtResource("1_iyqbx")]
-position = Vector2(561, 425)
+position = Vector2(806, 169)
 scale = Vector2(0.4, 0.4)
 
 [node name="TrafficLightController" type="Node2D" parent="." unique_id=1339215505]
 script = ExtResource("2_el7se")
 
 [node name="StateTimer" type="Timer" parent="TrafficLightController" unique_id=1870520059]
+
+[node name="ZebraCrossingArea" type="Area2D" parent="." unique_id=515893021]
+position = Vector2(599, 457)
+script = ExtResource("4_vtyyh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=2007311862]
+position = Vector2(8, -217)
+shape = SubResource("RectangleShape2D_00qfr")
