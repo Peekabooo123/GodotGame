@@ -6,17 +6,17 @@
 [ext_resource type="Script" uid="uid://k2tnordfojnh" path="res://scenes/Background/zebra_crossing_area.gd" id="4_vtyyh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
-size = Vector2(351, 132.5)
+size = Vector2(380.5, 132.5)
 
 [node name="Intersection" type="Node2D" unique_id=1546977067]
 script = ExtResource("1_dx4cv")
 
 [node name="TrafficLight_left" parent="." unique_id=1712757861 instance=ExtResource("1_iyqbx")]
-position = Vector2(409, 298)
+position = Vector2(277, 426)
 scale = Vector2(0.4, 0.4)
 
 [node name="TrafficLight_right" parent="." unique_id=1340886710 instance=ExtResource("1_iyqbx")]
-position = Vector2(806, 169)
+position = Vector2(703, 295)
 scale = Vector2(0.4, 0.4)
 
 [node name="TrafficLightController" type="Node2D" parent="." unique_id=1339215505]
@@ -29,5 +29,5 @@ position = Vector2(599, 457)
 script = ExtResource("4_vtyyh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=2007311862]
-position = Vector2(8, -217)
+position = Vector2(-109.25, -94)
 shape = SubResource("RectangleShape2D_00qfr")
