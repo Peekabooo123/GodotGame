@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bxqtikbf7081t" path="res://scenes/Main/intersection.gd" id="1_dx4cv"]
 [ext_resource type="PackedScene" uid="uid://bvb3byn3c62l7" path="res://scenes/TrafficLight/traffic_light.tscn" id="1_iyqbx"]
 [ext_resource type="Script" uid="uid://dpm1buxwydqel" path="res://scenes/Main/traffic_light_controller.gd" id="2_el7se"]
+[ext_resource type="Script" uid="uid://c8ym7kuopi8un" path="res://scenes/Main/wait_area.gd" id="3_8pmd1"]
 [ext_resource type="Script" uid="uid://k2tnordfojnh" path="res://scenes/Background/zebra_crossing_area.gd" id="4_vtyyh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
@@ -11,8 +12,8 @@ size = Vector2(380.5, 132.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vio55"]
 size = Vector2(108.5, 129)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg5hf"]
-size = Vector2(124, 125)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtyyh"]
+size = Vector2(130, 126.5)
 
 [node name="Intersection" type="Node2D" unique_id=1546977067]
 script = ExtResource("1_dx4cv")
@@ -25,17 +26,16 @@ script = ExtResource("4_vtyyh")
 position = Vector2(-109.25, -94)
 shape = SubResource("RectangleShape2D_00qfr")
 
-[node name="WaitAreaLeft" type="Area2D" parent="." unique_id=1218458652]
+[node name="WaitArea" type="Area2D" parent="." unique_id=1218458652]
+script = ExtResource("3_8pmd1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaitAreaLeft" unique_id=1166703013]
+[node name="Left" type="CollisionShape2D" parent="WaitArea" unique_id=1166703013]
 position = Vector2(237.25, 363.5)
 shape = SubResource("RectangleShape2D_vio55")
 
-[node name="WaitAreaRight" type="Area2D" parent="." unique_id=1836785694]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaitAreaRight" unique_id=1004749442]
-position = Vector2(749, 368.5)
-shape = SubResource("RectangleShape2D_gg5hf")
+[node name="Right" type="CollisionShape2D" parent="WaitArea" unique_id=477241558]
+position = Vector2(755, 370.75)
+shape = SubResource("RectangleShape2D_vtyyh")
 
 [node name="TrafficLight_left" parent="." unique_id=1712757861 instance=ExtResource("1_iyqbx")]
 position = Vector2(277, 426)
