@@ -30,13 +30,13 @@ func _update_countdown_label():
 
 func _update_visuals(state: int) -> void:
 	var dim := Color(0.3, 0.3, 0.3)
-	red_light.modulate = Color.WHITE if state == Eventbus.TrafficLightState.RED else dim
-	yellow_light.modulate = Color.WHITE if state == Eventbus.TrafficLightState.YELLOW else dim
-	green_light.modulate = Color.WHITE if state == Eventbus.TrafficLightState.GREEN else dim
+	red_light.modulate = Color.WHITE if state == controller.TrafficLightState.RED else dim
+	yellow_light.modulate = Color.WHITE if state == controller.TrafficLightState.YELLOW else dim
+	green_light.modulate = Color.WHITE if state == controller.TrafficLightState.GREEN else dim
 	
-	if state == Eventbus.TrafficLightState.RED:
+	if state == controller.TrafficLightState.RED:
 		label.modulate = Color.RED
-	elif state == Eventbus.TrafficLightState.YELLOW:
+	elif state == controller.TrafficLightState.YELLOW:
 		label.modulate = Color.YELLOW
 	else:
 		label.modulate = Color.GREEN
