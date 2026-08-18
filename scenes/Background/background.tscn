@@ -1,16 +1,12 @@
 [gd_scene format=3 uid="uid://hhn6xslyl556"]
 
 [ext_resource type="Script" uid="uid://dkdpyhjuap80p" path="res://scenes/Test/testbackg.gd" id="1_3uftm"]
-[ext_resource type="Script" uid="uid://k2tnordfojnh" path="res://scenes/Background/zebra_crossing_area.gd" id="2_dk05f"]
 [ext_resource type="Script" uid="uid://biwfel8r336gi" path="res://scenes/Background/StopLineArea.gd" id="2_mv5p6"]
 [ext_resource type="Script" uid="uid://ckq1er8wwj3t8" path="res://scenes/Background/road_area.gd" id="3_d3pbo"]
-[ext_resource type="PackedScene" uid="uid://bvb3byn3c62l7" path="res://scenes/TrafficLight/traffic_light.tscn" id="5_i7fpr"]
+[ext_resource type="PackedScene" uid="uid://bykvwocobl6uj" path="res://scenes/Main/intersection.tscn" id="4_d3pbo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
 size = Vector2(221.125, 120.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vio55"]
-size = Vector2(620, 132)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gg5hf"]
 size = Vector2(618, 299)
@@ -21,9 +17,6 @@ size = Vector2(618, 369)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_3uftm"]
 a = Vector2(504, 8)
 b = Vector2(-72, 8)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4kg1"]
-size = Vector2(108, 98)
 
 [node name="Background" type="Node2D" unique_id=615072215]
 script = ExtResource("1_3uftm")
@@ -48,14 +41,6 @@ shape = SubResource("RectangleShape2D_00qfr")
 position = Vector2(1056, 872)
 shape = SubResource("RectangleShape2D_00qfr")
 
-[node name="ZebraCrossingArea" type="Area2D" parent="." unique_id=668124230]
-collision_mask = 3
-script = ExtResource("2_dk05f")
-
-[node name="ZebraCrossing" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=171800550]
-position = Vector2(610, 365)
-shape = SubResource("RectangleShape2D_vio55")
-
 [node name="RoadArea" type="Area2D" parent="." unique_id=1927178745]
 collision_mask = 3
 script = ExtResource("3_d3pbo")
@@ -76,24 +61,6 @@ script = ExtResource("2_mv5p6")
 position = Vector2(392, 504)
 shape = SubResource("SegmentShape2D_3uftm")
 
-[node name="WaitArea" type="Area2D" parent="." unique_id=890920366]
-
-[node name="Left" type="CollisionShape2D" parent="WaitArea" unique_id=1817796834]
-position = Vector2(238, 379)
-shape = SubResource("RectangleShape2D_b4kg1")
-
-[node name="Right" type="CollisionShape2D" parent="WaitArea" unique_id=8571576]
-position = Vector2(986, 380)
-shape = SubResource("RectangleShape2D_b4kg1")
-
-[node name="TrafficLight" parent="." unique_id=1712757861 instance=ExtResource("5_i7fpr")]
-position = Vector2(943, 289)
-scale = Vector2(0.4, 0.4)
-
-[node name="TrafficLight2" parent="." unique_id=1227070792 instance=ExtResource("5_i7fpr")]
-position = Vector2(276.00003, 431)
-scale = Vector2(0.4, 0.4)
-
 [node name="Markers" type="Node" parent="." unique_id=1427513125]
 
 [node name="Left" type="Marker2D" parent="Markers" unique_id=1672517114]
@@ -101,3 +68,6 @@ position = Vector2(238, 11)
 
 [node name="Right" type="Marker2D" parent="Markers" unique_id=106974000]
 position = Vector2(976, 9)
+
+[node name="Intersection" parent="." unique_id=1546977067 instance=ExtResource("4_d3pbo")]
+position = Vector2(0, 2)

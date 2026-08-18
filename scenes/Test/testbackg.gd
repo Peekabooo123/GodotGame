@@ -100,8 +100,8 @@ func get_random_position(area_shape:CollisionShape2D) -> Vector2:
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, screen_size),Color.BLACK)
 	draw_rect(Rect2(road_position, Vector2(road_width, screen_size.y)), Color(0, 0.302, 0.302, 1.0)) #Color.GRAY
-	_draw_lane_divider()
-	_zebra_crossing_drawing(road_width)
+	#_draw_lane_divider()
+	#_zebra_crossing_drawing(road_width)
 
 
 func _zebra_crossing_drawing(road_width: int) -> void:

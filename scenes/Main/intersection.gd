@@ -25,7 +25,7 @@ func _zebra_crossing_drawing() -> void:
 
 
 	var strip_total_width = strip_width + gap
-	var strip_count = 12
+	var strip_count = 20.5
 
 	for i in range(strip_count+1):
 		var x = position.x +  i * strip_total_width
