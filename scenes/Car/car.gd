@@ -10,6 +10,7 @@ extends CharacterBody2D
 var direction: Vector2 = Vector2.UP
 var is_at_stopline: bool = false
 var is_illegal: bool = false
+var current_intersection: Node2D = null
 
 
 
@@ -41,6 +42,9 @@ func _should_stop() -> bool:
 
 
 
+
+func set_current_intersection(controller: Node2D) -> void:
+	current_intersection = controller
 
 func get_distance_to_front_car() -> float:
 	if not front_ray.is_colliding():

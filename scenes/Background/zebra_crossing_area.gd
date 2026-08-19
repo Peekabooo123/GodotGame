@@ -13,9 +13,8 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("pedestrians"):
 		pedestrians_on_crossing += 1
-		if controller.is_red():
-			if body.has_method("mark_as_illegal"):
-				TrafficJudge.report_crosswalk_entry(body)
+		body.set_on_crosswalk(true)
+		TrafficJudge.report_crosswalk_entry(body, controller.is_red())
 		if pedestrians_on_crossing == 1:
 			#Eventbus.crosswalk_occupancy_changed.emit(true)
 			print('you ren')
@@ -25,6 +24,7 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("pedestrians"):
 		pedestrians_on_crossing -= 1
+		body.set_on_crosswalk(false)
 		if pedestrians_on_crossing == 0:
 			#Eventbus.crosswalk_occupancy_changed.emit(false)
 			pass
