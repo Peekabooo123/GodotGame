@@ -19,8 +19,9 @@ script = ExtResource("1_nyu32")
 [node name="Background" parent="." unique_id=615072215 instance=ExtResource("2_8gcrf")]
 y_sort_enabled = true
 
-[node name="SelectionManager" type="Node2D" parent="." unique_id=10999744]
+[node name="SelectionManager" type="Node2D" parent="." unique_id=10999744 node_paths=PackedStringArray("camera")]
 script = ExtResource("7_5wuev")
+camera = NodePath("../Camera")
 
 [node name="ClickSound" type="AudioStreamPlayer2D" parent="SelectionManager" unique_id=332644479]
 stream = ExtResource("8_w0isb")
@@ -66,3 +67,5 @@ pedestrian_scene = ExtResource("1_px18m")
 
 [node name="PedestriansContainer" type="Node2D" parent="." unique_id=1193235358]
 y_sort_enabled = true
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1844128148]

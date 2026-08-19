@@ -26,6 +26,7 @@ size = Vector2(193, 329.5)
 size = Vector2(212, 324)
 
 [node name="Background" type="Node2D" unique_id=615072215]
+z_index = -1
 script = ExtResource("1_3uftm")
 
 [node name="SpawnArea" type="Area2D" parent="." unique_id=683350263]
