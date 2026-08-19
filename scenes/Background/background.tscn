@@ -60,7 +60,7 @@ position = Vector2(610, 616.5)
 shape = SubResource("RectangleShape2D_frg3x")
 
 [node name="CarStopLine" type="Area2D" parent="." unique_id=820521773]
-collision_mask = 4
+collision_mask = 16
 script = ExtResource("2_mv5p6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarStopLine" unique_id=1014339504]

@@ -13,7 +13,7 @@ func report_collision(car: Node2D, pedestrian: Node2D) -> void:
 	print("碰撞上报: 车=", car.name, " 人=", pedestrian.name)
 	print('此时车速：')
 
-	if not pedestrian.is_on_crosswalk:
+	if not pedestrian.is_on_crosswalk or pedestrian.current_intersection == null:
 		pedestrian.mark_as_illegal()
 	elif pedestrian.current_intersection.is_red():
 		pedestrian.mark_as_illegal()

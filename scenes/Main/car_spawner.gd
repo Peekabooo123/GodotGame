@@ -23,17 +23,21 @@ func _start_next_timer() -> void:
 	spawn_timer.start(wait_time)
 
 func _on_spawn_timer_timeout() -> void:
-	_spawn_pedestrian()
+	_spawn_car()
 	_start_next_timer()
 
-func _spawn_pedestrian() -> void:
+func _spawn_car() -> void:
 	var points = background.get_car_points()
 	var car := car_scene.instantiate()
 
-	var spawn_candidates: Array[Vector2] = [points["car_spawn_area_top"], points["car_spawn_area_bot"]]
-	var spawn_position: Vector2 = spawn_candidates[randi() % spawn_candidates.size()]
+	var spawn_options := [
+		{"position": points["car_spawn_area_top"], "direction": Vector2.DOWN},
+		{"position": points["car_spawn_area_bot"], "direction": Vector2.UP},
+	]
 
-	car.position = spawn_position
+	var choice: Dictionary = spawn_options[randi() % spawn_options.size()]
+
+	car.position = choice["position"]
+	car.direction = choice["direction"]
+	car.rotation = choice["direction"].angle() + PI/2
 	cars_container.add_child(car)
-
-	#pedestrian.initialize(behavior_type, points)

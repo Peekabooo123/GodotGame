@@ -16,7 +16,7 @@ var current_intersection: Node2D = null
 
 func _ready() -> void:
 	add_to_group("cars")
-	velocity = direction * speed
+	velocity = direction.normalized() * speed
 
 func _physics_process(delta: float) -> void:
 	var distance_to_front: float = get_distance_to_front_car()
@@ -36,7 +36,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _should_stop() -> bool:
-	return is_at_stopline and Eventbus.current_traffic_light_state == Eventbus.TrafficLightState.GREEN
+	return false
+	#return is_at_stopline and current_intersection.current_state == current_intersection.TrafficLightState.RED
 
 
 
