@@ -5,6 +5,7 @@ extends Node2D
 @onready var Zebra_crossing_area = $ZebraCrossingArea
 #@onready var zebra_crossing_area: CollisionShape2D = $ZebraCrossingArea/ZebraCrossing
 
+@onready var Wait_area: Area2D = $WaitArea
 @onready var wait_area_shape_left: CollisionShape2D = $WaitArea/Left
 @onready var wait_area_shape_right: CollisionShape2D = $WaitArea/Right
 
@@ -14,6 +15,7 @@ func _ready() -> void:
 	TrafficLight_left.setup(controller)
 	TrafficLight_right.setup(controller)
 	Zebra_crossing_area.setup(controller)
+	Wait_area.setup(controller)
 
 
 

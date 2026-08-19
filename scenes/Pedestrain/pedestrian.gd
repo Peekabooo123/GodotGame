@@ -12,6 +12,7 @@ var is_illegal: bool = false
 var behavior_steps: Array[BehaviorStep] = []
 var current_step_index: int = 0
 var has_behavior_assigned: bool = false
+var current_intersection: Node2D = null
 
 func _ready() -> void:
 	add_to_group("pedestrians")
@@ -56,6 +57,10 @@ func _physics_process(delta: float) -> void:
 	if finished:
 		current_step_index += 1
 
+
+
+func set_current_intersection(controller: Node2D) -> void:
+	current_intersection = controller
 
 func mark_as_illegal() -> void:
 	if is_illegal:

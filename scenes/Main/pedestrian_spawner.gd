@@ -86,7 +86,7 @@ func _pick_random_behavior_type(spawn_position: Vector2) -> Pedestrian.BehaviorT
 		#print('直走')
 		return Pedestrian.BehaviorType.STRAIGHT_WALKING_LEFT if is_left else Pedestrian.BehaviorType.STRAIGHT_WALKING_RIGHT
 	elif roll < 0.95:
-		#print('闯红灯')
+		print('闯红灯')
 		return Pedestrian.BehaviorType.JAYWALKING_LEFT if is_left else Pedestrian.BehaviorType.JAYWALKING_RIGHT
 	else:
 		#print('横穿马路')

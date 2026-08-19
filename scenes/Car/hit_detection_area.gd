@@ -18,4 +18,4 @@ func _on_body_entered(body: Node2D) -> void:
 	if car.has_method("mark_as_illegal"):
 		car.mark_as_illegal()
 
-	print("检测到物体进入: ", body.name)
+	#print("检测到物体进入: ", body.name)

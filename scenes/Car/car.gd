@@ -21,14 +21,14 @@ func _physics_process(delta: float) -> void:
 	var distance_to_front: float = get_distance_to_front_car()
 
 	var current_speed: float = velocity.length()
-	print(name,'此时与前车距离',distance_to_front)
+	#print(name,'此时与前车距离',distance_to_front)
 
 	if _should_stop():
 		velocity = Vector2.ZERO
 	elif distance_to_front >= 0.0 and distance_to_front <= perception_range:
 		var new_speed: float = max(0.0, current_speed - max_deceleration * delta)
 		velocity = direction.normalized() * new_speed
-		print(name,'开始减速了，当前车速： ',velocity)
+		#print(name,'开始减速了，当前车速： ',velocity)
 	else:
 		velocity = direction.normalized() * speed
 	#print(name,'当前车速： ',velocity)

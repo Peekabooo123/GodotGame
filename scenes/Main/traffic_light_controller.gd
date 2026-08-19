@@ -4,7 +4,7 @@ signal state_changed(state: TrafficLightState)
 
 enum TrafficLightState { RED, YELLOW, GREEN }
 
-@export var red_duration: float = 6.0
+@export var red_duration: float = 10.0
 @export var yellow_duration: float = 10.0
 @export var green_duration: float = 30.0
 @onready var timer: Timer = $StateTimer
@@ -40,3 +40,7 @@ func _on_timer_timeout() -> void:
 
 func get_time_left() -> float:
 	return timer.time_left
+
+func is_red() -> bool:
+	#print('现在灯状态是： ', current_state)
+	return current_state == TrafficLightState.RED
