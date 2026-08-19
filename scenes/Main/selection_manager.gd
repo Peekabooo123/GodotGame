@@ -27,6 +27,14 @@ func _hover_process() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		_click_process()
+		
+	# 新增：键盘空格键按下处理
+	if event is InputEventKey and event.pressed and event.keycode == KEY_SPACE:
+		_attach_camera_to(self.get_parent())  # 替换为你的实际处理函数
+
+
+
+
 
 func _click_process() -> void:
 	var pedestrian := _find_object_at(get_global_mouse_position())
