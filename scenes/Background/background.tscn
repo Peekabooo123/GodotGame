@@ -18,6 +18,12 @@ size = Vector2(618, 369)
 a = Vector2(504, 8)
 b = Vector2(-72, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3pbo"]
+size = Vector2(193, 329.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7fpr"]
+size = Vector2(212, 324)
+
 [node name="Background" type="Node2D" unique_id=615072215]
 script = ExtResource("1_3uftm")
 
@@ -72,3 +78,13 @@ position = Vector2(976, 9)
 [node name="Intersection" parent="." unique_id=1546977067 instance=ExtResource("4_d3pbo")]
 y_sort_enabled = true
 position = Vector2(0, 2)
+
+[node name="CarSpawnArea" type="Area2D" parent="." unique_id=1505058523]
+
+[node name="Top" type="CollisionShape2D" parent="CarSpawnArea" unique_id=1915648731]
+position = Vector2(437.5, -270)
+shape = SubResource("RectangleShape2D_d3pbo")
+
+[node name="Bot" type="CollisionShape2D" parent="CarSpawnArea" unique_id=1410048961]
+position = Vector2(797, 1024)
+shape = SubResource("RectangleShape2D_i7fpr")

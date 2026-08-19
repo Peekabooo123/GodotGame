@@ -2,6 +2,9 @@
 class_name Background
 
 extends Node2D
+@onready var car_spawn_area_top: CollisionShape2D = $CarSpawnArea/Top
+@onready var car_spawn_area_bot: CollisionShape2D = $CarSpawnArea/Bot
+
 @onready var spawn_area_shape_left: CollisionShape2D = $SpawnArea/Left
 @onready var spawn_area_shape_right: CollisionShape2D = $SpawnArea/Right
 
@@ -31,6 +34,12 @@ func _ready() -> void:
 	screen_size = Vector2(1200,800)
 
 
+
+func get_car_points() -> Dictionary:
+	return {
+		'car_spawn_area_top': get_random_position(car_spawn_area_top),
+		'car_spawn_area_bot': get_random_position(car_spawn_area_bot)
+	}
 
 
 
@@ -99,7 +108,7 @@ func get_random_position(area_shape:CollisionShape2D) -> Vector2:
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, screen_size),Color.BLACK)
 	draw_rect(Rect2(road_position, Vector2(road_width, screen_size.y)), Color(0, 0.302, 0.302, 1.0)) #Color.GRAY
-	#_draw_lane_divider()
+	_draw_lane_divider()
 	#_zebra_crossing_drawing(road_width)
 
 

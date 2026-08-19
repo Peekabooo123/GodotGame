@@ -10,30 +10,13 @@
 [ext_resource type="Script" uid="uid://tn32ro4o4dyr" path="res://scenes/Main/score_label.gd" id="9_k7uo0"]
 [ext_resource type="FontFile" uid="uid://b5m476vfgsqt0" path="res://assets/font/dseg7-classic/static/dseg7-classic-latin-700-normal.woff2" id="10_qiqqp"]
 [ext_resource type="AudioStream" uid="uid://ch5mp5a14fkgj" path="res://assets/sounds/backgroundmusic.mp3" id="11_8x5ba"]
+[ext_resource type="Script" uid="uid://ksrdktsmeolt" path="res://scenes/Main/car_spawner.gd" id="11_3348s"]
 
 [node name="Main" type="Node2D" unique_id=1825897954]
 y_sort_enabled = true
 script = ExtResource("1_nyu32")
 
 [node name="Background" parent="." unique_id=615072215 instance=ExtResource("2_8gcrf")]
-y_sort_enabled = true
-
-[node name="Car" parent="." unique_id=1053033790 instance=ExtResource("4_8gcrf")]
-position = Vector2(816, 160)
-speed = 0.0
-
-[node name="Car2" parent="." unique_id=753566476 instance=ExtResource("4_8gcrf")]
-position = Vector2(815, 712)
-speed = 800.0
-
-[node name="PedestrianSpawner" type="Node2D" parent="." unique_id=1851797672]
-y_sort_enabled = true
-script = ExtResource("5_rdp1x")
-pedestrian_scene = ExtResource("1_px18m")
-
-[node name="SpawnTimer" type="Timer" parent="PedestrianSpawner" unique_id=94670170]
-
-[node name="PedestriansContainer" type="Node2D" parent="." unique_id=1193235358]
 y_sort_enabled = true
 
 [node name="SelectionManager" type="Node2D" parent="." unique_id=10999744]
@@ -65,3 +48,21 @@ text = "Score: 0"
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1735756427]
 stream = ExtResource("11_8x5ba")
 parameters/looping = true
+
+[node name="CarSpawner" type="Node" parent="." unique_id=1277000536]
+script = ExtResource("11_3348s")
+car_scene = ExtResource("4_8gcrf")
+
+[node name="SpawnTimer" type="Timer" parent="CarSpawner" unique_id=437213154]
+
+[node name="CarsContainer" type="Node2D" parent="." unique_id=1379425576]
+y_sort_enabled = true
+
+[node name="PedestrianSpawner" type="Node" parent="." unique_id=1729651242]
+script = ExtResource("5_rdp1x")
+pedestrian_scene = ExtResource("1_px18m")
+
+[node name="SpawnTimer" type="Timer" parent="PedestrianSpawner" unique_id=94670170]
+
+[node name="PedestriansContainer" type="Node2D" parent="." unique_id=1193235358]
+y_sort_enabled = true

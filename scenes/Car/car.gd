@@ -7,9 +7,11 @@ extends CharacterBody2D
 @onready var car_sprite: Sprite2D = $Car
 @onready var front_ray: RayCast2D = $FrontRayCast
 
-var direction: Vector2 = Vector2(0, -1)
+var direction: Vector2 = Vector2.UP
 var is_at_stopline: bool = false
 var is_illegal: bool = false
+
+
 
 func _ready() -> void:
 	add_to_group("cars")
@@ -34,6 +36,10 @@ func _physics_process(delta: float) -> void:
 
 func _should_stop() -> bool:
 	return is_at_stopline and Eventbus.current_traffic_light_state == Eventbus.TrafficLightState.GREEN
+
+
+
+
 
 
 func get_distance_to_front_car() -> float:
