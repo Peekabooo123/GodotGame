@@ -19,7 +19,8 @@ func _on_body_entered(body: Node2D) -> void:
 			#Eventbus.crosswalk_occupancy_changed.emit(true)
 			print('you ren')
 	if body.is_in_group('cars'):
-		print('Cars in')
+		pass
+		#print('Cars in')
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("pedestrians"):
@@ -29,4 +30,5 @@ func _on_body_exited(body: Node2D) -> void:
 			#Eventbus.crosswalk_occupancy_changed.emit(false)
 			pass
 	if body.is_in_group('cars'):
-		print('Cars out')
+		#print('Cars out')
+		pass

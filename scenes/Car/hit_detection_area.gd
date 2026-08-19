@@ -9,6 +9,8 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 
 	var car = get_parent()
+	if car.is_selected:
+		print('发生碰撞了，此时车速: ', car.velocity)
 #
 	#if body.has_method("stop_due_to_collision"):
 		#body.stop_due_to_collision()

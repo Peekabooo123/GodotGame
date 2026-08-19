@@ -10,13 +10,14 @@ extends CharacterBody2D
 var direction: Vector2 = Vector2.UP
 var is_at_stopline: bool = false
 var is_illegal: bool = false
+var is_selected: bool = false
 var current_intersection: Node2D = null
 
 
 
 func _ready() -> void:
 	add_to_group("cars")
-	speed = randf_range(150, 300)
+	speed = randf_range(80, 500)
 
 func _physics_process(delta: float) -> void:
 	var distance_to_front: float = get_distance_to_front_car()
@@ -29,7 +30,8 @@ func _physics_process(delta: float) -> void:
 	elif distance_to_front >= 0.0 and distance_to_front <= perception_range:
 		var new_speed: float = max(0.0, current_speed - max_deceleration * delta)
 		velocity = direction.normalized() * new_speed
-		print(name,'开始减速了，当前车速： ',velocity)
+		if is_selected:
+			print(name,'开始减速了，当前车速： ',velocity)
 	else:
 		velocity = direction.normalized() * speed
 	#print(name,'当前车速： ',velocity)
@@ -54,6 +56,9 @@ func get_distance_to_front_car() -> float:
 	return global_position.distance_to(collision_point)
 
 
+func select(value: bool) -> void:
+	is_selected = value
+
 func set_at_stopline(at_line: bool) -> void:
 	is_at_stopline = at_line
 
@@ -61,7 +66,7 @@ func mark_as_illegal() -> void:
 	if is_illegal:
 		return
 	is_illegal = true
-	print(name, " 被标记为非法车辆")
+	#print(name, " 被标记为非法车辆")
 
 func stop_due_to_collision() -> void:
 	speed = 0

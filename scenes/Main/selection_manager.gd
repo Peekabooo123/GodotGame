@@ -34,6 +34,8 @@ func _click_process() -> void:
 		return
 	_attach_camera_to(pedestrian)
 	
+	pedestrian.select(true)
+	
 
 	if pedestrian == null:
 		print("没有点中任何东西")
@@ -41,11 +43,11 @@ func _click_process() -> void:
 
 	print("点中了行人: ", pedestrian.name)
 	if pedestrian.is_illegal:
-		print("抓到一个闯红灯的！加分")
+		#print("抓到一个闯红灯的！加分")
 		#score_label.add_score(1)
 		Eventbus.score_changed.emit(1)
 	else:
-		print("这个人是合法过马路的，点错了")
+		#print("这个人是合法过马路的，点错了")
 		Eventbus.score_changed.emit(-1)
 
 	click_sound.play()

@@ -8,6 +8,7 @@ enum BehaviorType { LAW_ABIDING_LEFT, LAW_ABIDING_RIGHT,
 
 var is_illegal: bool = false
 var is_on_crosswalk: bool = false
+var is_selected:bool = false
 
 @export var speed: float = randf_range(50.0, 150.0)
 @onready var animated_sprite: AnimatedSprite2D = $Pedestrain
@@ -68,12 +69,14 @@ func mark_as_illegal() -> void:
 	if is_illegal:
 		return   # 已经标记过了，不用重复处理
 	is_illegal = true
-	print(name, " 被标记为闯红灯")
+	#print(name, " 被标记为闯红灯")
 	# 这里以后可以加视觉提示，比如换个颜色/图标
 
 func set_on_crosswalk(value: bool) -> void:
-
 	is_on_crosswalk = value
+
+func select(value: bool) -> void:
+	is_selected = value
 
 func set_highlighted(value: bool) -> void:
 	if value:
