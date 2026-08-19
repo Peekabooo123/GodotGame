@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 		var new_speed: float = max(0.0, current_speed - max_deceleration * delta)
 		velocity = direction.normalized() * new_speed
 		if is_selected:
-			print(name,'开始减速了，当前车速： ',velocity)
+			print('前方距离',distance_to_front,'开始减速了，当前车速： ',velocity)
 	else:
 		velocity = direction.normalized() * speed
 	#print(name,'当前车速： ',velocity)

@@ -41,7 +41,7 @@ func _click_process() -> void:
 		print("没有点中任何东西")
 		return
 
-	print("点中了行人: ", pedestrian.name)
+	#print("点中了行人: ", pedestrian.name)
 	if pedestrian.is_illegal:
 		#print("抓到一个闯红灯的！加分")
 		#score_label.add_score(1)
