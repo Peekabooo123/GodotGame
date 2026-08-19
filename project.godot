@@ -20,6 +20,7 @@ config/icon="res://assets/icon.svg"
 
 Eventbus="*uid://dwn1miqadtyl3"
 Judge="*uid://da4xkg7r6fre4"
+TrafficJudge="*uid://bmybrx23k43k1"
 
 [display]
 

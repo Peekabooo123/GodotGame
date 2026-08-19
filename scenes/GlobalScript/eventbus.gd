@@ -7,6 +7,4 @@ var current_traffic_light_state: TrafficLightState = TrafficLightState.RED
 
 signal crosswalk_occupancy_changed(is_occupied: bool)
 
-signal car_get_stopline(should_stop: bool)
-
 signal score_changed(amount: int)

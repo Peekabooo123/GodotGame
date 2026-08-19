@@ -15,8 +15,7 @@ func _on_body_entered(body: Node2D) -> void:
 		pedestrians_on_crossing += 1
 		if controller.is_red():
 			if body.has_method("mark_as_illegal"):
-				print('他被标记为闯红灯的人')
-				body.mark_as_illegal()
+				TrafficJudge.report_crosswalk_entry(body)
 		if pedestrians_on_crossing == 1:
 			#Eventbus.crosswalk_occupancy_changed.emit(true)
 			print('you ren')

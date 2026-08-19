@@ -16,6 +16,7 @@ func _on_body_entered(body: Node2D) -> void:
 		car.stop_due_to_collision()
 
 	if car.has_method("mark_as_illegal"):
-		car.mark_as_illegal()
+		#car.mark_as_illegal()
+		TrafficJudge.report_collision(car,body)
 
 	#print("检测到物体进入: ", body.name)

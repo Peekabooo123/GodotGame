@@ -9,9 +9,8 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("pedestrians"):
-			if body.has_method("mark_as_illegal"):
-				body.mark_as_illegal()
-			print('有人走在马路上了')
+		TrafficJudge.report_illegal_road_entry(body)
+		print('有人走在马路上了')
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("pedestrians"):

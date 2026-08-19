@@ -4,7 +4,7 @@ signal state_changed(state: TrafficLightState)
 
 enum TrafficLightState { RED, YELLOW, GREEN }
 
-@export var red_duration: float = 10.0
+@export var red_duration: float = 60.0
 @export var yellow_duration: float = 10.0
 @export var green_duration: float = 30.0
 @onready var timer: Timer = $StateTimer
