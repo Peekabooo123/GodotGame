@@ -8,16 +8,14 @@ extends Node2D
 @onready var exit_area_shape_left: CollisionShape2D = $ExitArea/Left
 @onready var exit_area_shape_right: CollisionShape2D = $ExitArea/Right
 
-@onready var wait_area_shape_left: CollisionShape2D = $WaitArea/Left
-@onready var wait_area_shape_right: CollisionShape2D = $WaitArea/Right
-
-@onready var zebra_crossing_area: CollisionShape2D = $ZebraCrossingArea/ZebraCrossing
 @onready var road_top_area: CollisionShape2D = $RoadArea/CollisionShape2D
 
 @onready var car_stop_line: Area2D = $CarStopLine
 
 @onready var left_marker: Marker2D = $Markers/Left
 @onready var right_marker: Marker2D = $Markers/Right
+
+@onready var Intersection: Node2D = $Intersection
 
 var strip_width = 20
 var strip_height = 130
@@ -45,10 +43,11 @@ func get_pedestrian_points():
 		"spawn_left_top": get_random_position(spawn_area_shape_left),
 		"spawn_right_top": get_random_position(spawn_area_shape_right),
 		"decision_point_left":decision_point_left,
-		"wait_left": get_random_position(wait_area_shape_left),
+		"wait_left": Intersection.get_points()['wait_points_left'],
 		"decision_left_to_right": Vector2(decision_point_right.x, decision_point_left.y+randf_range(0, 80)),
+
 		"decision_point_right":decision_point_right,
-		"wait_right": get_random_position(wait_area_shape_right),
+		"wait_right": Intersection.get_points()['wait_points_right'],
 		"decision_right_to_left": Vector2(decision_point_left.x, decision_point_right.y+randf_range(0, 80)),
 		"left_exit_bottom": get_random_position(exit_area_shape_left),
 		"right_exit_bottom": get_random_position(exit_area_shape_right),
@@ -68,7 +67,7 @@ func get_pedestrian_points():
 func get_pedestrian_walk_data() -> Dictionary:
 	
 	return {
-		"zebra_y_range": _get_area_y_range(zebra_crossing_area),
+		"zebra_y_range": Intersection.get_zebra_crossing_y_range,
 		"road_y_range": _get_road_y_range(),
 		"left_sidewalk_x": left_marker.global_position.x,
 		"right_sidewalk_x": right_marker.global_position.x,

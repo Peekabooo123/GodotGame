@@ -70,4 +70,5 @@ position = Vector2(238, 11)
 position = Vector2(976, 9)
 
 [node name="Intersection" parent="." unique_id=1546977067 instance=ExtResource("4_d3pbo")]
+y_sort_enabled = true
 position = Vector2(0, 2)

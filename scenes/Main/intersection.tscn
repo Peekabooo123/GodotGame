@@ -13,7 +13,7 @@ size = Vector2(623.5, 132.5)
 size = Vector2(108.5, 129)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtyyh"]
-size = Vector2(130, 126.5)
+size = Vector2(118, 129)
 
 [node name="Intersection" type="Node2D" unique_id=1546977067]
 script = ExtResource("1_dx4cv")
@@ -22,7 +22,7 @@ script = ExtResource("1_dx4cv")
 position = Vector2(599, 457)
 script = ExtResource("4_vtyyh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=2007311862]
+[node name="ZebraCrossing" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=2007311862]
 position = Vector2(12.25, -94)
 shape = SubResource("RectangleShape2D_00qfr")
 
@@ -34,7 +34,7 @@ position = Vector2(237.25, 363.5)
 shape = SubResource("RectangleShape2D_vio55")
 
 [node name="Right" type="CollisionShape2D" parent="WaitArea" unique_id=477241558]
-position = Vector2(995, 379)
+position = Vector2(989, 367.5)
 shape = SubResource("RectangleShape2D_vtyyh")
 
 [node name="TrafficLight_left" parent="." unique_id=1712757861 instance=ExtResource("1_iyqbx")]
@@ -42,7 +42,7 @@ position = Vector2(277, 426)
 scale = Vector2(0.4, 0.4)
 
 [node name="TrafficLight_right" parent="." unique_id=1340886710 instance=ExtResource("1_iyqbx")]
-position = Vector2(948, 299)
+position = Vector2(947, 286)
 scale = Vector2(0.4, 0.4)
 
 [node name="TrafficLightController" type="Node2D" parent="." unique_id=1339215505]
