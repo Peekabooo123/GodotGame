@@ -16,7 +16,7 @@ var current_intersection: Node2D = null
 
 func _ready() -> void:
 	add_to_group("cars")
-	velocity = direction.normalized() * speed
+	speed = randf_range(150, 300)
 
 func _physics_process(delta: float) -> void:
 	var distance_to_front: float = get_distance_to_front_car()
@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	elif distance_to_front >= 0.0 and distance_to_front <= perception_range:
 		var new_speed: float = max(0.0, current_speed - max_deceleration * delta)
 		velocity = direction.normalized() * new_speed
-		#print(name,'开始减速了，当前车速： ',velocity)
+		print(name,'开始减速了，当前车速： ',velocity)
 	else:
 		velocity = direction.normalized() * speed
 	#print(name,'当前车速： ',velocity)

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://hhn6xslyl556"]
 
 [ext_resource type="Script" uid="uid://dkdpyhjuap80p" path="res://scenes/Test/testbackg.gd" id="1_3uftm"]
+[ext_resource type="Script" uid="uid://dj5752qk7eax7" path="res://scenes/Background/exit_area.gd" id="2_i7fpr"]
 [ext_resource type="Script" uid="uid://biwfel8r336gi" path="res://scenes/Background/StopLineArea.gd" id="2_mv5p6"]
 [ext_resource type="Script" uid="uid://ckq1er8wwj3t8" path="res://scenes/Background/road_area.gd" id="3_d3pbo"]
 [ext_resource type="PackedScene" uid="uid://bykvwocobl6uj" path="res://scenes/Main/intersection.tscn" id="4_d3pbo"]
@@ -38,6 +39,7 @@ position = Vector2(1048, -72)
 shape = SubResource("RectangleShape2D_00qfr")
 
 [node name="ExitArea" type="Area2D" parent="." unique_id=1173980419]
+script = ExtResource("2_i7fpr")
 
 [node name="Left" type="CollisionShape2D" parent="ExitArea" unique_id=1246653891]
 position = Vector2(176, 864)
