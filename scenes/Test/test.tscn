@@ -1,6 +1,17 @@
 [gd_scene format=3 uid="uid://3cna7588r0e1"]
 
 [ext_resource type="Script" uid="uid://cx62sryepour1" path="res://scenes/Test/test.gd" id="1_wi42s"]
+[ext_resource type="PackedScene" uid="uid://c8kmkw3vb1h3w" path="res://scenes/Car/car.tscn" id="2_ceuuy"]
 
-[node name="Node" type="Node" unique_id=1248118357]
+[node name="Node" type="Node2D" unique_id=991232442]
 script = ExtResource("1_wi42s")
+
+[node name="Car" parent="." unique_id=1053033790 instance=ExtResource("2_ceuuy")]
+position = Vector2(232, 88)
+
+[node name="Car2" parent="." unique_id=619054261 instance=ExtResource("2_ceuuy")]
+position = Vector2(233, 1041)
+speed = 200.0
+
+[node name="Camera2D" type="Camera2D" parent="Car2" unique_id=691642819]
+position = Vector2(48, 1)
