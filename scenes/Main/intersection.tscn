@@ -39,12 +39,10 @@ position = Vector2(989, 367.5)
 shape = SubResource("RectangleShape2D_vtyyh")
 
 [node name="TrafficLight_left" parent="." unique_id=1712757861 instance=ExtResource("1_iyqbx")]
-y_sort_enabled = true
 position = Vector2(277, 426)
 scale = Vector2(0.4, 0.4)
 
 [node name="TrafficLight_right" parent="." unique_id=1340886710 instance=ExtResource("1_iyqbx")]
-y_sort_enabled = true
 position = Vector2(947, 286)
 scale = Vector2(0.4, 0.4)
 
