@@ -9,12 +9,12 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 
 	var car = get_parent()
-
-	if body.has_method("stop_due_to_collision"):
-		body.stop_due_to_collision()
-
-	if car.has_method("stop_due_to_collision"):
-		car.stop_due_to_collision()
+#
+	#if body.has_method("stop_due_to_collision"):
+		#body.stop_due_to_collision()
+#
+	#if car.has_method("stop_due_to_collision"):
+		#car.stop_due_to_collision()
 
 	TrafficJudge.report_collision(car,body)
 
