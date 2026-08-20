@@ -80,7 +80,7 @@ position = Vector2(976, 9)
 
 [node name="Intersection" parent="." unique_id=1546977067 instance=ExtResource("4_d3pbo")]
 y_sort_enabled = true
-position = Vector2(0, 2)
+position = Vector2(14, 45)
 
 [node name="CarSpawnArea" type="Area2D" parent="." unique_id=1505058523]
 

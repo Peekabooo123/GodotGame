@@ -1,9 +1,8 @@
-@tool
 extends Node2D
 
 
 func _draw() -> void:
-	_zebra_crossing_drawing()
+	#_zebra_crossing_drawing()
 	pass
 
 func _zebra_crossing_drawing() -> void:
