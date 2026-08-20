@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dk688lnruifr0" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0411.png" id="4_n4vpf"]
 [ext_resource type="Texture2D" uid="uid://b160pt6kyje1c" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0191.png" id="5_hikit"]
 [ext_resource type="Texture2D" uid="uid://dpyqo7ycysd6l" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0714.png" id="6_smsqd"]
+[ext_resource type="Script" uid="uid://blesn3dw0207a" path="res://scenes/Background/despawn_zone.gd" id="11_t2aqr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_osuvw"]
 texture = ExtResource("6_smsqd")
@@ -58,6 +59,12 @@ size = Vector2(193, 329.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7fpr"]
 size = Vector2(212, 324)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hikit"]
+size = Vector2(1262, 384)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2aqr"]
+size = Vector2(1281.5, 254)
 
 [node name="Background" type="Node2D" unique_id=615072215]
 z_index = -1
@@ -139,3 +146,14 @@ shape = SubResource("RectangleShape2D_d3pbo")
 [node name="Bot" type="CollisionShape2D" parent="CarSpawnArea" unique_id=1410048961]
 position = Vector2(797, 1024)
 shape = SubResource("RectangleShape2D_i7fpr")
+
+[node name="DespawnZone" type="Area2D" parent="." unique_id=1317455159]
+script = ExtResource("11_t2aqr")
+
+[node name="Top" type="CollisionShape2D" parent="DespawnZone" unique_id=1780221742]
+position = Vector2(622, -777)
+shape = SubResource("RectangleShape2D_hikit")
+
+[node name="Bot" type="CollisionShape2D" parent="DespawnZone" unique_id=57402428]
+position = Vector2(647, 1502)
+shape = SubResource("RectangleShape2D_t2aqr")
