@@ -1,11 +1,12 @@
 extends Camera2D
 
+@export var follow_speed: float = 5.0   # 数值越大跟得越紧，Inspector 里可调
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var follow_target: Node2D = null
 
+func set_follow_target(target: Node2D) -> void:
+	follow_target = target
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if follow_target and is_instance_valid(follow_target):
+		global_position = global_position.lerp(follow_target.global_position, follow_speed * delta)

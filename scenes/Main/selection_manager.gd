@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var click_sound: AudioStreamPlayer2D = $ClickSound
-@export var camera: Camera2D   # 在编辑器里把 Camera2D 拖进来赋值  # 在编辑器里把 Camera2D 拖进来赋值
+@export var camera_controller: Camera2D   # 在编辑器里把 Camera2D 拖进来赋值  # 在编辑器里把 Camera2D 拖进来赋值
 
 var currently_hovered: Node2D = null
 
@@ -30,7 +30,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 	# 新增：键盘空格键按下处理
 	if event is InputEventKey and event.pressed and event.keycode == KEY_SPACE:
-		_attach_camera_to(self.get_parent())  # 替换为你的实际处理函数
+		camera_controller.set_follow_target(get_parent())
 
 
 
@@ -40,7 +40,7 @@ func _click_process() -> void:
 	var pedestrian := _find_object_at(get_global_mouse_position())
 	if not pedestrian:
 		return
-	_attach_camera_to(pedestrian)
+	camera_controller.set_follow_target(pedestrian)
 	
 	pedestrian.select(true)
 	
@@ -60,15 +60,6 @@ func _click_process() -> void:
 
 	click_sound.play()
 	#pedestrian.queue_free()
-
-
-func _attach_camera_to(target: Node2D) -> void:
-	if camera.get_parent():
-		camera.get_parent().remove_child(camera)
-	target.add_child(camera)
-	camera.position = Vector2.ZERO   # 重置局部坐标，确保摄像机居中对齐目标
-	camera.make_current()
-
 
 func _find_object_at(pos: Vector2) -> Node2D:
 	var space_state := get_tree().root.get_world_2d().direct_space_state
