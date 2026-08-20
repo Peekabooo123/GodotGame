@@ -9,8 +9,11 @@ extends Node2D
 @onready var cars_container: Node2D = $CarsContainer   # 如果你还留着这个容器；不留的话可以直接用 Main 自己
 
 @onready var BackgroundMusic: AudioStreamPlayer = $BackgroundMusic
+@export var cursor_texture: Texture2D
 
 func _ready() -> void:
 	#BackgroundMusic.play()
 	pedestrian_spawner.setup(background, pedestrians_container)
 	car_spawner.setup(background, cars_container)
+	
+	Input.set_custom_mouse_cursor(cursor_texture)
