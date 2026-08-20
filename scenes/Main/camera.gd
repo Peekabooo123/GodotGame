@@ -2,8 +2,8 @@ extends Camera2D
 
 @export var follow_speed: float = 5.0   # 数值越大跟得越紧，Inspector 里可调
 @export var zoom_step: float = 0.1
-@export var min_zoom: float = 0.5
-@export var max_zoom: float = 3.0
+@export var min_zoom: float = 0.1
+@export var max_zoom: float = 10.0
 
 
 @export var default_camera_position: Marker2D
