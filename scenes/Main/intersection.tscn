@@ -20,7 +20,7 @@ sources/0 = SubResource("TileSetAtlasSource_hq323")
 pattern_0 = SubResource("TileMapPattern_l6d18")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
-size = Vector2(630.75, 132.5)
+size = Vector2(625, 130)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vio55"]
 size = Vector2(108.5, 129)
@@ -42,7 +42,7 @@ collision_mask = 7
 script = ExtResource("4_vtyyh")
 
 [node name="ZebraCrossing" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=2007311862]
-position = Vector2(598.625, 320)
+position = Vector2(599.5, 320)
 shape = SubResource("RectangleShape2D_00qfr")
 
 [node name="WaitArea" type="Area2D" parent="." unique_id=1218458652]
