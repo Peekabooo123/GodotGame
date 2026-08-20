@@ -41,7 +41,7 @@ func _click_process() -> void:
 	var pedestrian := _find_object_at(get_global_mouse_position())
 	if not pedestrian:
 		return
-	camera_controller.set_follow_target(pedestrian)
+	#camera_controller.set_follow_target(pedestrian)
 	
 	pedestrian.select(true)
 	
@@ -60,7 +60,7 @@ func _click_process() -> void:
 		Eventbus.score_changed.emit(-1)
 
 	click_sound.play()
-	#pedestrian.queue_free()
+	pedestrian.queue_free()
 
 func _find_object_at(pos: Vector2) -> Node2D:
 	var space_state := get_tree().root.get_world_2d().direct_space_state
