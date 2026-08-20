@@ -70,5 +70,9 @@ pedestrian_scene = ExtResource("1_px18m")
 [node name="PedestriansContainer" type="Node2D" parent="." unique_id=1193235358]
 y_sort_enabled = true
 
-[node name="Camera" type="Camera2D" parent="." unique_id=1844128148]
+[node name="Camera" type="Camera2D" parent="." unique_id=1844128148 node_paths=PackedStringArray("default_camera_position")]
 script = ExtResource("12_3348s")
+default_camera_position = NodePath("../CentrePoint")
+
+[node name="CentrePoint" type="Marker2D" parent="." unique_id=2037268335]
+position = Vector2(611, 366)
