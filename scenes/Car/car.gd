@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var speed: float = 80.0                 # 初速度，实例化时会被赋值，体现差异
 @export var max_deceleration: float = 50.0      # 刹车能力，先写死在基类
+@export var max_acceleration: float = 30.0 
 @export var perception_range: float = 200.0      # 检测范围，先写死在基类
 
 @onready var car_sprite: Sprite2D = $Car
@@ -33,7 +34,8 @@ func _physics_process(delta: float) -> void:
 		if is_selected:
 			print('前方距离',distance_to_front,'开始减速了，当前车速： ',velocity)
 	else:
-		velocity = direction.normalized() * speed
+		var new_speed: float = min(speed, current_speed + max_acceleration * delta)
+		velocity = direction.normalized() * new_speed
 	#print(name,'当前车速： ',velocity)
 	move_and_slide()
 

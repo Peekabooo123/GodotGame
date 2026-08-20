@@ -1,8 +1,8 @@
 extends Node
 
 @export var car_scene: PackedScene
-@export var min_spawn_interval: float = 2.0
-@export var max_spawn_interval: float = 2.0
+@export var min_spawn_interval: float = 3.0
+@export var max_spawn_interval: float = 6.0
 
 @onready var spawn_timer: Timer = $SpawnTimer
 
