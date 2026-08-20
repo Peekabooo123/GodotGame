@@ -10,8 +10,8 @@ script = ExtResource("1_wi42s")
 position = Vector2(232, 88)
 
 [node name="Car2" parent="." unique_id=619054261 instance=ExtResource("2_ceuuy")]
-position = Vector2(233, 1041)
-speed = 200.0
+position = Vector2(224, 568)
+speed = 600.0
 
 [node name="Camera2D" type="Camera2D" parent="Car2" unique_id=691642819]
-position = Vector2(48, 1)
+position = Vector2(16, -96)
