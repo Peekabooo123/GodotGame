@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b32b6d6c70jct" path="res://scenes/Main/main.gd" id="1_nyu32"]
 [ext_resource type="PackedScene" uid="uid://de0x6a4pilut7" path="res://scenes/Pedestrain/pedestrian.tscn" id="1_px18m"]
 [ext_resource type="PackedScene" uid="uid://hhn6xslyl556" path="res://scenes/Background/background.tscn" id="2_8gcrf"]
+[ext_resource type="Texture2D" uid="uid://dftt3sy3skcsh" path="res://assets/kenney_cursor-pixel-pack/Tiles/tile_0028.png" id="2_f0cp1"]
 [ext_resource type="PackedScene" uid="uid://c8kmkw3vb1h3w" path="res://scenes/Car/car.tscn" id="4_8gcrf"]
 [ext_resource type="Script" uid="uid://cihtpb3ipydk2" path="res://scenes/Main/pedestrian_spawner.gd" id="5_rdp1x"]
 [ext_resource type="Script" uid="uid://bi7ilr2m67yk1" path="res://scenes/Main/selection_manager.gd" id="7_5wuev"]
@@ -16,6 +17,7 @@
 [node name="Main" type="Node2D" unique_id=1825897954]
 y_sort_enabled = true
 script = ExtResource("1_nyu32")
+cursor_texture = ExtResource("2_f0cp1")
 
 [node name="Background" parent="." unique_id=615072215 instance=ExtResource("2_8gcrf")]
 y_sort_enabled = true
