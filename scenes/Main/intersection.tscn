@@ -58,8 +58,8 @@ position = Vector2(992, 327)
 shape = SubResource("RectangleShape2D_vtyyh")
 
 [node name="TrafficLight_left" parent="." unique_id=1712757861 instance=ExtResource("1_iyqbx")]
-position = Vector2(259, 371)
-scale = Vector2(0.4, 0.4)
+position = Vector2(282, 374)
+scale = Vector2(-0.4, 0.4)
 
 [node name="TrafficLight_right" parent="." unique_id=1340886710 instance=ExtResource("1_iyqbx")]
 position = Vector2(912, 240)
