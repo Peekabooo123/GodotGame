@@ -1,4 +1,4 @@
-@tool
+#@tool
 class_name Background
 
 extends Node2D
@@ -105,11 +105,20 @@ func get_random_position(area_shape:CollisionShape2D) -> Vector2:
 	return area_center + Vector2(random_x, random_y)
 
 
+
+
+
+
+
+
+
+
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO, screen_size),Color.BLACK)
-	draw_rect(Rect2(road_position, Vector2(road_width, screen_size.y)), Color(0, 0.302, 0.302, 1.0)) #Color.GRAY
-	_draw_lane_divider()
+	#draw_rect(Rect2(Vector2.ZERO, screen_size),Color.BLACK)
+	#draw_rect(Rect2(road_position, Vector2(road_width, screen_size.y)), Color(0, 0.302, 0.302, 1.0)) #Color.GRAY
+	#_draw_lane_divider()
 	#_zebra_crossing_drawing(road_width)
+	pass
 
 
 func _zebra_crossing_drawing(road_width: int) -> void:
