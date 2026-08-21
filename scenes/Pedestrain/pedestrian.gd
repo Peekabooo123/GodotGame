@@ -10,7 +10,7 @@ var is_illegal: bool = false
 var is_on_crosswalk: bool = false
 var is_selected:bool = false
 
-@export var speed: float = randf_range(50.0, 150.0)
+@export var speed: float = randf_range(5.0, 30.0)
 @onready var animated_sprite: AnimatedSprite2D = $Pedestrain
 var behavior_steps: Array[BehaviorStep] = []
 var current_step_index: int = 0
