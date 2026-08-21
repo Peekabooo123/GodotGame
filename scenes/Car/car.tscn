@@ -9,10 +9,10 @@ atlas = ExtResource("1_xbtw7")
 region = Rect2(202, 54.5, 31, 44)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vio55"]
-size = Vector2(103.000015, 185)
+size = Vector2(30.000004, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gg5hf"]
-size = Vector2(97, 37)
+size = Vector2(22, 16)
 
 [node name="Car" type="CharacterBody2D" unique_id=1053033790]
 position = Vector2(503, 491)
@@ -22,7 +22,6 @@ script = ExtResource("1_c8bcc")
 
 [node name="Car" type="Sprite2D" parent="." unique_id=1130085480]
 position = Vector2(-0.50424194, 1.5258789e-05)
-scale = Vector2(3.644887, 3.454546)
 texture = SubResource("AtlasTexture_c8bcc")
 
 [node name="HitDetectionArea" type="Area2D" parent="." unique_id=347780304]
@@ -32,21 +31,20 @@ collision_mask = 2
 script = ExtResource("3_y0jbw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetectionArea" unique_id=1901106680]
-position = Vector2(1.004242, 0.5)
+position = Vector2(0.50424194, 1)
 shape = SubResource("RectangleShape2D_vio55")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1919466826]
 position = Vector2(0, -1.2394714)
 scale = Vector2(1, 1.0098684)
-polygon = PackedVector2Array(-24, -72, -40, -56, -40, 64, -24, 80, 24, 80, 40, 64, 40, -56, 24, -72)
+polygon = PackedVector2Array(-7, -20.557648, -11, -15.606506, -11, 19.051483, -6, 23.01239, 9, 23.01239, 11, 20.041687, 11, -15.606506, 7, -20.557648)
 
 [node name="CarFront" type="Area2D" parent="." unique_id=2141569600]
-position = Vector2(-1, -53)
+position = Vector2(0, -14)
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarFront" unique_id=1708280167]
-position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_gg5hf")
 
 [node name="FrontRayCast" type="RayCast2D" parent="." unique_id=1499763248]

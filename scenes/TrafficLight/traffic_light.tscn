@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bk0g5wtu2po03" path="res://assets/kenney_rpg-urban-pack/Tiles/tile_0191.png" id="4_t0iey"]
 
 [node name="TrafficLight" type="Node2D" unique_id=1712757861]
-position = Vector2(1160, 400.00003)
+position = Vector2(328.0001, 280.00003)
 scale = Vector2(7, 7)
 script = ExtResource("1_uttgq")
 
@@ -61,11 +61,9 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2026777651]
-position = Vector2(-34.285713, -149.71428)
-scale = Vector2(8, 8)
+position = Vector2(-4.571453, -18.285717)
 texture = ExtResource("3_gcjjo")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=814656656]
-position = Vector2(-34.285713, -21.714285)
-scale = Vector2(8, 8)
+position = Vector2(-4.5714493, -2.285717)
 texture = ExtResource("4_t0iey")

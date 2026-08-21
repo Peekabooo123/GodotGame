@@ -40,44 +40,13 @@ func _spawn_pedestrian() -> void:
 	pedestrian.initialize(behavior_type, points)
 
 
-#func _pick_random_behavior_type(spawn_position: Vector2) -> Pedestrian.BehaviorType:
-	#var choice := randi() % 4
-	#if spawn_position.x < 600:
-		#match choice:
-			#0:
-				#print('遵守')
-				#return Pedestrian.BehaviorType.LAW_ABIDING_LEFT
-			#1:
-				#print('闯红灯')
-				#return Pedestrian.BehaviorType.JAYWALKING_LEFT
-			#2:
-				#print('直走')
-				#return Pedestrian.BehaviorType.STRAIGHT_WALKING_LEFT
-			#_:
-				#print('横穿马路')
-				#return Pedestrian.BehaviorType.STRAIGHT_WALKING_ACROSS_LEFT
-	#else:
-		#match choice:
-			#0:
-				#print('遵守')
-				#return Pedestrian.BehaviorType.LAW_ABIDING_RIGHT
-			#1:
-				#print('闯红灯')
-				#return Pedestrian.BehaviorType.JAYWALKING_RIGHT
-			#2:
-				#print('直走')
-				#return Pedestrian.BehaviorType.STRAIGHT_WALKING_RIGHT
-			#_:
-				#print('横穿马路')
-				#return Pedestrian.BehaviorType.STRAIGHT_WALKING_ACROSS_RIGHT
-				
 func _pick_random_behavior_type(spawn_position: Vector2) -> Pedestrian.BehaviorType:
 	#0.00 ───────────── 0.45 ───────── 0.85 ──── 0.95 ──── 1.00
 		  #遵守规则 (45%)      直走(40%)    闯红灯(10%) 横穿(5%)
 
 	var roll := randf()   # 0.0 ~ 1.0 之间的随机数
 
-	var is_left := spawn_position.x < 600
+	var is_left = spawn_position.x < background.get_centre_point().x
 
 	if roll < 0.45:
 		#print('遵守')

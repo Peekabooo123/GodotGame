@@ -18,6 +18,8 @@ extends Node2D
 @onready var left_marker: Marker2D = $Markers/Left
 @onready var right_marker: Marker2D = $Markers/Right
 
+@onready var centre_marker: Marker2D = $Markers/Centre
+
 @onready var Intersection: Node2D = $Intersection
 
 var strip_width = 20
@@ -45,19 +47,19 @@ func get_car_points() -> Dictionary:
 
 func get_pedestrian_points():
 	var walk_data = get_pedestrian_walk_data()
-	var decision_point_left = Vector2(walk_data['left_sidewalk_x'] + randf_range(-20, 20), randf_range(10,790))
-	var decision_point_right = Vector2(walk_data['right_sidewalk_x'] + randf_range(-20, 20), randf_range(10,790))
+	var decision_point_left = Vector2(walk_data['left_sidewalk_x'] + randf_range(-5, 5), randf_range(10,400))
+	var decision_point_right = Vector2(walk_data['right_sidewalk_x'] + randf_range(-5, 5), randf_range(10,400))
 
 	return {
 		"spawn_left_top": get_random_position(spawn_area_shape_left),
 		"spawn_right_top": get_random_position(spawn_area_shape_right),
 		"decision_point_left":decision_point_left,
 		"wait_left": Intersection.get_points()['wait_points_left'],
-		"decision_left_to_right": Vector2(decision_point_right.x, decision_point_left.y+randf_range(0, 80)),
+		"decision_left_to_right": Vector2(decision_point_right.x, decision_point_left.y+randf_range(0, 10)),
 
 		"decision_point_right":decision_point_right,
 		"wait_right": Intersection.get_points()['wait_points_right'],
-		"decision_right_to_left": Vector2(decision_point_left.x, decision_point_right.y+randf_range(0, 80)),
+		"decision_right_to_left": Vector2(decision_point_left.x, decision_point_right.y+randf_range(0, 10)),
 		"left_exit_bottom": get_random_position(exit_area_shape_left),
 		"right_exit_bottom": get_random_position(exit_area_shape_right),
 	}
@@ -68,7 +70,8 @@ func get_pedestrian_points():
 
 
 
-
+func get_centre_point() -> Vector2:
+	return centre_marker.global_position
 
 
 

@@ -20,7 +20,6 @@ script = ExtResource("1_nyu32")
 cursor_texture = ExtResource("2_f0cp1")
 
 [node name="Background" parent="." unique_id=615072215 instance=ExtResource("2_8gcrf")]
-z_index = 0
 
 [node name="SelectionManager" type="Node2D" parent="." unique_id=10999744 node_paths=PackedStringArray("camera_controller")]
 script = ExtResource("7_5wuev")
@@ -76,4 +75,4 @@ script = ExtResource("12_3348s")
 default_camera_position = NodePath("../CentrePoint")
 
 [node name="CentrePoint" type="Marker2D" parent="." unique_id=2037268335]
-position = Vector2(611, 366)
+position = Vector2(248, 246)

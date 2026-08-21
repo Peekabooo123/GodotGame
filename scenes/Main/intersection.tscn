@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bykvwocobl6uj"]
+[gd_scene format=4 uid="uid://bykvwocobl6uj"]
 
 [ext_resource type="Script" uid="uid://bxqtikbf7081t" path="res://scenes/Main/intersection.gd" id="1_dx4cv"]
 [ext_resource type="PackedScene" uid="uid://bvb3byn3c62l7" path="res://scenes/TrafficLight/traffic_light.tscn" id="1_iyqbx"]
@@ -7,44 +7,56 @@
 [ext_resource type="Script" uid="uid://k2tnordfojnh" path="res://scenes/Background/zebra_crossing_area.gd" id="4_vtyyh"]
 [ext_resource type="Script" uid="uid://ceeag2mqrih6d" path="res://scenes/Main/zebra_crossing_display.gd" id="6_3e1k1"]
 [ext_resource type="Texture2D" uid="uid://0jqfisurivod" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0828.png" id="7_l6d18"]
+[ext_resource type="Texture2D" uid="uid://xnocksq46do1" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0825.png" id="8_hq323"]
+[ext_resource type="Texture2D" uid="uid://dpyqo7ycysd6l" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0714.png" id="9_n4158"]
+[ext_resource type="Texture2D" uid="uid://drkdbnu8wkycu" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0749.png" id="10_lal5q"]
 
-[sub_resource type="TileMapPattern" id="TileMapPattern_l6d18"]
-tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y4mok"]
+texture = ExtResource("8_hq323")
+0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hq323"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n4158"]
 texture = ExtResource("7_l6d18")
 0:0/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_3e1k1"]
-sources/0 = SubResource("TileSetAtlasSource_hq323")
-pattern_0 = SubResource("TileMapPattern_l6d18")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ny8r5"]
+texture = ExtResource("9_n4158")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_smejx"]
+texture = ExtResource("10_lal5q")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hq323"]
+sources/0 = SubResource("TileSetAtlasSource_y4mok")
+sources/1 = SubResource("TileSetAtlasSource_n4158")
+sources/2 = SubResource("TileSetAtlasSource_ny8r5")
+sources/3 = SubResource("TileSetAtlasSource_smejx")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
-size = Vector2(625, 130)
+size = Vector2(144, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vio55"]
-size = Vector2(108.5, 129)
+size = Vector2(20, 13.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtyyh"]
-size = Vector2(118, 129)
+size = Vector2(20, 12.75)
 
 [node name="Intersection" type="Node2D" unique_id=1546977067]
 y_sort_enabled = true
 script = ExtResource("1_dx4cv")
 
-[node name="TileMap" type="TileMap" parent="." unique_id=1113443894]
-scale = Vector2(3, 8)
-tile_set = SubResource("TileSet_3e1k1")
-format = 2
-layer_0/z_index = -2
-layer_0/tile_data = PackedInt32Array(131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 131087, 0, 0, 131088, 0, 0, 131089, 0, 0, 131090, 0, 0)
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1244757248]
+z_index = -2
+tile_map_data = PackedByteArray("AAALAAsAAQAAAAAAAAAMAAsAAQAAAAAAAAANAAsAAQAAAAAAAAAOAAsAAQAAAAAAAAAPAAsAAQAAAAAAAAAQAAsAAQAAAAAAAAARAAsAAQAAAAAAAAASAAsAAQAAAAAAAAALAAoAAgAAAAAAAAAMAAoAAgAAAAAAAAANAAoAAgAAAAAAAAAOAAoAAgAAAAAAAAAPAAoAAwAAAAAAAAAQAAoAAgAAAAAAAAARAAoAAgAAAAAAAAASAAoAAgAAAAAAAAALAAwAAgAAAAAAAAAMAAwAAgAAAAAAAAANAAwAAgAAAAAAAAAOAAwAAgAAAAAAAAAPAAwAAwAAAAAAAAAQAAwAAgAAAAAAAAARAAwAAgAAAAAAAAASAAwAAgAAAAAAAAATAAsAAQAAAAAAAAATAAoAAgAAAAAAAAATAAwAAgAAAAAAAAA=")
+tile_set = SubResource("TileSet_hq323")
 
 [node name="ZebraCrossingArea" type="Area2D" parent="." unique_id=515893021]
 collision_mask = 7
 script = ExtResource("4_vtyyh")
 
 [node name="ZebraCrossing" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=2007311862]
-position = Vector2(599.5, 320)
+position = Vector2(248, 184)
 shape = SubResource("RectangleShape2D_00qfr")
 
 [node name="WaitArea" type="Area2D" parent="." unique_id=1218458652]
@@ -52,19 +64,19 @@ collision_mask = 3
 script = ExtResource("3_8pmd1")
 
 [node name="Left" type="CollisionShape2D" parent="WaitArea" unique_id=1166703013]
-position = Vector2(213, 325)
+position = Vector2(163, 188)
 shape = SubResource("RectangleShape2D_vio55")
 
 [node name="Right" type="CollisionShape2D" parent="WaitArea" unique_id=477241558]
-position = Vector2(992, 327)
+position = Vector2(332, 186)
 shape = SubResource("RectangleShape2D_vtyyh")
 
 [node name="TrafficLight_left" parent="." unique_id=1712757861 instance=ExtResource("1_iyqbx")]
-position = Vector2(278, 380)
+position = Vector2(175, 191)
 scale = Vector2(-0.4, 0.4)
 
 [node name="TrafficLight_right" parent="." unique_id=1340886710 instance=ExtResource("1_iyqbx")]
-position = Vector2(912, 240)
+position = Vector2(322, 176)
 scale = Vector2(0.4, 0.4)
 
 [node name="TrafficLightController" type="Node2D" parent="." unique_id=1339215505]
