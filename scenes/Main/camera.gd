@@ -5,6 +5,8 @@ extends Camera2D
 @export var min_zoom: float = 0.1
 @export var max_zoom: float = 10.0
 
+var default_zoom: float = 3
+
 
 @export var default_camera_position: Marker2D
 
@@ -12,6 +14,7 @@ var follow_target: Node2D
 
 func _ready() -> void:
 	follow_target = default_camera_position
+	zoom = Vector2(default_zoom, default_zoom)
 	
 
 func set_follow_target(target: Node2D) -> void:
