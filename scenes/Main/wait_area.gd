@@ -13,6 +13,8 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group('pedestrians'):
 		if body.has_method("set_current_intersection"):
 			body.set_current_intersection(controller)
+		if body.has_method("offer_crossing_decision"):
+			body.offer_crossing_decision(self)
 
 
 func _on_body_exited(body: Node2D) -> void:
