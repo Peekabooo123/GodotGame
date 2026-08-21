@@ -37,9 +37,10 @@ sources/3 = SubResource("TileSetAtlasSource_smejx")
 size = Vector2(144, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vio55"]
-size = Vector2(20, 16)
+size = Vector2(61, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gg5hf"]
+size = Vector2(58, 15)
 
 [node name="Intersection" type="Node2D" unique_id=1546977067]
 y_sort_enabled = true
@@ -66,7 +67,7 @@ intersection = NodePath("..")
 opposite_area = NodePath("../WaitAreaRight")
 
 [node name="Left" type="CollisionShape2D" parent="WaitAreaLeft" unique_id=1166703013]
-position = Vector2(163, 185)
+position = Vector2(142.5, 185)
 shape = SubResource("RectangleShape2D_vio55")
 
 [node name="WaitAreaRight" type="Area2D" parent="." unique_id=467106672 node_paths=PackedStringArray("traffic_light_controller", "intersection", "opposite_area")]
@@ -77,6 +78,7 @@ intersection = NodePath("..")
 opposite_area = NodePath("../WaitAreaLeft")
 
 [node name="Right" type="CollisionShape2D" parent="WaitAreaRight" unique_id=1512985034]
+position = Vector2(353, 185.5)
 shape = SubResource("RectangleShape2D_gg5hf")
 
 [node name="TrafficLightController" type="Node2D" parent="." unique_id=1339215505]

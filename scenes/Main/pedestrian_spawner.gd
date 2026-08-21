@@ -30,33 +30,13 @@ func _spawn_pedestrian() -> void:
 	var points = background.get_pedestrian_points()
 	var pedestrian := pedestrian_scene.instantiate()
 
-	var spawn_candidates: Array[Vector2] = [points["spawn_left_top"], points["spawn_right_top"]]
-	var spawn_position: Vector2 = spawn_candidates[randi() % spawn_candidates.size()]
+	# 随机选一个出生点，并绑定对应的直行方向
+	var spawn_options := [
+		{"position": points["spawn_left_top"], "direction": Vector2.DOWN},
+		{"position": points["spawn_right_top"], "direction": Vector2.DOWN},
+	]
+	var choice: Dictionary = spawn_options[randi() % spawn_options.size()]
 
-	pedestrian.position = spawn_position
+	pedestrian.position = choice["position"]
+	pedestrian.direction = choice["direction"]
 	pedestrians_container.add_child(pedestrian)
-
-	var behavior_type := _pick_random_behavior_type(spawn_position)
-	pedestrian.initialize(behavior_type, points)
-
-
-func _pick_random_behavior_type(spawn_position: Vector2) -> Pedestrian.BehaviorType:
-	#0.00 ───────────── 0.45 ───────── 0.85 ──── 0.95 ──── 1.00
-		  #遵守规则 (45%)      直走(40%)    闯红灯(10%) 横穿(5%)
-
-	var roll := randf()   # 0.0 ~ 1.0 之间的随机数
-
-	var is_left = spawn_position.x < background.get_centre_point().x
-
-	if roll < 0.45:
-		#print('遵守')
-		return Pedestrian.BehaviorType.LAW_ABIDING_LEFT if is_left else Pedestrian.BehaviorType.LAW_ABIDING_RIGHT
-	elif roll < 0.85:
-		#print('直走')
-		return Pedestrian.BehaviorType.STRAIGHT_WALKING_LEFT if is_left else Pedestrian.BehaviorType.STRAIGHT_WALKING_RIGHT
-	elif roll < 0.95:
-		#print('闯红灯')
-		return Pedestrian.BehaviorType.JAYWALKING_LEFT if is_left else Pedestrian.BehaviorType.JAYWALKING_RIGHT
-	else:
-		#print('横穿马路')
-		return Pedestrian.BehaviorType.STRAIGHT_WALKING_ACROSS_LEFT if is_left else Pedestrian.BehaviorType.STRAIGHT_WALKING_ACROSS_RIGHT

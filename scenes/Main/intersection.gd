@@ -5,9 +5,8 @@ extends Node2D
 @onready var Zebra_crossing_area = $ZebraCrossingArea
 #@onready var zebra_crossing_area: CollisionShape2D = $ZebraCrossingArea/ZebraCrossing
 
-@onready var Wait_area: Area2D = $WaitArea
-@onready var wait_area_shape_left: CollisionShape2D = $WaitArea/Left
-@onready var wait_area_shape_right: CollisionShape2D = $WaitArea/Right
+@onready var Wait_area_left: Area2D = $WaitAreaLeft
+@onready var Wait_area_right: Area2D = $WaitAreaRight
 
 @onready var controller = $TrafficLightController
 
@@ -15,7 +14,6 @@ func _ready() -> void:
 	TrafficLight_left.setup(controller)
 	TrafficLight_right.setup(controller)
 	Zebra_crossing_area.setup(controller)
-	Wait_area.setup(controller)
 
 
 
@@ -36,12 +34,27 @@ func get_zebra_crossing_y_range() -> Vector2:
 
 func get_points() -> Dictionary:
 	return {
-		'wait_points_left': _get_random_position(wait_area_shape_left),
-		'wait_points_right': _get_random_position(wait_area_shape_right),
+		'wait_points_left': _get_random_point_in_area(Wait_area_left),
+		'wait_points_right': _get_random_point_in_area(Wait_area_right),
 	}
 
 
 
+
+
+
+
+func _get_random_point_in_area(area: Area2D) -> Vector2:
+	#var collision_shape: CollisionShape2D = null
+	#for child in area.get_children():
+		#if child is CollisionShape2D:
+			#collision_shape = child
+			#break
+	var collision_shape = area.get_children()[0]
+	var shape: RectangleShape2D = collision_shape.shape
+	var half: Vector2 = shape.size / 2.0
+	var offset := Vector2(randf_range(-half.x, half.x), randf_range(-half.y, half.y))
+	return collision_shape.global_position + offset
 
 
 
