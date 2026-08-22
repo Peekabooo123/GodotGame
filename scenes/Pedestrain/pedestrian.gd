@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var speed: float = randf_range(10, 40)
 @export var cross_probability: float = 0.5
 
 @onready var animated_sprite: AnimatedSprite2D = $Pedestrain
