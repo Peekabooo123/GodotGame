@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-@onready var speed: float = 10.0
 @export var cross_probability: float = 0.5
 
 @onready var animated_sprite: AnimatedSprite2D = $Pedestrain
