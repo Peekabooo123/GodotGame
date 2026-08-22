@@ -1,12 +1,15 @@
 extends CharacterBody2D
 
 @onready var speed: float = randf_range(10, 40)
+#@onready var speed: float = 100
 @export var cross_probability: float = 0.5
 
 @onready var animated_sprite: AnimatedSprite2D = $Pedestrain
 
 enum State { WALKING_STRAIGHT, CROSSING }
+enum CrossPhase { TO_START, TO_END }   # 过马路的两个子阶段
 var current_state: State = State.WALKING_STRAIGHT
+var cross_phase: CrossPhase = CrossPhase.TO_START
 
 var direction: Vector2 = Vector2.DOWN   # 直行方向，由生成时决定
 var cross_start_point: Vector2            # 过马路的入口点
@@ -39,11 +42,19 @@ func _walk_straight() -> void:
 
 # ---- 过马路分支 ----
 func _walk_crossing() -> void:
-	var to_target: Vector2 = cross_end_point - global_position
+	var target: Vector2
+	if cross_phase == CrossPhase.TO_START:
+		target = cross_start_point
+	else:
+		target = cross_end_point
+
+	var to_target: Vector2 = target - global_position
 
 	if to_target.length() < 4.0:
-		# 到达对面出口点，过马路结束，回到直行状态
-		current_state = State.WALKING_STRAIGHT
+		if cross_phase == CrossPhase.TO_START:
+			cross_phase = CrossPhase.TO_END   # 到了入口点，进入第二段
+		else:
+			current_state = State.WALKING_STRAIGHT   # 到了出口点，过马路结束
 		return
 
 	velocity = to_target.normalized() * speed
