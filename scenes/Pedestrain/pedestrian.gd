@@ -84,7 +84,8 @@ func offer_crossing_decision(path: Dictionary) -> void:
 
 
 func on_left_wait_area() -> void:
-	can_be_offered = true           # 彻底离开等待区后，才恢复接受邀请
+	if current_state == State.WALKING_STRAIGHT:
+		can_be_offered = true           # 彻底离开等待区后，才恢复接受邀请
 
 func set_on_crosswalk(value: bool) -> void:
 	is_on_crosswalk = value
@@ -113,5 +114,6 @@ func _update_animation(is_moving: bool) -> void:
 		#animated_sprite.play("walk")
 		animated_sprite.stop()
 
-#func stop_due_to_collision()->void:
-	#has_behavior_assigned = false
+func stop_due_to_collision()->void:
+	pass
+	return

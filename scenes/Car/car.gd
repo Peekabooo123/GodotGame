@@ -18,6 +18,7 @@ var current_intersection: Node2D = null
 
 func _ready() -> void:
 	add_to_group("cars")
+	add_to_group("selectable")
 	speed = randf_range(80, 500)
 
 func _physics_process(delta: float) -> void:
@@ -58,6 +59,8 @@ func get_distance_to_front_car() -> float:
 	return global_position.distance_to(collision_point)
 
 
+
+
 func select(value: bool) -> void:
 	is_selected = value
 
@@ -70,8 +73,15 @@ func mark_as_illegal() -> void:
 	is_illegal = true
 	#print(name, " 被标记为非法车辆")
 
+
+
+
+
 func stop_due_to_collision() -> void:
 	speed = 0
+
+
+
 
 func set_highlighted(value: bool) -> void:
 	car_sprite.modulate = Color(1.3, 1.3, 1.3) if value else Color.WHITE
