@@ -16,6 +16,7 @@ size = Vector2(22, 16)
 
 [node name="Car" type="CharacterBody2D" unique_id=1053033790]
 position = Vector2(503, 491)
+scale = Vector2(0.5, 0.5)
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_c8bcc")
@@ -48,5 +49,5 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_gg5hf")
 
 [node name="FrontRayCast" type="RayCast2D" parent="." unique_id=1499763248]
-target_position = Vector2(1, -475)
+target_position = Vector2(0, -200)
 collision_mask = 4

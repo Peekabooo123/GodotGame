@@ -25,7 +25,8 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _on_body_exited(body: Node2D) -> void:
-	pass
+	if body.is_in_group("pedestrians") and body.has_method("on_left_wait_area"):
+		body.on_left_wait_area()
 
 
 

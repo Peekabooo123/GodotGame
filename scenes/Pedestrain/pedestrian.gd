@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var speed: float = randf_range(10, 40)
+var speed: float = randf_range(10, 40)
 #@onready var speed: float = 100
 @export var cross_probability: float = 0.5
 
@@ -19,6 +19,9 @@ var is_on_crosswalk: bool = false
 var is_illegal: bool = false
 var is_selected: bool = false
 
+var can_be_offered: bool = true
+
+
 var current_intersection: Node2D = null
 
 func _ready() -> void:
@@ -29,6 +32,7 @@ func set_current_intersection(controller: Node2D) -> void:
 	current_intersection = controller
 
 func _physics_process(delta: float) -> void:
+	_update_animation(true)
 	match current_state:
 		State.WALKING_STRAIGHT:
 			_walk_straight()
@@ -68,13 +72,19 @@ func offer_crossing_decision(path: Dictionary) -> void:
 	# 概率决定不过，保持直行
 	if randf() > cross_probability:
 		return
+	if not can_be_offered:
+		return
 
 	# 决定过马路
 	cross_start_point = path["start_point"]
 	cross_end_point = path["end_point"]
 	current_state = State.CROSSING
+	
+	can_be_offered = false  
 
 
+func on_left_wait_area() -> void:
+	can_be_offered = true           # 彻底离开等待区后，才恢复接受邀请
 
 func set_on_crosswalk(value: bool) -> void:
 	is_on_crosswalk = value
