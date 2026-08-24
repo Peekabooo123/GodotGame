@@ -1,9 +1,8 @@
 extends CharacterBody2D
 
-var speed: float = randf_range(10, 40)
+var speed: float
 #@onready var speed: float = 100
 @export var cross_probability: float = 0.5
-
 @onready var animated_sprite: AnimatedSprite2D = $Pedestrain
 
 enum State { WALKING_STRAIGHT, CROSSING }
@@ -27,6 +26,7 @@ var current_intersection: Node2D = null
 func _ready() -> void:
 	add_to_group("pedestrians")
 	add_to_group("selectable")
+	speed = randf_range(10, 40)
 
 func set_current_intersection(controller: Node2D) -> void:
 	current_intersection = controller
@@ -94,17 +94,19 @@ func mark_as_illegal() -> void:
 	if is_illegal:
 		return
 	is_illegal = true
-	# 这里可以加视觉反馈，比如变红，方便调试观察哪些行人被标记了
-	# sprite.modulate = Color(1.0, 0.4, 0.4)
+
 
 func select(value: bool) -> void:
 	is_selected = value
+
 
 func set_highlighted(value: bool) -> void:
 	if value:
 		animated_sprite.modulate = Color(1.3, 1.3, 1.3)   # 变亮
 	else:
 		animated_sprite.modulate = Color.WHITE             # 恢复正常
+
+
 
 func _update_animation(is_moving: bool) -> void:
 	if is_moving:
@@ -113,6 +115,10 @@ func _update_animation(is_moving: bool) -> void:
 	else:
 		#animated_sprite.play("walk")
 		animated_sprite.stop()
+
+
+
+
 
 func stop_due_to_collision()->void:
 	pass

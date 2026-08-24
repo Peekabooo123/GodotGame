@@ -19,14 +19,14 @@ func _ready() -> void:
 
 func set_follow_target(target: Node2D) -> void:
 	follow_target = target
+func set_default_target()-> void:
+	follow_target = default_camera_position
+
+
 
 func _process(delta: float) -> void:
 	if follow_target and is_instance_valid(follow_target):
 		global_position = global_position.lerp(follow_target.global_position, follow_speed * delta)
-
-func set_default_target()-> void:
-	follow_target = default_camera_position
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
