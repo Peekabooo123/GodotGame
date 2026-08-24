@@ -17,6 +17,7 @@ var cross_end_point: Vector2              # 过马路的出口点
 var is_on_crosswalk: bool = false
 var is_illegal: bool = false
 var is_selected: bool = false
+var is_stopped: bool = false 
 
 var can_be_offered: bool = true
 var current_intersection: Node2D = null
@@ -26,7 +27,7 @@ var noise: FastNoiseLite
 func _ready() -> void:
 	add_to_group("pedestrians")
 	add_to_group("selectable")
-	speed = randf_range(10, 40)
+	speed = randf_range(10, 30)
 	noise = FastNoiseLite.new()
 	noise.seed = randi()   # 每个行人独立的随机种子
 	noise.frequency = 0.5  # 控制变化快慢
@@ -35,6 +36,13 @@ func set_current_intersection(controller: Node2D) -> void:
 	current_intersection = controller
 
 func _physics_process(delta: float) -> void:
+	if is_stopped:
+		velocity = Vector2.ZERO
+		_update_animation(false)   # 停下时停止走路动画
+		move_and_slide()
+		return   # 直接返回，不执行下面的直行/过马路逻辑
+	
+	
 	_update_animation(true)
 	match current_state:
 		State.WALKING_STRAIGHT:
@@ -138,6 +146,7 @@ func _update_animation(is_moving: bool) -> void:
 
 
 
-func stop_due_to_collision()->void:
-	pass
-	return
+func stop_this_guy(value: bool) -> void:
+	is_stopped = value
+	if is_stopped:
+		velocity = Vector2.ZERO
