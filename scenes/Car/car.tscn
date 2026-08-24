@@ -26,13 +26,13 @@ script = ExtResource("1_c8bcc")
 position = Vector2(-0.50424194, 1.5258789e-05)
 texture = SubResource("AtlasTexture_c8bcc")
 
-[node name="HitDetectionArea" type="Area2D" parent="." unique_id=347780304]
+[node name="ClickDetectionArea" type="Area2D" parent="." unique_id=347780304]
 position = Vector2(-0.50424194, 1.5258789e-05)
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("3_y0jbw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetectionArea" unique_id=1901106680]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickDetectionArea" unique_id=1901106680]
 position = Vector2(0.50424194, 1)
 shape = SubResource("RectangleShape2D_vio55")
 
