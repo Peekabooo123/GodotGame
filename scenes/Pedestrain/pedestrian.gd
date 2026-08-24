@@ -19,14 +19,17 @@ var is_illegal: bool = false
 var is_selected: bool = false
 
 var can_be_offered: bool = true
-
-
 var current_intersection: Node2D = null
+
+var noise: FastNoiseLite
 
 func _ready() -> void:
 	add_to_group("pedestrians")
 	add_to_group("selectable")
 	speed = randf_range(10, 40)
+	noise = FastNoiseLite.new()
+	noise.seed = randi()   # 每个行人独立的随机种子
+	noise.frequency = 0.5  # 控制变化快慢
 
 func set_current_intersection(controller: Node2D) -> void:
 	current_intersection = controller
@@ -41,7 +44,9 @@ func _physics_process(delta: float) -> void:
 
 # ---- 直行分支 ----
 func _walk_straight() -> void:
-	velocity = direction.normalized() * speed
+	var forward: Vector2 = direction.normalized()
+	var wander: Vector2 = _get_wander_offset(forward)
+	velocity = forward * speed + wander
 	move_and_slide()
 
 # ---- 过马路分支 ----
@@ -61,8 +66,21 @@ func _walk_crossing() -> void:
 			current_state = State.WALKING_STRAIGHT   # 到了出口点，过马路结束
 		return
 
-	velocity = to_target.normalized() * speed
+	var forward: Vector2 = to_target.normalized()
+	var wander: Vector2 = _get_wander_offset(forward)
+	velocity = forward * speed + wander
 	move_and_slide()
+
+func _get_wander_offset(forward: Vector2) -> Vector2:
+	var perpendicular: Vector2 = forward.rotated(PI / 2)
+	var t: float = Time.get_ticks_msec() / 1000.0
+	# noise.get_noise_1d 返回 -1~1 之间的平滑随机值
+	var offset: float = noise.get_noise_1d(t) * 15.0
+	return perpendicular * offset
+
+
+
+
 
 # ---- 由 WaitArea 调用 ----
 func offer_crossing_decision(path: Dictionary) -> void:
