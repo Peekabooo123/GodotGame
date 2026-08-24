@@ -1,7 +1,10 @@
 extends Node2D
 
 @onready var click_sound: AudioStreamPlayer2D = $ClickSound
-@export var camera_controller: Camera2D   # 在编辑器里把 Camera2D 拖进来赋值  # 在编辑器里把 Camera2D 拖进来赋值
+@export var camera_controller: Camera2D   # 在编辑器里把 Camera2D 拖进来赋值
+
+## 可点击/可选中物体所在的碰撞层（第4层，即 Project Settings 里命名为 "selectable" 的那一层）
+const SELECTABLE_LAYER_MASK: int = 1 << 3
 
 var currently_hovered: Node2D = null
 
@@ -10,56 +13,51 @@ func _process(delta: float) -> void:
 	_hover_process()
 
 func _hover_process() -> void:
-	var pedestrian = _find_object_at(get_global_mouse_position())
-	if pedestrian == currently_hovered:
+	var target := _find_object_at(get_global_mouse_position())
+	if target == currently_hovered:
 		return
 
 	if currently_hovered != null and is_instance_valid(currently_hovered):
 		currently_hovered.set_highlighted(false)
 
-	currently_hovered = pedestrian
+	currently_hovered = target
 
 	if currently_hovered != null:
 		currently_hovered.set_highlighted(true)
-
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		_click_process()
 
-	# 新增：键盘空格键按下处理
 	if event is InputEventKey and event.pressed and event.keycode == KEY_SPACE:
 		camera_controller.set_default_target()
 
 
-
-
-
 func _click_process() -> void:
-	var pedestrian := _find_object_at(get_global_mouse_position())
-	if not pedestrian:
-		return
-	#camera_controller.set_follow_target(pedestrian)
-	
-	pedestrian.select(true)
-	
-
-	if pedestrian == null:
-		print("没有点中任何东西")
+	var target := _find_object_at(get_global_mouse_position())
+	if not target:
 		return
 
-	#print("点中了行人: ", pedestrian.name)
-	if pedestrian.is_illegal:
-		#print("抓到一个闯红灯的！加分")
-		#score_label.add_score(1)
-		Eventbus.score_changed.emit(1)
-	else:
-		#print("这个人是合法过马路的，点错了")
-		Eventbus.score_changed.emit(-1)
+	target.select(true)
+
+	_settle_score(target)
 
 	click_sound.play()
-	pedestrian.queue_free()
+	target.queue_free()
+
+## 根据被点中物体的类型和违规状态，决定加分/扣分
+func _settle_score(target: Node2D) -> void:
+	if target.is_in_group("pedestrians"):
+		if target.is_illegal:
+			Eventbus.score_changed.emit(1)    # 抓到违规行人，加分
+		else:
+			Eventbus.score_changed.emit(-1)   # 点错了合法行人，扣分
+	elif target.is_in_group("cars"):
+		if target.is_illegal:
+			Eventbus.score_changed.emit(1)    # 抓到违规车辆，加分
+		else:
+			Eventbus.score_changed.emit(-1)   # 点错了合法车辆，扣分
 
 func _find_object_at(pos: Vector2) -> Node2D:
 	var space_state := get_tree().root.get_world_2d().direct_space_state
@@ -67,7 +65,7 @@ func _find_object_at(pos: Vector2) -> Node2D:
 	query.position = pos
 	query.collide_with_bodies = true
 	query.collide_with_areas = true
-	query.collision_mask = 1 << 3
+	query.collision_mask = SELECTABLE_LAYER_MASK
 
 	var results := space_state.intersect_point(query, 1)
 
