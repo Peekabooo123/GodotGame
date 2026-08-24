@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dbquq2cinuqxf" path="res://scenes/Car/car.gd" id="1_c8bcc"]
 [ext_resource type="Texture2D" uid="uid://cispj2lr267s" path="res://assets/Spites/cars/cars.png" id="1_xbtw7"]
 [ext_resource type="Script" uid="uid://b0igykncvi8m0" path="res://scenes/Car/hit_detection_area.gd" id="3_y0jbw"]
+[ext_resource type="Script" uid="uid://bh3hc3iynawp" path="res://scenes/Car/front_ray_cast.gd" id="4_j5ret"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c8bcc"]
 atlas = ExtResource("1_xbtw7")
@@ -48,6 +49,8 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CarFront" unique_id=1708280167]
 shape = SubResource("RectangleShape2D_gg5hf")
 
-[node name="FrontRayCast" type="RayCast2D" parent="." unique_id=1499763248]
+[node name="FrontRayCast" type="RayCast2D" parent="." unique_id=1499763248 node_paths=PackedStringArray("car")]
 target_position = Vector2(0, -200)
 collision_mask = 4
+script = ExtResource("4_j5ret")
+car = NodePath("..")

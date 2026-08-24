@@ -40,11 +40,12 @@ func _click_process() -> void:
 		return
 
 	target.select(true)
+	camera_controller.set_follow_target(target)
 
 	_settle_score(target)
 
 	click_sound.play()
-	target.queue_free()
+	#target.queue_free()
 
 ## 根据被点中物体的类型和违规状态，决定加分/扣分
 func _settle_score(target: Node2D) -> void:
