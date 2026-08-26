@@ -13,8 +13,9 @@ var default_zoom: float = 3
 var follow_target: Node2D
 
 func _ready() -> void:
-	follow_target = default_camera_position
+	#follow_target = default_camera_position
 	zoom = Vector2(default_zoom, default_zoom)
+	global_position = default_camera_position.global_position
 	
 
 func set_follow_target(target: Node2D) -> void:

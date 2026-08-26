@@ -52,7 +52,8 @@ tile_map_data = PackedByteArray("AAALAAsAAQAAAAAAAAAMAAsAAQAAAAAAAAANAAsAAQAAAAA
 tile_set = SubResource("TileSet_hq323")
 
 [node name="ZebraCrossingArea" type="Area2D" parent="." unique_id=515893021]
-collision_mask = 7
+z_index = -1
+collision_mask = 6
 script = ExtResource("4_vtyyh")
 
 [node name="ZebraCrossing" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=2007311862]
