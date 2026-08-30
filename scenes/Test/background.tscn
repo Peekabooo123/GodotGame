@@ -4,6 +4,7 @@
 [ext_resource type="TileSet" uid="uid://df3ll325n2jui" path="res://scenes/Test/new_tile_set.tres" id="2_ceuuy"]
 [ext_resource type="PackedScene" uid="uid://b5ehf4sy5k0cb" path="res://scenes/Test/h_zebra.tscn" id="3_6mght"]
 [ext_resource type="PackedScene" uid="uid://dxtf0f5fikfn7" path="res://scenes/Test/buildings.tscn" id="3_gs5k1"]
+[ext_resource type="PackedScene" uid="uid://ttfycwhyough" path="res://scenes/Test/buildings_2.tscn" id="4_c0p07"]
 [ext_resource type="PackedScene" uid="uid://cgyjl3jiljq66" path="res://scenes/Test/v_zebra.tscn" id="4_ddwjv"]
 
 [node name="Background" type="Node2D" unique_id=991232442]
@@ -15,6 +16,9 @@ tile_set = ExtResource("2_ceuuy")
 
 [node name="buildings" parent="." unique_id=776394111 instance=ExtResource("3_gs5k1")]
 position = Vector2(272, 224)
+
+[node name="Buildings2" parent="." unique_id=1189410373 instance=ExtResource("4_c0p07")]
+position = Vector2(-157, -80)
 
 [node name="HZebra" parent="." unique_id=1455727943 instance=ExtResource("3_6mght")]
 position = Vector2(-48, 192)
