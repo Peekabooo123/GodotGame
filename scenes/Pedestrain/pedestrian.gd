@@ -1,152 +1,121 @@
 extends CharacterBody2D
 
-var speed: float
-#@onready var speed: float = 100
-@export var cross_probability: float = 0.5
-@onready var animated_sprite: AnimatedSprite2D = $Pedestrain
+# ============ 参数 ============
+@export var speed: float = 30.0   # 由 Spawner 生成时可覆盖
 
+# ============ 状态标记 ============
+var is_illegal: bool = false
+var is_on_crosswalk: bool = false
+var is_selected: bool = false
+var is_stopped: bool = false
+var can_be_offered: bool = true
+
+# ============ 行为相关 ============
 enum State { WALKING_STRAIGHT, CROSSING }
-enum CrossPhase { TO_START, TO_END }   # 过马路的两个子阶段
+enum CrossPhase { TO_START, TO_END }
 var current_state: State = State.WALKING_STRAIGHT
 var cross_phase: CrossPhase = CrossPhase.TO_START
 
-var direction: Vector2 = Vector2.DOWN   # 直行方向，由生成时决定
-var cross_start_point: Vector2            # 过马路的入口点
-var cross_end_point: Vector2              # 过马路的出口点
+var direction: Vector2 = Vector2.DOWN   # 初始化时由外部设定
+var cross_start_point: Vector2
+var cross_end_point: Vector2
 
-var is_on_crosswalk: bool = false
-var is_illegal: bool = false
-var is_selected: bool = false
-var is_stopped: bool = false 
-
-var can_be_offered: bool = true
 var current_intersection: Node2D = null
 
-var noise: FastNoiseLite
+@onready var animated_sprite: AnimatedSprite2D = $Pedestrain
 
+
+# ============ 1. 初始化 ============
 func _ready() -> void:
 	add_to_group("pedestrians")
 	add_to_group("selectable")
-	speed = randf_range(10, 30)
-	noise = FastNoiseLite.new()
-	noise.seed = randi()   # 每个行人独立的随机种子
-	noise.frequency = 0.5  # 控制变化快慢
 
-func set_current_intersection(controller: Node2D) -> void:
-	current_intersection = controller
+func initialize(spawn_direction: Vector2) -> void:
+	direction = spawn_direction
 
+# ============ 2. 默认行为（自主运行）============
 func _physics_process(delta: float) -> void:
 	if is_stopped:
 		velocity = Vector2.ZERO
-		_update_animation(false)   # 停下时停止走路动画
 		move_and_slide()
-		return   # 直接返回，不执行下面的直行/过马路逻辑
-	
-	
-	_update_animation(true)
+		_update_animation(false)
+		return
+
 	match current_state:
 		State.WALKING_STRAIGHT:
 			_walk_straight()
 		State.CROSSING:
 			_walk_crossing()
 
-# ---- 直行分支 ----
+	_update_animation(velocity.length() > 0.1)
+
 func _walk_straight() -> void:
-	var forward: Vector2 = direction.normalized()
-	var wander: Vector2 = _get_wander_offset(forward)
-	velocity = forward * speed + wander
+	velocity = direction.normalized() * speed
 	move_and_slide()
 
-# ---- 过马路分支 ----
 func _walk_crossing() -> void:
-	var target: Vector2
-	if cross_phase == CrossPhase.TO_START:
-		target = cross_start_point
-	else:
-		target = cross_end_point
-
+	var target: Vector2 = cross_start_point if cross_phase == CrossPhase.TO_START else cross_end_point
 	var to_target: Vector2 = target - global_position
 
 	if to_target.length() < 4.0:
 		if cross_phase == CrossPhase.TO_START:
-			cross_phase = CrossPhase.TO_END   # 到了入口点，进入第二段
+			cross_phase = CrossPhase.TO_END
 		else:
-			current_state = State.WALKING_STRAIGHT   # 到了出口点，过马路结束
+			current_state = State.WALKING_STRAIGHT
 		return
 
-	var forward: Vector2 = to_target.normalized()
-	var wander: Vector2 = _get_wander_offset(forward)
-	velocity = forward * speed + wander
+	velocity = to_target.normalized() * speed
 	move_and_slide()
-
-func _get_wander_offset(forward: Vector2) -> Vector2:
-	var perpendicular: Vector2 = forward.rotated(PI / 2)
-	var t: float = Time.get_ticks_msec() / 1000.0
-	# noise.get_noise_1d 返回 -1~1 之间的平滑随机值
-	var offset: float = noise.get_noise_1d(t) * 15.0
-	return perpendicular * offset
-
-
-
-
-
-# ---- 由 WaitArea 调用 ----
-func offer_crossing_decision(path: Dictionary) -> void:
-	# 已经在过马路，忽略
-	if current_state == State.CROSSING:
-		return
-	# 概率决定不过，保持直行
-	if randf() > cross_probability:
-		return
-	if not can_be_offered:
-		return
-
-	# 决定过马路
-	cross_start_point = path["start_point"]
-	cross_end_point = path["end_point"]
-	current_state = State.CROSSING
-	
-	can_be_offered = false  
-
-
-func on_left_wait_area() -> void:
-	if current_state == State.WALKING_STRAIGHT:
-		can_be_offered = true           # 彻底离开等待区后，才恢复接受邀请
-
-func set_on_crosswalk(value: bool) -> void:
-	is_on_crosswalk = value
-
-func mark_as_illegal() -> void:
-	if is_illegal:
-		return
-	is_illegal = true
-
-
-func select(value: bool) -> void:
-	is_selected = value
-
-
-func set_highlighted(value: bool) -> void:
-	if value:
-		animated_sprite.modulate = Color(1.3, 1.3, 1.3)   # 变亮
-	else:
-		animated_sprite.modulate = Color.WHITE             # 恢复正常
-
-
 
 func _update_animation(is_moving: bool) -> void:
 	if is_moving:
 		if animated_sprite.animation != "walk" or not animated_sprite.is_playing():
 			animated_sprite.play("walk")
 	else:
-		#animated_sprite.play("walk")
 		animated_sprite.stop()
 
 
+# ============ 3. 对外公开方法 ============
 
+# --- 行为控制 ---
+func offer_crossing_decision(path: Dictionary) -> void:
+	if current_state == State.CROSSING:
+		return
+	if not can_be_offered:
+		return
+	if randf() > 0.5:   # 过马路概率，可参数化
+		return
 
+	cross_start_point = path["start_point"]
+	cross_end_point = path["end_point"]
+	cross_phase = CrossPhase.TO_START
+	current_state = State.CROSSING
+	can_be_offered = false
+
+func on_left_wait_area() -> void:
+	if current_state == State.WALKING_STRAIGHT:
+		can_be_offered = true
 
 func stop_this_guy(value: bool) -> void:
 	is_stopped = value
 	if is_stopped:
 		velocity = Vector2.ZERO
+
+# --- 状态标记 ---
+func mark_as_illegal() -> void:
+	if is_illegal:
+		return
+	is_illegal = true
+
+func set_on_crosswalk(value: bool) -> void:
+	is_on_crosswalk = value
+
+func select(value: bool) -> void:
+	is_selected = value
+
+func set_highlighted(value: bool) -> void:
+	animated_sprite.modulate = Color(1.3, 1.3, 1.3) if value else Color.WHITE
+
+# --- 依赖注入 ---
+func set_current_intersection(controller: Node2D) -> void:
+	current_intersection = controller
