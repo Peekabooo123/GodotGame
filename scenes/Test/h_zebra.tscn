@@ -2,6 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://df3ll325n2jui" path="res://scenes/Test/tiles.tres" id="1_a1lwx"]
 [ext_resource type="Script" uid="uid://c8ym7kuopi8un" path="res://scenes/Main/wait_area.gd" id="1_h5t1n"]
+[ext_resource type="Script" uid="uid://k2tnordfojnh" path="res://scenes/Background/zebra_crossing_area.gd" id="1_lj3eu"]
 [ext_resource type="Script" uid="uid://dpm1buxwydqel" path="res://scenes/Main/traffic_light_controller.gd" id="3_pquv1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_skdqi"]
@@ -16,6 +17,7 @@ size = Vector2(29, 15)
 [node name="HZebra" type="Node2D" unique_id=1455727943]
 
 [node name="ZebraCrossingArea" type="Area2D" parent="." unique_id=556019100]
+script = ExtResource("1_lj3eu")
 
 [node name="ZebraCrossing" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=1411735202]
 position = Vector2(344, 232)
