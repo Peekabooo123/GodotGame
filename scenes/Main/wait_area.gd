@@ -2,7 +2,6 @@ extends Area2D
 var controller = null
 
 @export var traffic_light_controller: Node2D   # 对应的红绿灯控制器
-@export var intersection: Node2D        # 拖入 Intersection 根节点
 @export var opposite_area: Area2D       # 拖入对面的 WaitArea
 
 

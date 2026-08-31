@@ -1,0 +1,13 @@
+[gd_scene format=4 uid="uid://b706xxni4525r"]
+
+[ext_resource type="TileSet" uid="uid://df3ll325n2jui" path="res://scenes/Test/tiles.tres" id="1_pv4ge"]
+
+[node name="HZebra" type="Node2D" unique_id=1455727943]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=946027418]
+tile_map_data = PackedByteArray("AAAUAA4AAAAOABYAAAAVAA4AAAAOABYAAAAWAA4AAAAOABYAAAA=")
+tile_set = ExtResource("1_pv4ge")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1387042314]
+tile_map_data = PackedByteArray("AAAXAAwAAAACAA8AAAAXAA0AAAAFABEAAAAXAA4AAAAFABIAAAATAAwAAAABAA8AAAATAA0AAAAFABEAAAATAA4AAAAFABIAAAA=")
+tile_set = ExtResource("1_pv4ge")

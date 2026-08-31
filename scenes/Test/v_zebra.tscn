@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://cgyjl3jiljq66"]
 
-[ext_resource type="TileSet" uid="uid://df3ll325n2jui" path="res://scenes/Test/new_tile_set.tres" id="1_xj6rq"]
+[ext_resource type="TileSet" uid="uid://df3ll325n2jui" path="res://scenes/Test/tiles.tres" id="1_xj6rq"]
 
 [node name="VZebra" type="Node2D" unique_id=41222972]
 
