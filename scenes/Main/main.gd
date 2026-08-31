@@ -14,6 +14,6 @@ extends Node2D
 func _ready() -> void:
 	#BackgroundMusic.play()
 	pedestrian_spawner.setup(background, pedestrians_container)
-	car_spawner.setup(background, cars_container)
+	#car_spawner.setup(background, cars_container)
 	
 	Input.set_custom_mouse_cursor(cursor_texture)

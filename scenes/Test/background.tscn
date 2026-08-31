@@ -81,6 +81,7 @@ script = SubResource("GDScript_gs5k1")
 [node name="Area" type="Node2D" parent="." unique_id=58270706]
 
 [node name="RoadArea" type="Area2D" parent="Area" unique_id=434450411]
+collision_mask = 7
 script = ExtResource("6_pge51")
 
 [node name="RoadShape" type="CollisionShape2D" parent="Area/RoadArea" unique_id=343863490]
@@ -96,6 +97,7 @@ position = Vector2(296, 456)
 shape = SubResource("RectangleShape2D_pge51")
 
 [node name="DespawnArea" type="Area2D" parent="Area" unique_id=1234842928]
+collision_mask = 7
 script = ExtResource("2_pge51")
 
 [node name="FullArea" type="CollisionShape2D" parent="Area/DespawnArea" unique_id=1129566493]
@@ -121,6 +123,7 @@ shape = SubResource("RectangleShape2D_utmaj")
 
 [node name="SpawnArea2" type="Area2D" parent="Area/SpawnArea" unique_id=2125710338]
 script = ExtResource("3_mta8x")
+spawn_direction = Vector2(0, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/SpawnArea/SpawnArea2" unique_id=1452160187]
 position = Vector2(335, 526.5625)
@@ -128,6 +131,7 @@ shape = SubResource("RectangleShape2D_36poy")
 
 [node name="SpawnArea3" type="Area2D" parent="Area/SpawnArea" unique_id=376016302]
 script = ExtResource("3_mta8x")
+spawn_direction = Vector2(1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/SpawnArea/SpawnArea3" unique_id=1620509781]
 position = Vector2(-15, 416)
@@ -135,6 +139,7 @@ shape = SubResource("RectangleShape2D_dx662")
 
 [node name="SpawnArea4" type="Area2D" parent="Area/SpawnArea" unique_id=46544393]
 script = ExtResource("3_mta8x")
+spawn_direction = Vector2(1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/SpawnArea/SpawnArea4" unique_id=572236376]
 position = Vector2(-18, 338)
@@ -142,6 +147,7 @@ shape = SubResource("RectangleShape2D_syt3f")
 
 [node name="SpawnArea5" type="Area2D" parent="Area/SpawnArea" unique_id=1479293427]
 script = ExtResource("3_mta8x")
+spawn_direction = Vector2(-1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/SpawnArea/SpawnArea5" unique_id=1718036751]
 position = Vector2(576, 416)
@@ -149,6 +155,7 @@ shape = SubResource("RectangleShape2D_adnud")
 
 [node name="SpawnArea6" type="Area2D" parent="Area/SpawnArea" unique_id=644563391]
 script = ExtResource("3_mta8x")
+spawn_direction = Vector2(-1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/SpawnArea/SpawnArea6" unique_id=33914268]
 position = Vector2(575, 343)
@@ -156,6 +163,7 @@ shape = SubResource("RectangleShape2D_xeru3")
 
 [node name="SpawnArea7" type="Area2D" parent="Area/SpawnArea" unique_id=511522455]
 script = ExtResource("3_mta8x")
+spawn_direction = Vector2(0, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/SpawnArea/SpawnArea7" unique_id=754813326]
 position = Vector2(258.5, 528.0625)
