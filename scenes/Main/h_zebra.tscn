@@ -30,7 +30,7 @@ traffic_light_controller = NodePath("../TrafficLightController")
 opposite_area = NodePath("../WaitAreaRight")
 
 [node name="Left" type="CollisionShape2D" parent="WaitAreaLeft" unique_id=1782133887]
-position = Vector2(299.5, 232)
+position = Vector2(304, 232)
 shape = SubResource("RectangleShape2D_pquv1")
 
 [node name="WaitAreaRight" type="Area2D" parent="." unique_id=454310632 node_paths=PackedStringArray("traffic_light_controller", "opposite_area")]
@@ -40,7 +40,7 @@ traffic_light_controller = NodePath("../TrafficLightController")
 opposite_area = NodePath("../WaitAreaLeft")
 
 [node name="Right" type="CollisionShape2D" parent="WaitAreaRight" unique_id=128058367]
-position = Vector2(388.5, 231)
+position = Vector2(384, 232)
 shape = SubResource("RectangleShape2D_lj3eu")
 
 [node name="TrafficLightController" type="Node2D" parent="." unique_id=1488176780]
