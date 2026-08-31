@@ -3,29 +3,40 @@
 [ext_resource type="TileSet" uid="uid://df3ll325n2jui" path="res://scenes/Test/tiles.tres" id="2_ceuuy"]
 [ext_resource type="Script" uid="uid://chpvq6nxe2ejt" path="res://scenes/Test/despawn_area.gd" id="2_pge51"]
 [ext_resource type="PackedScene" uid="uid://dxtf0f5fikfn7" path="res://scenes/Test/buildings.tscn" id="3_gs5k1"]
+[ext_resource type="Script" uid="uid://chj13bqrmsu68" path="res://scenes/Test/spawn_area.gd" id="3_mta8x"]
 [ext_resource type="PackedScene" uid="uid://ttfycwhyough" path="res://scenes/Test/buildings_2.tscn" id="4_c0p07"]
 [ext_resource type="PackedScene" uid="uid://dh2kkak4hh1y1" path="res://scenes/Main/v_zebra.tscn" id="5_gs5k1"]
 [ext_resource type="PackedScene" uid="uid://b706xxni4525r" path="res://scenes/Main/h_zebra.tscn" id="6_c0p07"]
 [ext_resource type="Script" uid="uid://bk5he4x61jxmb" path="res://scenes/Test/road_area.gd" id="6_pge51"]
 
 [sub_resource type="GDScript" id="GDScript_gs5k1"]
-script/source = "extends Node
+script/source = "extends Node2D
 
-var astar := AStar2D.new()
+# ---- 对外接口：一次性返回随机的生成信息（位置 + 方向）----
+func get_random_spawn_info() -> Dictionary:
+	var spawn_areas := get_tree().get_nodes_in_group(\"spawn_areas\")
+	if spawn_areas.is_empty():
+		return {}   # 没有生成点，返回空字典（调用方需判断）
 
-func _ready() -> void:
-	# 第一步：注册点。add_point(id, 坐标)
-	astar.add_point(0, Vector2(0, 0))
-	astar.add_point(1, Vector2(100, 0))
-	astar.add_point(2, Vector2(200, 0))
+	var chosen_area: Area2D = spawn_areas[randi() % spawn_areas.size()]
 
-	# 第二步：声明连接。connect_points(id1, id2)
-	astar.connect_points(0, 1)
-	astar.connect_points(1, 2)
+	return {
+		\"position\": _get_random_point_in_area(chosen_area),
+		\"direction\": chosen_area.spawn_direction,
+	}
 
-	# 第三步：查询路径
-	var path: PackedVector2Array = astar.get_point_path(0, 2)
-	print(\"从点0到点2的路径: \", path)
+# ---- 内部辅助：在指定 Area 内随机取一个世界坐标点 ----
+func _get_random_point_in_area(area: Area2D) -> Vector2:
+	var collision_shape: CollisionShape2D = null
+	for child in area.get_children():
+		if child is CollisionShape2D:
+			collision_shape = child
+			break
+
+	var shape: RectangleShape2D = collision_shape.shape
+	var half: Vector2 = shape.size / 2.0
+	var offset := Vector2(randf_range(-half.x, half.x), randf_range(-half.y, half.y))
+	return collision_shape.global_position + offset
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gs5k1"]
@@ -94,6 +105,7 @@ shape = SubResource("RectangleShape2D_43tej")
 [node name="SpawnArea" type="Node2D" parent="Area" unique_id=1248880014]
 
 [node name="SpawnArea" type="Area2D" parent="Area/SpawnArea" unique_id=704444640]
+script = ExtResource("3_mta8x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/SpawnArea/SpawnArea" unique_id=1275570898]
 position = Vector2(360.5, 155.4375)
@@ -101,42 +113,49 @@ shape = SubResource("RectangleShape2D_mta8x")
 debug_color = Color(0.65752834, 0.515247, 0.0838737, 0.41960785)
 
 [node name="SpawnArea1" type="Area2D" parent="Area/SpawnArea" unique_id=1835275421]
+script = ExtResource("3_mta8x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/SpawnArea/SpawnArea1" unique_id=1191528976]
 position = Vector2(449, 156)
 shape = SubResource("RectangleShape2D_utmaj")
 
 [node name="SpawnArea2" type="Area2D" parent="Area/SpawnArea" unique_id=2125710338]
+script = ExtResource("3_mta8x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/SpawnArea/SpawnArea2" unique_id=1452160187]
 position = Vector2(335, 526.5625)
 shape = SubResource("RectangleShape2D_36poy")
 
 [node name="SpawnArea3" type="Area2D" parent="Area/SpawnArea" unique_id=376016302]
+script = ExtResource("3_mta8x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/SpawnArea/SpawnArea3" unique_id=1620509781]
 position = Vector2(-15, 416)
 shape = SubResource("RectangleShape2D_dx662")
 
 [node name="SpawnArea4" type="Area2D" parent="Area/SpawnArea" unique_id=46544393]
+script = ExtResource("3_mta8x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/SpawnArea/SpawnArea4" unique_id=572236376]
 position = Vector2(-18, 338)
 shape = SubResource("RectangleShape2D_syt3f")
 
 [node name="SpawnArea5" type="Area2D" parent="Area/SpawnArea" unique_id=1479293427]
+script = ExtResource("3_mta8x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/SpawnArea/SpawnArea5" unique_id=1718036751]
 position = Vector2(576, 416)
 shape = SubResource("RectangleShape2D_adnud")
 
 [node name="SpawnArea6" type="Area2D" parent="Area/SpawnArea" unique_id=644563391]
+script = ExtResource("3_mta8x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/SpawnArea/SpawnArea6" unique_id=33914268]
 position = Vector2(575, 343)
 shape = SubResource("RectangleShape2D_xeru3")
 
 [node name="SpawnArea7" type="Area2D" parent="Area/SpawnArea" unique_id=511522455]
+script = ExtResource("3_mta8x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/SpawnArea/SpawnArea7" unique_id=754813326]
 position = Vector2(258.5, 528.0625)
