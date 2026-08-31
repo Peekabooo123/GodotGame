@@ -1,0 +1,58 @@
+[gd_scene format=4 uid="uid://dh2kkak4hh1y1"]
+
+[ext_resource type="TileSet" uid="uid://df3ll325n2jui" path="res://scenes/Test/tiles.tres" id="1_y4hji"]
+[ext_resource type="Script" uid="uid://k2tnordfojnh" path="res://scenes/Background/zebra_crossing_area.gd" id="2_p1fnl"]
+[ext_resource type="Script" uid="uid://c8ym7kuopi8un" path="res://scenes/Main/wait_area.gd" id="3_dykqh"]
+[ext_resource type="Script" uid="uid://dpm1buxwydqel" path="res://scenes/Main/traffic_light_controller.gd" id="4_5eirh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdxi8"]
+size = Vector2(16, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5v0m"]
+size = Vector2(15.5, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1135d"]
+size = Vector2(16, 19.5)
+
+[node name="VZebra" type="Node2D" unique_id=41222972]
+
+[node name="ZebraCrossingArea" type="Area2D" parent="." unique_id=1948172218 node_paths=PackedStringArray("traffic_light_controller")]
+script = ExtResource("2_p1fnl")
+traffic_light_controller = NodePath("../TrafficLightController")
+
+[node name="ZebraCrossing" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=224200281]
+position = Vector2(296, 136)
+shape = SubResource("RectangleShape2D_pdxi8")
+
+[node name="WaitAreaLeft" type="Area2D" parent="." unique_id=1287134956 node_paths=PackedStringArray("traffic_light_controller", "opposite_area")]
+collision_mask = 3
+script = ExtResource("3_dykqh")
+traffic_light_controller = NodePath("../TrafficLightController")
+opposite_area = NodePath("../WaitAreaRight")
+
+[node name="Left" type="CollisionShape2D" parent="WaitAreaLeft" unique_id=1329317154]
+position = Vector2(296.25, 98)
+shape = SubResource("RectangleShape2D_b5v0m")
+
+[node name="WaitAreaRight" type="Area2D" parent="." unique_id=2007405461 node_paths=PackedStringArray("traffic_light_controller", "opposite_area")]
+collision_mask = 3
+script = ExtResource("3_dykqh")
+traffic_light_controller = NodePath("../TrafficLightController")
+opposite_area = NodePath("../WaitAreaLeft")
+
+[node name="Right" type="CollisionShape2D" parent="WaitAreaRight" unique_id=1731115193]
+position = Vector2(296, 172.25)
+shape = SubResource("RectangleShape2D_1135d")
+
+[node name="TrafficLightController" type="Node2D" parent="." unique_id=103699708]
+script = ExtResource("4_5eirh")
+
+[node name="StateTimer" type="Timer" parent="TrafficLightController" unique_id=698737548]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=378947720]
+tile_map_data = PackedByteArray("AAASAAcAAAALABYAAAASAAgAAAALABYAAAASAAkAAAALABYAAAA=")
+tile_set = ExtResource("1_y4hji")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=690111200]
+tile_map_data = PackedByteArray("AAATAAkAAAAFABEAAAATAAoAAAAFABIAAAATAAgAAAABAA8AAAARAAQAAAACAA8AAAARAAUAAAAFABEAAAARAAYAAAAFABIAAAA=")
+tile_set = ExtResource("1_y4hji")
