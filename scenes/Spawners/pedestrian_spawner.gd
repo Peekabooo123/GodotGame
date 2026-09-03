@@ -8,7 +8,6 @@ extends Node
 
 var background: Node2D
 var pedestrians_container: Node2D
-#@onready var pedestrians_container: Node2D = $Node2D
 
 # 由 Main 在 _ready 里调用，注入依赖
 func setup(p_background: Node2D, p_container: Node2D) -> void:
@@ -30,12 +29,27 @@ func _on_spawn_timer_timeout() -> void:
 	_start_next_timer()
 
 func _spawn_pedestrian() -> void:
-	var spawn_info: Dictionary = background.get_random_spawn_info()
-	#var spawn_info = {
-		#'position': Vector2(100,100),
-		#'direction': Vector2.DOWN
-	#}
+	#var spawn_info: Dictionary = background.get_random_spawn_info()
+	var spawn_info = {
+		'position': Vector2(100,100),
+		'direction': Vector2.DOWN
+	}
+	#var pedestrian := pedestrian_scene.instantiate()
+	#pedestrians_container.add_child(pedestrian)
+	#pedestrian.global_position = spawn_info["position"]
+	#pedestrian.initialize(spawn_info["direction"])
+
+	var path: Path2D = background.get_random_path()
+	if path == null:
+		return
+
+	# 创建专属引导点,加到 path 下
+	var guide := PathFollow2D.new()
+	path.add_child(guide)
+	guide.progress = 0
+
+	# 生成行人
 	var pedestrian := pedestrian_scene.instantiate()
 	pedestrians_container.add_child(pedestrian)
 	pedestrian.global_position = spawn_info["position"]
-	pedestrian.initialize(spawn_info["direction"])
+	pedestrian.set_guide(guide)

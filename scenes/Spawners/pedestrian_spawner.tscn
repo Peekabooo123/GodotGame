@@ -8,6 +8,3 @@ script = ExtResource("1_mm5tn")
 pedestrian_scene = ExtResource("2_dysxq")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1080418667]
-
-[node name="Node2D" type="Node2D" parent="." unique_id=2033014118]
-visible = false

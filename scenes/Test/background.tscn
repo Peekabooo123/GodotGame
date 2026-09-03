@@ -8,35 +8,42 @@
 [ext_resource type="PackedScene" uid="uid://dh2kkak4hh1y1" path="res://scenes/Main/v_zebra.tscn" id="5_gs5k1"]
 [ext_resource type="PackedScene" uid="uid://b706xxni4525r" path="res://scenes/Main/h_zebra.tscn" id="6_c0p07"]
 [ext_resource type="Script" uid="uid://bk5he4x61jxmb" path="res://scenes/Test/road_area.gd" id="6_pge51"]
+[ext_resource type="Script" uid="uid://lifnelrl3ivq" path="res://scenes/Test/paths.gd" id="9_43tej"]
 
 [sub_resource type="GDScript" id="GDScript_gs5k1"]
 script/source = "extends Node2D
 
-# ---- 对外接口：一次性返回随机的生成信息（位置 + 方向）----
-func get_random_spawn_info() -> Dictionary:
-	var spawn_areas := get_tree().get_nodes_in_group(\"spawn_areas\")
-	if spawn_areas.is_empty():
-		return {}   # 没有生成点，返回空字典（调用方需判断）
+## ---- 对外接口：一次性返回随机的生成信息（位置 + 方向）----
+#func get_random_spawn_info() -> Dictionary:
+	#var spawn_areas := get_tree().get_nodes_in_group(\"spawn_areas\")
+	#if spawn_areas.is_empty():
+		#return {}   # 没有生成点，返回空字典（调用方需判断）
+#
+	#var chosen_area: Area2D = spawn_areas[randi() % spawn_areas.size()]
+#
+	#return {
+		#\"position\": _get_random_point_in_area(chosen_area),
+		#\"direction\": chosen_area.spawn_direction,
+	#}
+#
+## ---- 内部辅助：在指定 Area 内随机取一个世界坐标点 ----
+#func _get_random_point_in_area(area: Area2D) -> Vector2:
+	#var collision_shape: CollisionShape2D = null
+	#for child in area.get_children():
+		#if child is CollisionShape2D:
+			#collision_shape = child
+			#break
+#
+	#var shape: RectangleShape2D = collision_shape.shape
+	#var half: Vector2 = shape.size / 2.0
+	#var offset := Vector2(randf_range(-half.x, half.x), randf_range(-half.y, half.y))
+	#return collision_shape.global_position + offset
 
-	var chosen_area: Area2D = spawn_areas[randi() % spawn_areas.size()]
-
-	return {
-		\"position\": _get_random_point_in_area(chosen_area),
-		\"direction\": chosen_area.spawn_direction,
-	}
-
-# ---- 内部辅助：在指定 Area 内随机取一个世界坐标点 ----
-func _get_random_point_in_area(area: Area2D) -> Vector2:
-	var collision_shape: CollisionShape2D = null
-	for child in area.get_children():
-		if child is CollisionShape2D:
-			collision_shape = child
-			break
-
-	var shape: RectangleShape2D = collision_shape.shape
-	var half: Vector2 = shape.size / 2.0
-	var offset := Vector2(randf_range(-half.x, half.x), randf_range(-half.y, half.y))
-	return collision_shape.global_position + offset
+func get_random_path() -> Path2D:
+	var paths := get_tree().get_nodes_in_group(\"pedestrian_paths\")
+	if paths.is_empty():
+		return null
+	return paths[randi() % paths.size()]
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gs5k1"]
@@ -74,6 +81,12 @@ size = Vector2(20, 17.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j4vmn"]
 size = Vector2(21, 21.875)
+
+[sub_resource type="Curve2D" id="Curve2D_mta8x"]
+
+[sub_resource type="Curve2D" id="Curve2D_43tej"]
+
+[sub_resource type="Curve2D" id="Curve2D_j4vmn"]
 
 [node name="Background" type="Node2D" unique_id=991232442]
 script = SubResource("GDScript_gs5k1")
@@ -193,3 +206,15 @@ position = Vector2(169, 240)
 
 [node name="HZebra" parent="Display" unique_id=1455727943 instance=ExtResource("6_c0p07")]
 position = Vector2(-48, 209)
+
+[node name="Paths" type="Node2D" parent="." unique_id=800947623]
+script = ExtResource("9_43tej")
+
+[node name="Path2D" type="Path2D" parent="Paths" unique_id=5292861]
+curve = SubResource("Curve2D_mta8x")
+
+[node name="Path2D2" type="Path2D" parent="Paths" unique_id=798256502]
+curve = SubResource("Curve2D_43tej")
+
+[node name="Path2D3" type="Path2D" parent="Paths" unique_id=708209157]
+curve = SubResource("Curve2D_j4vmn")
