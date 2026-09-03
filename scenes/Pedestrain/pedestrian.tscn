@@ -1,20 +1,53 @@
 [gd_scene format=3 uid="uid://de0x6a4pilut7"]
 
-[ext_resource type="Texture2D" uid="uid://b44gqelnq5ei1" path="res://assets/icon.svg" id="1_tdcr0"]
 [ext_resource type="Script" uid="uid://dl5rgp7ulfjaf" path="res://scenes/Pedestrain/pedestrian.gd" id="1_unnv6"]
+[ext_resource type="Texture2D" uid="uid://bdejgok0s7ecx" path="res://assets/Spites/pedestrians/kenney_platformer-art-extended-enemies/Alien sprites/alienBlue.png" id="2_138ah"]
+[ext_resource type="Texture2D" uid="uid://cyr34s1jg1bdd" path="res://assets/Spites/pedestrians/kenney_platformer-art-extended-enemies/Alien sprites/alienBlue_stand.png" id="3_28lu6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2q6bx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_138ah")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_28lu6")
+}],
+"loop": 2,
+"name": &"walk",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_138ah"]
+radius = 40.0
+height = 128.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
-size = Vector2(120, 40)
+size = Vector2(106.666626, 29.458435)
 
 [node name="Pedestrain" type="CharacterBody2D" unique_id=112163113]
-position = Vector2(600, 352)
+position = Vector2(216, 232)
+scale = Vector2(0.1, 0.1)
 collision_layer = 2
-collision_mask = 5
+collision_mask = 4
 script = ExtResource("1_unnv6")
 
-[node name="Pedestrain" type="Sprite2D" parent="." unique_id=377260539]
-position = Vector2(0, -40)
-texture = ExtResource("1_tdcr0")
+[node name="Pedestrain" type="AnimatedSprite2D" parent="." unique_id=1647564386]
+y_sort_enabled = true
+position = Vector2(0, -53.333344)
+sprite_frames = SubResource("SpriteFrames_2q6bx")
+animation = &"walk"
+frame_progress = 0.84583336
+
+[node name="ClickDetectionArea" type="Area2D" parent="." unique_id=558708543]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickDetectionArea" unique_id=37933472]
+position = Vector2(0, -53.33332)
+shape = SubResource("CapsuleShape2D_138ah")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=995109140]
+position = Vector2(0, -13.333338)
+scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_00qfr")

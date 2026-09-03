@@ -2,9 +2,23 @@ extends Node2D
 
 @export var color: Color = Color.BLACK
 
-@onready var wait_point: Marker2D = $WaitPoint
-@onready var start_point: Marker2D = $StartPoint
-@onready var end_point: Marker2D = $EndPoint
+@onready var wait_point: Marker2D = $Points/WaitPoint
+@onready var start_point: Marker2D = $Points/StartPoint
+@onready var end_point: Marker2D = $Points/EndPoint
+@onready var spawn_point: Marker2D = $Points/SpawnPoint
+@onready var left_exit_point: Marker2D = $Points/LeftExitPoint
+@onready var right_exit_point: Marker2D = $Points/RightExitPoint
+
+
+@onready var spawn_area_shape_left: CollisionShape2D = $SpawnArea/Left
+@onready var spawn_area_shape_right: CollisionShape2D = $SpawnArea/Right
+
+@onready var exit_area_shape_left: CollisionShape2D = $ExitArea/Left
+@onready var exit_area_shape_right: CollisionShape2D = $ExitArea/Right
+
+@onready var wait_area_shape_left: CollisionShape2D = $ZebraCrossingArea/Left
+@onready var wait_area_shape_right: CollisionShape2D = $ZebraCrossingArea/Right
+@onready var zebra_crossing_area: CollisionShape2D = $ZebraCrossingArea/ZebraCrossing
 
 func _draw():
 	draw_rect(
@@ -13,5 +27,23 @@ func _draw():
 		true
 	)
 
-func get_pedestrian_path() -> Array[Vector2]:
-	return [wait_point.global_position, start_point.global_position, end_point.global_position]
+func get_random_spawn_position(area_shape:CollisionShape2D) -> Vector2:
+	var shape: RectangleShape2D = area_shape.shape
+	var area_size: Vector2 = shape.size
+	var area_center: Vector2 = area_shape.global_position
+
+	var half_size := area_size / 2.0
+	var random_x := randf_range(-half_size.x, half_size.x)
+	var random_y := randf_range(-half_size.y, half_size.y)
+
+	return area_center + Vector2(random_x, random_y)
+
+
+func get_pedestrian_points() -> Dictionary:
+	return {
+		"spawn": get_random_spawn_position(spawn_area_shape_left),
+		"left": get_random_spawn_position(wait_area_shape_left),
+		"right": get_random_spawn_position(wait_area_shape_right),
+		"left_exit": get_random_spawn_position(exit_area_shape_left),
+		"right_exit": get_random_spawn_position(exit_area_shape_right),
+	}

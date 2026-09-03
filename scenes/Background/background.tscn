@@ -1,225 +1,188 @@
-[gd_scene format=3 uid="uid://cxxl7cge1vpd7"]
+[gd_scene format=4 uid="uid://hhn6xslyl556"]
 
-[ext_resource type="Script" uid="uid://dbqf3tslf31ub" path="res://scenes/Background/background.gd" id="1_3uftm"]
+[ext_resource type="Script" uid="uid://dkdpyhjuap80p" path="res://scenes/Test/testbackg.gd" id="1_3uftm"]
+[ext_resource type="Script" uid="uid://dj5752qk7eax7" path="res://scenes/Background/exit_area.gd" id="2_i7fpr"]
+[ext_resource type="Script" uid="uid://biwfel8r336gi" path="res://scenes/Background/StopLineArea.gd" id="2_mv5p6"]
+[ext_resource type="Script" uid="uid://ckq1er8wwj3t8" path="res://scenes/Background/road_area.gd" id="3_d3pbo"]
+[ext_resource type="Texture2D" uid="uid://drkdbnu8wkycu" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0749.png" id="3_hikit"]
+[ext_resource type="Texture2D" uid="uid://h3fx8up3a7gr" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0412.png" id="3_osuvw"]
+[ext_resource type="PackedScene" uid="uid://bykvwocobl6uj" path="res://scenes/Main/intersection.tscn" id="4_d3pbo"]
+[ext_resource type="Texture2D" uid="uid://dk688lnruifr0" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0411.png" id="4_n4vpf"]
+[ext_resource type="Texture2D" uid="uid://b160pt6kyje1c" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0191.png" id="5_hikit"]
+[ext_resource type="Texture2D" uid="uid://dpyqo7ycysd6l" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0714.png" id="6_smsqd"]
+[ext_resource type="Texture2D" uid="uid://dn75bcajn1t2i" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0475.png" id="8_2aat8"]
+[ext_resource type="Texture2D" uid="uid://b2l3wp72p7nks" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0712.png" id="8_5c4u4"]
+[ext_resource type="Script" uid="uid://blesn3dw0207a" path="res://scenes/Background/despawn_zone.gd" id="11_t2aqr"]
 
-[node name="Background" type="Node2D" unique_id=441226856]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yelvf"]
+texture = ExtResource("8_2aat8")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_caup0"]
+sources/1 = SubResource("TileSetAtlasSource_yelvf")
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_5c4u4"]
+tile_data = PackedInt32Array(0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 2, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2aat8"]
+texture = ExtResource("8_5c4u4")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ov45e"]
+texture = ExtResource("6_smsqd")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_go6qm"]
+texture = ExtResource("3_hikit")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dur4p"]
+texture = ExtResource("4_n4vpf")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7tm64"]
+texture = ExtResource("3_osuvw")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_newlf"]
+texture = ExtResource("5_hikit")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_o74i5"]
+sources/0 = SubResource("TileSetAtlasSource_2aat8")
+sources/1 = SubResource("TileSetAtlasSource_ov45e")
+sources/2 = SubResource("TileSetAtlasSource_go6qm")
+sources/3 = SubResource("TileSetAtlasSource_dur4p")
+sources/4 = SubResource("TileSetAtlasSource_7tm64")
+sources/5 = SubResource("TileSetAtlasSource_newlf")
+pattern_0 = SubResource("TileMapPattern_5c4u4")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
+size = Vector2(45.75, 30.03125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg5hf"]
+size = Vector2(144, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frg3x"]
+size = Vector2(144, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_caup0"]
+size = Vector2(144, 96)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_3uftm"]
+a = Vector2(57, 7)
+b = Vector2(-72, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3pbo"]
+size = Vector2(48, 108.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7fpr"]
+size = Vector2(48, 98)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hikit"]
+size = Vector2(340, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2aqr"]
+size = Vector2(334, 118)
+
+[node name="Background" type="Node2D" unique_id=615072215]
+y_sort_enabled = true
 script = ExtResource("1_3uftm")
 
-[node name="Street" type="ColorRect" parent="." unique_id=22906479]
-offset_left = 362.0
-offset_top = 1.0
-offset_right = 768.0
-offset_bottom = 719.0
-mouse_filter = 2
-color = Color(0.38928655, 0.38928664, 0.38928658, 1)
+[node name="RoadDisplay" type="Node2D" parent="." unique_id=473628958]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=732227389]
-offset_left = 552.0
-offset_top = -16.0
-offset_right = 568.0
-offset_bottom = 732.0
-mouse_filter = 2
-theme_override_constants/separation = 8
+[node name="Trees" type="TileMap" parent="RoadDisplay" unique_id=328949654]
+visible = false
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_caup0")
+format = 2
+layer_0/tile_data = PackedInt32Array(655365, 1, 0, 1048581, 1, 0, 655379, 1, 0, 1048595, 1, 0, 1769477, 1, 0, 2228229, 1, 0, 2686981, 1, 0, 1769491, 1, 0, 2228243, 1, 0, 2686995, 1, 0, 196613, 1, 0, 196627, 1, 0)
 
-[node name="MidLine" type="ColorRect" parent="VBoxContainer" unique_id=1080983929]
-custom_minimum_size = Vector2(15, 100)
-layout_mode = 2
-mouse_filter = 2
-color = Color(1, 1, 0.5176471, 1)
+[node name="Road" type="TileMapLayer" parent="RoadDisplay" unique_id=1209263121]
+z_index = -2
+tile_map_data = PackedByteArray("AAAPAA0AAgAAAAAAAAAPAA4AAgAAAAAAAAAPABAAAgAAAAAAAAAPABEAAgAAAAAAAAAPABIAAgAAAAAAAAALAA0AAQAAAAAAAAAMAA0AAQAAAAAAAAANAA0AAQAAAAAAAAAOAA0AAQAAAAAAAAAOAA4AAQAAAAAAAAAOABAAAQAAAAAAAAAOABEAAQAAAAAAAAAOABIAAQAAAAAAAAANABIAAQAAAAAAAAAMABIAAQAAAAAAAAALABIAAQAAAAAAAAALABEAAQAAAAAAAAALABAAAQAAAAAAAAALAA4AAQAAAAAAAAAMAA4AAQAAAAAAAAANAA4AAQAAAAAAAAANABAAAQAAAAAAAAANABEAAQAAAAAAAAAMABEAAQAAAAAAAAAMABAAAQAAAAAAAAAQAA0AAQAAAAAAAAARAA0AAQAAAAAAAAASAA0AAQAAAAAAAAATAA0AAQAAAAAAAAATAA4AAQAAAAAAAAATABAAAQAAAAAAAAATABEAAQAAAAAAAAATABIAAQAAAAAAAAASABIAAQAAAAAAAAARABIAAQAAAAAAAAAQABIAAQAAAAAAAAAQABEAAQAAAAAAAAAQABAAAQAAAAAAAAAQAA4AAQAAAAAAAAARAA4AAQAAAAAAAAASAA4AAQAAAAAAAAASABAAAQAAAAAAAAASABEAAQAAAAAAAAARABEAAQAAAAAAAAARABAAAQAAAAAAAAALAA8AAQAAAAAAAAAMAA8AAQAAAAAAAAANAA8AAQAAAAAAAAAOAA8AAQAAAAAAAAAPAA8AAgAAAAAAAAAQAA8AAQAAAAAAAAARAA8AAQAAAAAAAAASAA8AAQAAAAAAAAATAA8AAQAAAAAAAAAUAAYAAwAAAAAAAAAUAAcAAwAAAAAAAAAUAAgAAwAAAAAAAAAUAAkAAwAAAAAAAAAUAAoAAwAAAAAAAAAUAAsAAwAAAAAAAAAUAAwAAwAAAAAAAAAUAA0AAwAAAAAAAAAUAA4AAwAAAAAAAAAUAA8AAwAAAAAAAAAUABAAAwAAAAAAAAAUABEAAwAAAAAAAAAUABIAAwAAAAAAAAAUABMAAwAAAAAAAAAUABQAAwAAAAAAAAAUABUAAwAAAAAAAAAUABYAAwAAAAAAAAAUABcAAwAAAAAAAAAUABgAAwAAAAAAAAAUABkAAwAAAAAAAAAUABoAAwAAAAAAAAAKAAYABAAAAAAAAAAKAAcABAAAAAAAAAAKAAgABAAAAAAAAAAKAAkABAAAAAAAAAAKAAoABAAAAAAAAAAKAAsABAAAAAAAAAAKAAwABAAAAAAAAAAKAA0ABAAAAAAAAAAKAA4ABAAAAAAAAAAKAA8ABAAAAAAAAAAJABAABQAAAAAAAAAJABEABQAAAAAAAAAJABIABQAAAAAAAAAJABMABQAAAAAAAAAJABQABQAAAAAAAAAKABQABAAAAAAAAAAKABUABAAAAAAAAAAKABYABAAAAAAAAAAKABcABAAAAAAAAAAKABgABAAAAAAAAAAKABkABAAAAAAAAAAKABoABAAAAAAAAAAKABAABAAAAAAAAAAKABEABAAAAAAAAAAKABIABAAAAAAAAAAKABMABAAAAAAAAAALABYAAQAAAAAAAAAMABYAAQAAAAAAAAANABYAAQAAAAAAAAAOABYAAQAAAAAAAAAPABYAAgAAAAAAAAAQABYAAQAAAAAAAAARABYAAQAAAAAAAAASABYAAQAAAAAAAAATABYAAQAAAAAAAAALABcAAQAAAAAAAAAMABcAAQAAAAAAAAANABcAAQAAAAAAAAAOABcAAQAAAAAAAAAPABcAAgAAAAAAAAAQABcAAQAAAAAAAAARABcAAQAAAAAAAAASABcAAQAAAAAAAAATABcAAQAAAAAAAAALABgAAQAAAAAAAAAMABgAAQAAAAAAAAANABgAAQAAAAAAAAAOABgAAQAAAAAAAAAPABgAAgAAAAAAAAAQABgAAQAAAAAAAAARABgAAQAAAAAAAAASABgAAQAAAAAAAAATABgAAQAAAAAAAAALABkAAQAAAAAAAAAMABkAAQAAAAAAAAANABkAAQAAAAAAAAAOABkAAQAAAAAAAAAPABkAAgAAAAAAAAAQABkAAQAAAAAAAAARABkAAQAAAAAAAAASABkAAQAAAAAAAAATABkAAQAAAAAAAAALABoAAQAAAAAAAAAMABoAAQAAAAAAAAANABoAAQAAAAAAAAAOABoAAQAAAAAAAAAPABoAAgAAAAAAAAAQABoAAQAAAAAAAAARABoAAQAAAAAAAAASABoAAQAAAAAAAAATABoAAQAAAAAAAAALAAkAAQAAAAAAAAAMAAkAAQAAAAAAAAANAAkAAQAAAAAAAAAOAAkAAQAAAAAAAAAPAAkAAgAAAAAAAAAQAAkAAQAAAAAAAAARAAkAAQAAAAAAAAASAAkAAQAAAAAAAAATAAkAAQAAAAAAAAALAAgAAQAAAAAAAAAMAAgAAQAAAAAAAAANAAgAAQAAAAAAAAAOAAgAAQAAAAAAAAAPAAgAAgAAAAAAAAAQAAgAAQAAAAAAAAARAAgAAQAAAAAAAAASAAgAAQAAAAAAAAATAAgAAQAAAAAAAAALAAcAAQAAAAAAAAAMAAcAAQAAAAAAAAANAAcAAQAAAAAAAAAOAAcAAQAAAAAAAAAPAAcAAgAAAAAAAAAQAAcAAQAAAAAAAAARAAcAAQAAAAAAAAASAAcAAQAAAAAAAAATAAcAAQAAAAAAAAALAAYAAQAAAAAAAAAMAAYAAQAAAAAAAAANAAYAAQAAAAAAAAAOAAYAAQAAAAAAAAAPAAYAAgAAAAAAAAAQAAYAAQAAAAAAAAARAAYAAQAAAAAAAAASAAYAAQAAAAAAAAATAAYAAQAAAAAAAAAJAAYABQAAAAAAAAAJAAcABQAAAAAAAAAJAAgABQAAAAAAAAAJAAkABQAAAAAAAAAJAAoABQAAAAAAAAAJAAsABQAAAAAAAAAJAAwABQAAAAAAAAAJAA0ABQAAAAAAAAAIAA4ABQAAAAAAAAAIAA8ABQAAAAAAAAAIABAABQAAAAAAAAAIABEABQAAAAAAAAAIABIABQAAAAAAAAAIABMABQAAAAAAAAAIABQABQAAAAAAAAAIABUABQAAAAAAAAAIABYABQAAAAAAAAAIABcABQAAAAAAAAAJABcABQAAAAAAAAAJABgABQAAAAAAAAAJABkABQAAAAAAAAAJABoABQAAAAAAAAAJAA4ABQAAAAAAAAAJAA8ABQAAAAAAAAAJABUABQAAAAAAAAAJABYABQAAAAAAAAAIAAYABQAAAAAAAAAIAAcABQAAAAAAAAAIAAgABQAAAAAAAAAIAAkABQAAAAAAAAAIAAoABQAAAAAAAAAIAAsABQAAAAAAAAAIAAwABQAAAAAAAAAIAA0ABQAAAAAAAAAHABIABQAAAAAAAAAHABMABQAAAAAAAAAHABQABQAAAAAAAAAHABUABQAAAAAAAAAHABYABQAAAAAAAAAHABcABQAAAAAAAAAHABgABQAAAAAAAAAHABkABQAAAAAAAAAIABkABQAAAAAAAAAIABoABQAAAAAAAAAHABoABQAAAAAAAAAIABgABQAAAAAAAAAHABEABQAAAAAAAAAHABAABQAAAAAAAAAHAA8ABQAAAAAAAAAHAAkABQAAAAAAAAAHAAgABQAAAAAAAAAHAAcABQAAAAAAAAAHAAYABQAAAAAAAAAHAAoABQAAAAAAAAAHAAsABQAAAAAAAAAHAAwABQAAAAAAAAAHAA0ABQAAAAAAAAAHAA4ABQAAAAAAAAAVAAYABQAAAAAAAAAWAAYABQAAAAAAAAAVAAcABQAAAAAAAAAVAAgABQAAAAAAAAAVAAkABQAAAAAAAAAVAAoABQAAAAAAAAAVAAsABQAAAAAAAAAVAAwABQAAAAAAAAAVAA0ABQAAAAAAAAAVAA4ABQAAAAAAAAAVAA8ABQAAAAAAAAAVABAABQAAAAAAAAAVABEABQAAAAAAAAAVABIABQAAAAAAAAAVABQABQAAAAAAAAAVABUABQAAAAAAAAAVABYABQAAAAAAAAAVABcABQAAAAAAAAAVABgABQAAAAAAAAAVABkABQAAAAAAAAAVABoABQAAAAAAAAAWABoABQAAAAAAAAAWABkABQAAAAAAAAAWABgABQAAAAAAAAAWABcABQAAAAAAAAAWABYABQAAAAAAAAAWABUABQAAAAAAAAAWABQABQAAAAAAAAAVABMABQAAAAAAAAAWAAkABQAAAAAAAAAWAAgABQAAAAAAAAAWAAcABQAAAAAAAAAWAAoABQAAAAAAAAAWAAsABQAAAAAAAAAWAAwABQAAAAAAAAAWAA0ABQAAAAAAAAAWAA4ABQAAAAAAAAAWAA8ABQAAAAAAAAAWABAABQAAAAAAAAAWABEABQAAAAAAAAAWABIABQAAAAAAAAAWABMABQAAAAAAAAAXAAYABQAAAAAAAAAXAAcABQAAAAAAAAAXAAgABQAAAAAAAAAXAAkABQAAAAAAAAAXAAoABQAAAAAAAAAXAAsABQAAAAAAAAAXAAwABQAAAAAAAAAXAA0ABQAAAAAAAAAXAA4ABQAAAAAAAAAXAA8ABQAAAAAAAAAXABAABQAAAAAAAAAXABEABQAAAAAAAAAXABIABQAAAAAAAAAXABYABQAAAAAAAAAXABcABQAAAAAAAAAXABgABQAAAAAAAAAXABkABQAAAAAAAAAXABoABQAAAAAAAAAXABMABQAAAAAAAAAXABQABQAAAAAAAAAXABUABQAAAAAAAAA=")
+tile_set = SubResource("TileSet_o74i5")
 
-[node name="MidLine2" type="ColorRect" parent="VBoxContainer" unique_id=1551213603]
-custom_minimum_size = Vector2(15, 100)
-layout_mode = 2
-mouse_filter = 2
-color = Color(1, 1, 0.5176471, 1)
+[node name="SpawnArea" type="Area2D" parent="." unique_id=683350263]
 
-[node name="MidLine3" type="ColorRect" parent="VBoxContainer" unique_id=1932892466]
-custom_minimum_size = Vector2(15, 100)
-layout_mode = 2
-mouse_filter = 2
-color = Color(1, 1, 0.5176471, 1)
+[node name="Left" type="CollisionShape2D" parent="SpawnArea" unique_id=792841154]
+position = Vector2(145, 68)
+shape = SubResource("RectangleShape2D_00qfr")
 
-[node name="MidLine4" type="ColorRect" parent="VBoxContainer" unique_id=1172247962]
-custom_minimum_size = Vector2(15, 100)
-layout_mode = 2
-mouse_filter = 2
-color = Color(1, 1, 0.5176471, 1)
+[node name="Right" type="CollisionShape2D" parent="SpawnArea" unique_id=1518611175]
+position = Vector2(352, 68)
+shape = SubResource("RectangleShape2D_00qfr")
 
-[node name="MidLine5" type="ColorRect" parent="VBoxContainer" unique_id=1810053215]
-custom_minimum_size = Vector2(15, 100)
-layout_mode = 2
-mouse_filter = 2
-color = Color(1, 1, 0.5176471, 1)
+[node name="ExitArea" type="Area2D" parent="." unique_id=1173980419]
+script = ExtResource("2_i7fpr")
 
-[node name="MidLine6" type="ColorRect" parent="VBoxContainer" unique_id=1691632508]
-custom_minimum_size = Vector2(15, 100)
-layout_mode = 2
-mouse_filter = 2
-color = Color(1, 1, 0.5176471, 1)
+[node name="Left" type="CollisionShape2D" parent="ExitArea" unique_id=1246653891]
+position = Vector2(143, 458)
+shape = SubResource("RectangleShape2D_00qfr")
 
-[node name="MidLine7" type="ColorRect" parent="VBoxContainer" unique_id=1771155855]
-custom_minimum_size = Vector2(15, 100)
-layout_mode = 2
-mouse_filter = 2
-color = Color(1, 1, 0.5176471, 1)
+[node name="Right" type="CollisionShape2D" parent="ExitArea" unique_id=767764053]
+position = Vector2(353, 460)
+shape = SubResource("RectangleShape2D_00qfr")
 
-[node name="Zebra Crossing" type="HBoxContainer" parent="." unique_id=1851754550]
-offset_left = 363.0
-offset_top = 131.0
-offset_right = 768.0
-offset_bottom = 293.0
-mouse_filter = 2
+[node name="RoadArea" type="Area2D" parent="." unique_id=1927178745]
+collision_mask = 3
+script = ExtResource("3_d3pbo")
 
-[node name="ColorRect" type="ColorRect" parent="Zebra Crossing" unique_id=1005128640]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoadArea" unique_id=1080710317]
+position = Vector2(248, 136)
+shape = SubResource("RectangleShape2D_gg5hf")
 
-[node name="ColorRect2" type="ColorRect" parent="Zebra Crossing" unique_id=1284509407]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RoadArea" unique_id=1748070921]
+position = Vector2(248, 256)
+shape = SubResource("RectangleShape2D_frg3x")
 
-[node name="ColorRect3" type="ColorRect" parent="Zebra Crossing" unique_id=1501174268]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="RoadArea" unique_id=1627047114]
+position = Vector2(248, 384)
+shape = SubResource("RectangleShape2D_caup0")
 
-[node name="ColorRect4" type="ColorRect" parent="Zebra Crossing" unique_id=216027112]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="CarStopLine" type="Area2D" parent="." unique_id=820521773]
+collision_mask = 16
+script = ExtResource("2_mv5p6")
 
-[node name="ColorRect5" type="ColorRect" parent="Zebra Crossing" unique_id=431715298]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarStopLine" unique_id=1014339504]
+position = Vector2(254, 195)
+shape = SubResource("SegmentShape2D_3uftm")
 
-[node name="ColorRect6" type="ColorRect" parent="Zebra Crossing" unique_id=2067046524]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="Markers" type="Node" parent="." unique_id=1427513125]
 
-[node name="ColorRect7" type="ColorRect" parent="Zebra Crossing" unique_id=301760658]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="Left" type="Marker2D" parent="Markers" unique_id=1672517114]
+position = Vector2(157, 103)
 
-[node name="ColorRect8" type="ColorRect" parent="Zebra Crossing" unique_id=496419851]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="Right" type="Marker2D" parent="Markers" unique_id=106974000]
+position = Vector2(341, 105)
 
-[node name="ColorRect9" type="ColorRect" parent="Zebra Crossing" unique_id=1570794574]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="Centre" type="Marker2D" parent="Markers" unique_id=1898596746]
+position = Vector2(240, 240)
 
-[node name="ColorRect10" type="ColorRect" parent="Zebra Crossing" unique_id=1296427155]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="Intersection" parent="." unique_id=1546977067 instance=ExtResource("4_d3pbo")]
 
-[node name="ColorRect11" type="ColorRect" parent="Zebra Crossing" unique_id=572693357]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="Intersection2" parent="." unique_id=1003685789 instance=ExtResource("4_d3pbo")]
+position = Vector2(0, 144)
 
-[node name="ColorRect12" type="ColorRect" parent="Zebra Crossing" unique_id=1922019516]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="CarSpawnArea" type="Area2D" parent="." unique_id=1505058523]
 
-[node name="ColorRect13" type="ColorRect" parent="Zebra Crossing" unique_id=166608984]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="Top" type="CollisionShape2D" parent="CarSpawnArea" unique_id=1915648731]
+position = Vector2(209, 10.375)
+shape = SubResource("RectangleShape2D_d3pbo")
 
-[node name="ColorRect14" type="ColorRect" parent="Zebra Crossing" unique_id=379030692]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="Bot" type="CollisionShape2D" parent="CarSpawnArea" unique_id=1410048961]
+position = Vector2(289, 513)
+shape = SubResource("RectangleShape2D_i7fpr")
 
-[node name="ColorRect15" type="ColorRect" parent="Zebra Crossing" unique_id=1138585008]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="DespawnZone" type="Area2D" parent="." unique_id=1317455159]
+collision_layer = 0
+collision_mask = 7
+script = ExtResource("11_t2aqr")
 
-[node name="ColorRect16" type="ColorRect" parent="Zebra Crossing" unique_id=1755599124]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
+[node name="Top" type="CollisionShape2D" parent="DespawnZone" unique_id=1780221742]
+position = Vector2(256, -135)
+shape = SubResource("RectangleShape2D_hikit")
 
-[node name="ColorRect17" type="ColorRect" parent="Zebra Crossing" unique_id=173195747]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect18" type="ColorRect" parent="Zebra Crossing" unique_id=269178576]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect19" type="ColorRect" parent="Zebra Crossing" unique_id=211163145]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect20" type="ColorRect" parent="Zebra Crossing" unique_id=1162853286]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect21" type="ColorRect" parent="Zebra Crossing" unique_id=471021059]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect22" type="ColorRect" parent="Zebra Crossing" unique_id=1019159393]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect23" type="ColorRect" parent="Zebra Crossing" unique_id=1330203472]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect24" type="ColorRect" parent="Zebra Crossing" unique_id=1095678966]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect25" type="ColorRect" parent="Zebra Crossing" unique_id=1761661255]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect26" type="ColorRect" parent="Zebra Crossing" unique_id=1918135044]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect27" type="ColorRect" parent="Zebra Crossing" unique_id=194137079]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect28" type="ColorRect" parent="Zebra Crossing" unique_id=1686903566]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorRect29" type="ColorRect" parent="Zebra Crossing" unique_id=676307351]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="WaitPoint" type="Marker2D" parent="." unique_id=2006204228]
-position = Vector2(256, 232)
-
-[node name="StartPoint" type="Marker2D" parent="." unique_id=2136309763]
-position = Vector2(363, 216)
-
-[node name="EndPoint" type="Marker2D" parent="." unique_id=1278666686]
-position = Vector2(768, 216)
+[node name="Bot" type="CollisionShape2D" parent="DespawnZone" unique_id=57402428]
+position = Vector2(272, 649)
+shape = SubResource("RectangleShape2D_t2aqr")

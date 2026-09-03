@@ -1,3 +1,6 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+*.tmp
+.vio/state/tool_cache/uig22566__New_Conversation/tr_cca07318b77e042eaa5f4.meta.json
+.vio/state/tool_cache/uig22566__New_Conversation/tr_cca07318b77e042eaa5f4.txt

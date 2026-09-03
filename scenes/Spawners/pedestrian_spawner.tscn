@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bc0hjcevxhtxj"]
+
+[ext_resource type="Script" uid="uid://d0rkx85x6j2bm" path="res://scenes/Spawners/pedestrian_spawner.gd" id="1_mm5tn"]
+[ext_resource type="PackedScene" uid="uid://de0x6a4pilut7" path="res://scenes/Pedestrain/pedestrian.tscn" id="2_dysxq"]
+
+[node name="PedestrianSpawner" type="Node" unique_id=1153496418]
+script = ExtResource("1_mm5tn")
+pedestrian_scene = ExtResource("2_dysxq")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1080418667]

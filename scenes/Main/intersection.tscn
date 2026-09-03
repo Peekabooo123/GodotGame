@@ -1,0 +1,101 @@
+[gd_scene format=4 uid="uid://bykvwocobl6uj"]
+
+[ext_resource type="Script" uid="uid://bxqtikbf7081t" path="res://scenes/Main/intersection.gd" id="1_dx4cv"]
+[ext_resource type="PackedScene" uid="uid://bvb3byn3c62l7" path="res://scenes/TrafficLight/traffic_light.tscn" id="1_iyqbx"]
+[ext_resource type="Script" uid="uid://dpm1buxwydqel" path="res://scenes/Main/traffic_light_controller.gd" id="2_el7se"]
+[ext_resource type="Script" uid="uid://c8ym7kuopi8un" path="res://scenes/Main/wait_area.gd" id="3_8pmd1"]
+[ext_resource type="Script" uid="uid://k2tnordfojnh" path="res://scenes/Background/zebra_crossing_area.gd" id="4_vtyyh"]
+[ext_resource type="Script" uid="uid://ceeag2mqrih6d" path="res://scenes/Main/zebra_crossing_display.gd" id="6_3e1k1"]
+[ext_resource type="Texture2D" uid="uid://0jqfisurivod" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0828.png" id="7_l6d18"]
+[ext_resource type="Texture2D" uid="uid://xnocksq46do1" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0825.png" id="8_hq323"]
+[ext_resource type="Texture2D" uid="uid://dpyqo7ycysd6l" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0714.png" id="9_n4158"]
+[ext_resource type="Texture2D" uid="uid://drkdbnu8wkycu" path="res://assets/kenney_roguelike-modern-city/Tiles/tile_0749.png" id="10_lal5q"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y4mok"]
+texture = ExtResource("8_hq323")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n4158"]
+texture = ExtResource("7_l6d18")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ny8r5"]
+texture = ExtResource("9_n4158")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_smejx"]
+texture = ExtResource("10_lal5q")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hq323"]
+sources/0 = SubResource("TileSetAtlasSource_y4mok")
+sources/1 = SubResource("TileSetAtlasSource_n4158")
+sources/2 = SubResource("TileSetAtlasSource_ny8r5")
+sources/3 = SubResource("TileSetAtlasSource_smejx")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00qfr"]
+size = Vector2(144, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vio55"]
+size = Vector2(61, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg5hf"]
+size = Vector2(58, 15)
+
+[node name="Intersection" type="Node2D" unique_id=1546977067]
+y_sort_enabled = true
+script = ExtResource("1_dx4cv")
+
+[node name="Road" type="TileMapLayer" parent="." unique_id=1244757248]
+z_index = -2
+tile_map_data = PackedByteArray("AAALAAsAAQAAAAAAAAAMAAsAAQAAAAAAAAANAAsAAQAAAAAAAAAOAAsAAQAAAAAAAAAPAAsAAQAAAAAAAAAQAAsAAQAAAAAAAAARAAsAAQAAAAAAAAASAAsAAQAAAAAAAAALAAoAAgAAAAAAAAAMAAoAAgAAAAAAAAANAAoAAgAAAAAAAAAOAAoAAgAAAAAAAAAPAAoAAwAAAAAAAAAQAAoAAgAAAAAAAAARAAoAAgAAAAAAAAASAAoAAgAAAAAAAAALAAwAAgAAAAAAAAAMAAwAAgAAAAAAAAANAAwAAgAAAAAAAAAOAAwAAgAAAAAAAAAPAAwAAwAAAAAAAAAQAAwAAgAAAAAAAAARAAwAAgAAAAAAAAASAAwAAgAAAAAAAAATAAsAAQAAAAAAAAATAAoAAgAAAAAAAAATAAwAAgAAAAAAAAA=")
+tile_set = SubResource("TileSet_hq323")
+
+[node name="ZebraCrossingArea" type="Area2D" parent="." unique_id=515893021]
+z_index = -1
+collision_mask = 6
+script = ExtResource("4_vtyyh")
+
+[node name="ZebraCrossing" type="CollisionShape2D" parent="ZebraCrossingArea" unique_id=2007311862]
+position = Vector2(248, 184)
+shape = SubResource("RectangleShape2D_00qfr")
+
+[node name="WaitAreaLeft" type="Area2D" parent="." unique_id=1218458652 node_paths=PackedStringArray("traffic_light_controller", "intersection", "opposite_area")]
+collision_mask = 3
+script = ExtResource("3_8pmd1")
+traffic_light_controller = NodePath("../TrafficLightController")
+intersection = NodePath("..")
+opposite_area = NodePath("../WaitAreaRight")
+
+[node name="Left" type="CollisionShape2D" parent="WaitAreaLeft" unique_id=1166703013]
+position = Vector2(142.5, 185)
+shape = SubResource("RectangleShape2D_vio55")
+
+[node name="WaitAreaRight" type="Area2D" parent="." unique_id=467106672 node_paths=PackedStringArray("traffic_light_controller", "intersection", "opposite_area")]
+collision_mask = 3
+script = ExtResource("3_8pmd1")
+traffic_light_controller = NodePath("../TrafficLightController")
+intersection = NodePath("..")
+opposite_area = NodePath("../WaitAreaLeft")
+
+[node name="Right" type="CollisionShape2D" parent="WaitAreaRight" unique_id=1512985034]
+position = Vector2(353, 185.5)
+shape = SubResource("RectangleShape2D_gg5hf")
+
+[node name="TrafficLightController" type="Node2D" parent="." unique_id=1339215505]
+script = ExtResource("2_el7se")
+
+[node name="StateTimer" type="Timer" parent="TrafficLightController" unique_id=1870520059]
+
+[node name="ZebraCrossingDisplay" type="Node2D" parent="." unique_id=48953018]
+visible = false
+script = ExtResource("6_3e1k1")
+
+[node name="TrafficLight_left" parent="." unique_id=1712757861 instance=ExtResource("1_iyqbx")]
+position = Vector2(175, 191)
+rotation = 3.1415927
+scale = Vector2(0.4, -0.4)
+
+[node name="TrafficLight_right" parent="." unique_id=1340886710 instance=ExtResource("1_iyqbx")]
+position = Vector2(322, 176)
+scale = Vector2(0.4, 0.4)

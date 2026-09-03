@@ -19,6 +19,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 Eventbus="*uid://dwn1miqadtyl3"
+TrafficJudge="*uid://bmybrx23k43k1"
 
 [display]
 
@@ -28,6 +29,12 @@ window/size/window_width_override=700
 window/size/window_height_override=400
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[file_customization]
+
+folder_colors={
+"res://scenes/Pedestrain/": "red"
+}
 
 [input]
 
@@ -61,7 +68,8 @@ move_right={
 2d_physics/layer_1="Background"
 2d_physics/layer_2="pedestrain"
 2d_physics/layer_3="car"
-2d_physics/layer_4="traffic"
+2d_physics/layer_4="clickable"
+2d_physics/layer_5="car_front_detector"
 
 [physics]
 
